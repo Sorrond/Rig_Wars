@@ -10,6 +10,18 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+/*
+
+///////////////////////////////////////////////
+var cookieParser = require('cookie-parser');
+                
+//app.use(cookieParser());
+app.use(cookieParser('VERY SECRET SECRET'));
+/////////////////////////////////////////////////
+
+*/
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
