@@ -9,10 +9,11 @@ router.get('/', function(req, res, next) {
   res.send(users);
 });
 
-router.get('/profile', auth.checkAuthentication, async function(req, res, next) {
+router.get('/profile',/* auth.checkAuthentication, async*/ function(req, res, next) {
   console.log("Get profile of logged user ");
-  let result = await uModel.getLoggedUserInfo(req.userId);
-  res.status(result.status).send(result.result);
+  let result = umodel.getLoggedUserInfo(req.userId);
+  res.send(result);
+  //res.status(result.status).send(result.result);
 });
 
 

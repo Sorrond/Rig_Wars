@@ -1,218 +1,33 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title> Rig Wars Website</title>
-    <link rel="stylesheets" href="style.css">
-    <link rel="stylesheets" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta name="viewport" content="width = device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheets">
-    
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <script src="./javascripts/requests/userRequests.js"></script>
+    <script src="./javascripts/authentication/login.js"></script>
 </head>
 <body>
-<section id="banner">
-    <img src="" class="logo">
-    <div class="banner-text">
-        <h1> Rig Wars </h1>
-        <div class="banner-btn">
-            <a href=""><span></span>Trailer</a>
-            <a href="game.html"><span></span>Game</a>
-        </div>    
-    </div>
-</section>
-
-<div id="sideNav">
-    <nav>
-    <ul>
-        <li><a href="#banner">Home</a></li>
-        <li><a href="#feature">How to Play</a></li>
-        <li><a href="#story">Story</a></li>
-        <li><a href="#person">Buildings</a></li>
-    </ul>
-    </nav>
-</div>
-<div id="menuBtn">
-    <img src="" id="menu">
-</div>
-
-<!--Features--> 
-<section id="feature">
-<div class="title-text">
-<p>About the game</p>
-<h1>What is Rig Wars</h1>
-</div>
-<div class="feature-box">
-    <div class="features">
-        <h1>Setting</h1>
-        <div class="features-desc">
-            <div class="feature-icon">
-                <i class="fa fa-heart" a></i>
-            </div>
-            <div class="feature-text">
-            <p>Write about the game</p>
-            </div>
-        </div>
-    </div>
-    <div class="features-img">
-        <img src="">
-    </div> 
-</div>    
-</section>
-
-<!--Story-->
-<section id="story">
-<div class ="title-text">
-<p>Story</p>
-<h1>Of Rig Wars</h1>
-</div>  
-<div class="story-box">
-    <div class="storys">
-        <h1>Historia:</h1>
-        <div class="story-desc">
-            <div class="story-icon">
-                <i class="fa fa-book"></i>
-            </div>
-            <div class="story-text">
-                <p>Write the lore</p>
-            </div>
-        </div>
-    </div>
-    <div class="storys-img">
-        <img src="">
-    </div>
-</div>    
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/330px-Rock-paper-scissors.svg.png" alt="rock paper scissors chart">
+        <section>
+          <h1> Rock, Paper, Scissors</h1>
+          <h3> A simple game for everyone</h3>
+          <h3> Not register? <a href="register.html">Register here!</a>  </h3>
+        </section>
+       </header>
+      <nav></nav>
+      <main >
+        <section>
+        <p> Login Name: <input type="text" id="name"> </p>
+        <p> Password: <input type="password" id="password"> </p>
+        <input type="button" value="Login" onclick="loginUser()">
+        <p id="result"></p>
+        </section>
+      </main>
+      <footer></footer>
+    </body>
+    </html>
     
-</section>
-    
-<!--Buildings--> 
-<section id="building">
-<div class="title-text">
-<p>Buildings</p>
-<h1>The Buildings</h1>
-</div>
-    
-<!--Oil Rig-->
-<div class="building-box-rig">
-    <div class="building-rig">
-        <h1>Buildings:</h1>
-        <div class="building-desc-rig">
-            <div class="building-icon-rig">
-                <i class="fa fa-users" a></i>
-            </div>
-            <div class="building-text-rig">
-            <p>Oil Rig: lalalalalallalalalalallalalallalala.</p>
-            </div>
-        </div>
-    </div>
-        <div class="building-img-rig">
-            <img src="">
-        </div> 
-    </div>
-</section>
-
-<!--Boats--> 
-<section id="boat">
-<div class="title-text">
-<p>Boats</p>
-<h1>The Boats</h1>
-</div>
-
-<!--Frisk-->
-<div class="boat-box-attkboat">
-    <div class="boat-attkboat">
-        <h1>Boats:</h1>
-        <div class="boat-desc-attkboat">
-            <div class="boat-icon-attkboat">
-                <i class="fa fa-users" a></i>
-            </div>
-            <div class="boat-text-attkboat">
-            <p>Attack Boat: LALALALALALALLALALALALALALALL.</p>
-            </div>
-        </div>
-    </div>
-        <div class="boat-img-attkboat">
-            <img src="">
-        </div> 
-    </div>
-</section>
-
-<!--Obstructions-->
-<section id="obstruct">
-<div class="title-text">
-    <p>obstruct</p>
-<h1>obstruct</h1>
-</div>
-<div class="obstruct-box">
-    <div class="obstructs">
-        <h1>Obstructions</h1>
-        <div class="obstructs-desc">
-            <div class="obstruct-icon">
-                <i class="fa fa-heart" a></i>
-            </div>
-            <div class="obstruct-text">
-            <p>Whirlpool:</p>
-            </div>
-        </div>
-    </div>
-    <div class="obstructs-img">
-        <img src="">
-    </div> 
-</div>    
-</section>
-    
-<!--Intructions-->
-<section id="instruct">
-<div class="title-text">
-<p>Intructions</p>
-<h1>Intructions</h1>
-</div>
-<div class="instruct-box">
-    <div class="instructs">
-        <h1>Intructioss</h1>
-        <div class="instructs-desc">
-            <div class="instruct-icon">
-                <i class="fa fa-heart" a></i>
-            </div>
-            <div class="instruct-text">
-            <p>How to play:</p>
-            </div>
-        </div>
-    </div>
-    <div class="instructs-img">
-        <img src="">
-    </div> 
-</div>    
-</section>
-    
-<!--Footer-->  
-<section id="footer">
-<div class="footer-text">
-<footer>
-  <p>Made by: </p>
-    <p>Rodrigo Farinha</p>
-    <p>Rafael Fernandes </p>
-    <p>Tomas Vicente </p>
-  <p><a href="mimimi@example.com">mimimi@example.com</a></p>
-</footer>
-</div>
-</section>
-    
-<!--Script-->
-<script>
-var menuBtn = document.getElementById("menuBtn")
-var sideNav = document.getElementById("sideNav")
-var menu = document.getElementById("menu")
-
-sideNav.style.right = "-250px";
-
-menuBtn.onclick = function(){
-    if(sideNav.style.right == "-250px"){
-        sideNav.style.right = "0";
-        menu.src = "";
-    }
-    else{
-        sideNav.style.right = "-250px";
-        menu.src = "";
-    }
-}
-</script>
 </body>
 </html>
