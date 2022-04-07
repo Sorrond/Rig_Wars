@@ -1,0 +1,18 @@
+body {
+    grid-template-areas: 'h' 'm' 'f';
+    grid-template-columns: auto;
+    grid-template-rows: 170px auto 70px;
+  }
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+main > section {
+    border: 2px solid darkred;
+    background-color: coral;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+}

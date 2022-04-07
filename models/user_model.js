@@ -7,8 +7,8 @@ module.exports.loginCheck = async function (name,password) {
       if (result.rows.length == 0) {
           return { status: 401, result: {msg: "Wrong password or username."}}
       }
-      let ply_id = result.rows[0].ply_id;
-      return { status: 200, result: {msg: "Login correct", userId : ply_id} };
+      let user_id = result.rows[0].user_id;
+      return { status: 200, result: {msg: "Login correct", userId : user_id} };
     } catch (err) {
       console.log(err);
       return { status: 500, result: err };
@@ -17,7 +17,7 @@ module.exports.loginCheck = async function (name,password) {
 
 module.exports.getLoggedUserInfo = async function (playerId) {
     try {
-        let sql = `Select * from user_ where user_id = $1`;
+        let sql = `Select user_name from user_ where user_id = $1`;
         let result = await pool.query(sql, [playerId]);
         if (result.rows.length > 0) {
             let player = result.rows[0];
