@@ -30,3 +30,18 @@ module.exports.getLoggedUserInfo = async function (playerId) {
       return { status: 500, result: err };
     }
 }
+
+module.exports.registerPlayer = async function(player) {
+  try  {
+    let sql = "Insert into user_ (user_name, user_password) values ($1,$2)";
+    let result = await pool.query(sql,[player.name, player.password]); 
+    if (result.rows.length == 0){
+      return {status: 200, result: player};
+    }else{
+      return {status: 401, result: {msg:'Não'}};
+    }
+  } catch (err){
+    console.log(err);
+    return { status: 500, result: err };
+  }
+}
