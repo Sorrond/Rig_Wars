@@ -27,8 +27,6 @@ async function login(name, password) {
     }
 }
 
-
-/*----------------------------------------------------------------------------------------------*/
 async function logout() {
     try {
         const response = await fetch(`/api/users/logout`,

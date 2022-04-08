@@ -7,4 +7,10 @@ router.get('/', async function(req, res, next) {
     res.status(result.status).send(result.result);
 });
             
+router.post('/find', async function(req,res,next) {
+    let playerID = req.body.playerID;
+    let result = await rModel.findRoom(playerID);
+    res.status(result.status).send(result.result);
+})
+
 module.exports = router;
