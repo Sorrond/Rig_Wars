@@ -59,3 +59,23 @@ async function register(player) {
         console.log(err);
     }
 }
+
+// async function cmdckdmc(player) {
+//     try {
+//         // TODO: Verify user information  and give errors
+//         const response = await fetch("/api/rooms/find",
+//         {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//               },
+//             body: JSON.stringify({ playerID: 4 }) 
+//         });
+//         var  result= await response.json();
+//         result.room_id
+//         return {inserted: response.status==200 , result: result };
+//     } catch (err) {
+//         // Treat 500 errors here
+//         console.log(err);
+//     }
+// }
