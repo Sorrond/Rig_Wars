@@ -1,0 +1,41 @@
+let atkboat_but;
+let mine_but;
+
+// function getWorldTileInfo() {
+
+//   for (let i = 0; i < worldMap.length; i++) {
+//     for (let j = 0; j < worldMap.length; j++) {
+//       if (worldMap[i][j].click_tile(mouseX, mouseY)) {
+//         print(worldMap[i][j].get_id());
+
+//         break;
+//       }
+//     }
+//   }
+// }
+
+function drawBut() {
+    if(atkboat_but.houver_but(mouseX, mouseY)){
+    fill(0, 25);
+    atkboat_but.draw_but();
+    }else{
+    fill(0, 55);
+    atkboat_but.draw_but();
+    };
+
+    if(mine_but.houver_but(mouseX, mouseY)){
+    fill(0, 25);
+    mine_but.draw_but();
+    }else{
+    fill(0, 55);
+    mine_but.draw_but();
+    };
+}
+
+function initBut() {
+    let butsize = 100;
+    
+    atkboat_but = new button((width/6) * 5, (height/3) * 2, butsize * 1.5, butsize , 'Attack Boat');
+    mine_but = new button((width/6) * 4, (height/3) * 2, butsize * 1.5, butsize , 'Mines');
+   
+}

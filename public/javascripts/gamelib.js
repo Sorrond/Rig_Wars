@@ -1,24 +1,60 @@
-const width = 1000;
-const height = 400;
+const width = 1597;
+const height = 1500;
+
+let screen = 'world';
+let time = 60;
+let cancel_timer = 0;
 //const room = 1;
 
-var boardMan;
-
 function preload() {
-    BoardManager.preloadImages();
+    //BoardManager.preloadImages();
     //boardMan = new BoardManager(width,height,0,0,room);
     //boardMan.initBoard();
 }
 
 function setup() {
     var canvas = createCanvas(width, height);
+    initBut()
+    initWorldMap();
+
+    //CreateBut();
 }
 function draw() {
     background(255);
+     
+    drawBut();
+    drawWorldtiles();
+    resources();
 }
-function mouseClicked() {
-    boardMan.click(mouseX,mouseY);     
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*----------------------------------------------------------------------------*/
