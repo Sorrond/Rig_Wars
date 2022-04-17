@@ -4,21 +4,18 @@ const worldMapCols = 15;
 const worldMapRows = 30;
 
 function getWorldTileInfo() {
-
-  for (let i = 0; i < worldMap.length; i++) {
-    for (let j = 0; j < worldMap.length; j++) {
+  for (let i = 0; i < worldMapCols; i++) {
+    for (let j = 0; j < worldMapRows; j++) {
       if (worldMap[i][j].click_tile(mouseX, mouseY)) {
         print(worldMap[i][j].get_id());
 
-        break;
+      break;
       }
     }
   }
 }
 
 function drawWorldtiles() {
-  // let worldMapCols = 15;
-  // let worldMapRows = 30;
   for (let i = 0; i < worldMapCols; i++) {
     for (let j = 0; j < worldMapRows; j++) {
       if(worldMap[i][j].houver_tile(mouseX, mouseY)){

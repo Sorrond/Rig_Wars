@@ -1,18 +1,22 @@
 let atkboat_but;
 let mine_but;
 
-// function getWorldTileInfo() {
+function but_action() {
+    for (let i = 0; i < worldMapCols; i++) {
+        for (let j = 0; j < worldMapRows; j++) {
+            if (atkboat_but.click_but(mouseX, mouseY)) {
+                print(worldMap[i][j].get_id());
+                building_menu()
+            }
 
-//   for (let i = 0; i < worldMap.length; i++) {
-//     for (let j = 0; j < worldMap.length; j++) {
-//       if (worldMap[i][j].click_tile(mouseX, mouseY)) {
-//         print(worldMap[i][j].get_id());
-
-//         break;
-//       }
-//     }
-//   }
-// }
+            if (mine_but.click_but(mouseX, mouseY)) {
+                print(worldMap[i][j].get_id());
+                building_menu()
+            }
+            break;
+        }
+    }    
+}
 
 function drawBut() {
     if(atkboat_but.houver_but(mouseX, mouseY)){

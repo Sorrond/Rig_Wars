@@ -39,27 +39,25 @@ function building_menu(){
 
 function mouseClicked() {
     if(screen == 'world'){
-        for (let i = 0; i < worldMap.length; i++) {
-            for (let j = 0; j < worldMap.length; j++) {
+        for (let i = 0; i < worldMapCols; i++) {
+            for (let j = 0; j < worldMapRows; j++) {
                 if (worldMap[i][j].click_tile(mouseX, mouseY)) {
 
                     getWorldTileInfo()
+                
                 break;
-
-
-
                 }
             }
         }
-    // }else if(screen == 'world'){
-    //     for (let i = 0; i < board.length; i++) {
-    //         for (let j = 0; j < board.length; j++) {
-    //             if (board[i][j].click_tile(mouseX, mouseY)) {
-    //                 buildPlace();
-    //                 break;
-    //             }
-    //         }
-    //     }
+    }else if(screen == 'building'){
+        for (let i = 0; i < worldMapCols; i++) {
+            for (let j = 0; j < worldMapRows; j++) {
+                if (worldMap[i][j].click_tile(mouseX, mouseY)) {
+                    buildPlace();
+                    break;
+                }
+            }
+        }
     }
 }
 

@@ -17,7 +17,8 @@ class tile {
     rect(this.x, this.y, this.w, this.h);
     fill('white');
     textSize(16)
-    text(this.t, this.x, this.y + this.h / 2);
+    textAlign(CENTER);
+    text(this.t, this.x + this.w/2,this.y +this.h/2 + 5);
     textSize(12)
     pop();
   }
