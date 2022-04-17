@@ -9,7 +9,7 @@ async function fillRooms() {
         let rooms = await getRooms();
         let html = "";
         for(let room of rooms) {
-            html+=`<section onclick=openRoom(${room.roo_id})>
+            html+=`<section onclick=openRoom(${roomid})>
                       <h3>${room.roo_name}</h3>
                    </section>`
         }
