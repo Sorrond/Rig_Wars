@@ -5,12 +5,10 @@ function but_action() {
     for (let i = 0; i < worldMapCols; i++) {
         for (let j = 0; j < worldMapRows; j++) {
             if (atkboat_but.click_but(mouseX, mouseY)) {
-                print(worldMap[i][j].get_id());
                 building_menu()
             }
 
             if (mine_but.click_but(mouseX, mouseY)) {
-                print(worldMap[i][j].get_id());
                 building_menu()
             }
             break;

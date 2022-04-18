@@ -14,14 +14,14 @@ function buildPlace(){
         for (let j = 0; j < worldMapRows; j++) {
             if (worldMap[i][j].click_tile(mouseX, mouseY)) {
 
-                //Build a storage in a space that is different than a storage//
+                //Build a atkboat in a space that is different than a atkboat//
                 if(typeStruc=='atkboat' && worldMap[i][j].t != 'atkboat'){
                     worldMap[i][j].set_(typeStruc);
                     print(worldMap[i][j].get_id());
                     break;
 
 
-                //Build a house in a space that is different than a house//
+                //Build a mine in a space that is different than a mine//
                 }else if(typeStruc =='mines' && worldMap[i][j].t != 'mines'){
                     worldMap[i][j].set_(typeStruc);
                     print(worldMap[i][j].get_id());
@@ -29,14 +29,14 @@ function buildPlace(){
 
 
                 }else if(typeStruc == worldMap[i][j].t ){
-                    alert(`Can't build there`)
+                    print(`Can't build there`)
                     print(worldMap[i][j].get_id());
                     time=0
                     break;
 
 
                 }else{
-                    alert(`Can't build ${typeStruc}, not enough resources`)
+                    print(`Can't build ${typeStruc}, not enough tokens`)
                     print(worldMap[i][j].get_id());
                     time=0
                     break;
