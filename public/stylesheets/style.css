@@ -11,7 +11,7 @@ html {
 
 /*--Banner--*/
 #banner{
-  background: linear-gradient(#8fd457, #558cf2),url(images/banner.jpg);
+  background: linear-gradient(#8fd457, #558cf2);
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -635,7 +635,7 @@ nav ul li a{
 
 /*--Footer--*/
 #footer{
-  background: linear-gradient(#8fd457, #558cf2),url(images/banner.jpg);
+  background: linear-gradient(#8fd457, #558cf2);
   background-size: cover;
   background-position: center;
   height: 30vh;

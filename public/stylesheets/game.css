@@ -1,3 +1,20 @@
+/*--Banner--*/
+#banner{
+  background: linear-gradient(#8fd457, #558cf2);
+  background-size: cover;
+  background-position: center;
+  height: 20vh;
+}
+
+.logo{
+  position: absolute;
+  left: 800;
+  right: 0;
+  width: 300px;
+  padding-top: 20px;
+
+}
+
 body {
   background-color: rgb(255, 255, 255);
   margin: 0;
@@ -7,32 +24,26 @@ body {
   grid-template-rows: 170px auto 70px;
 }
 
-header > img { 
-  width: 150px;
+.auth{
+  position: relative;
+  bottom: 150;
 }
 
-header {
-   background-color: coral;
-   color: white;
-   font-size: 1.2em;
-   padding:10px;
-   grid-area: h;
-   display: flex;
-   align-items: center;
+/*--Footer--*/
+#footer{
+  background: linear-gradient(#8fd457, #558cf2);
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
 }
 
-header > section {
+.footer-text{
   text-align: center;
-  width: calc(100% - 320px);
+  color: #fff;
+  padding-top: 20px;
 }
 
-
-
-
-footer { 
-  background-color: coral;
-  color: white;
-  padding: 10px 20%;
-  text-align: right;
-  grid-area: f;
+.footer-text p{
+  font-size: 20px;
+  font-style: italic;
 }
