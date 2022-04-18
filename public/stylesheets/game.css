@@ -1,7 +1,3 @@
-*{
-  font-family: 'VT323', monospace;
-}
-
 /*--Banner--*/
 #banner{
   background: linear-gradient(#8fd457, #558cf2);
@@ -31,7 +27,6 @@ body {
 .auth{
   position: relative;
   bottom: 150;
-  
 }
 
 /*--Footer--*/
@@ -46,8 +41,10 @@ body {
   text-align: center;
   color: #fff;
   padding-top: 20px;
+  font-style: italic;
 }
 
 .footer-text p{
   font-size: 20px;
+  font-style: italic;
 }
