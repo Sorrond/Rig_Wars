@@ -4,6 +4,11 @@
   font-family: 'VT323', monospace;
 }
 
+/*--Smooth--*/
+html {
+  scroll-behavior: smooth;
+}
+
 /*--Banner--*/
 #banner{
   background: linear-gradient(#8fd457, #558cf2),url(images/banner.jpg);
@@ -13,16 +18,18 @@
 }
 
 .logo{
-  width: 400px;
   position: absolute;
-  top: 4%;
-  left: 10%; 
+  left: 600;
+  right: 0;
+  width: 700px;
+  padding-top: 100px;
+
 }
 
 .banner-text{
   text-align: center;
   color: #fff;
-  padding-top: 180px;
+  padding-top: 400px;
 }
 
 .banner-text h1{
