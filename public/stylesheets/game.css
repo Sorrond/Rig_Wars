@@ -3,7 +3,6 @@ body {
   margin: 0;
   height: 100vh;
   display: grid;
-  grid-template-columns: 200px auto;
   grid-template-areas: 'h h' 'n m' 'f f';
   grid-template-rows: 170px auto 70px;
 }
@@ -25,21 +24,6 @@ header {
 header > section {
   text-align: center;
   width: calc(100% - 320px);
-}
-
-nav {  
-  background-color: brown;
-  padding:10px;
-  display: flex;
-  flex-direction: column;
-  grid-area: n;
-}
-
-nav a { 
-  color: white;
-  margin:5px;
-  padding:5px;
-  border: 1px solid white;  
 }
 
 footer { 
