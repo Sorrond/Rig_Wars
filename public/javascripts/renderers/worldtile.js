@@ -16,8 +16,8 @@ function getWorldTileInfo() {
 }
 
 function drawWorldtiles() {
-  for (let i = 0; i < worldMapCols; i++) {
-    for (let j = 0; j < worldMapRows; j++) {
+  for (let i = 0; i < worldMapRows; i++) {
+    for (let j = 0; j < worldMapCols; j++) {
       if(worldMap[i][j].houver_tile(mouseX, mouseY)){
         fill(0, 25);
         worldMap[i][j].draw_tile();
@@ -35,26 +35,26 @@ function initWorldMap() {
   let numberOfrows = 30;
   let sizeOfTile_W = 50;
   let sizeOfTile_H = 50;
-  let GBW = numberOfCols * sizeOfTile_W;
-  let GBH = numberOfrows * sizeOfTile_H;
+  let GBW = numberOfrows * sizeOfTile_W;
+  let GBH = numberOfCols * sizeOfTile_H;
   let y = 0;
   let x = 0;
   let countID = 0;
   let initialY = 0;
   let initialX = 1;
 
-  for (let i = 0; i < numberOfCols; i++) {
+  for (let i = 0; i < numberOfrows; i++) {
     worldMap[i] = [];
     if (i == 0) {
       x = initialX;
     } else {
-      x = x + GBW / numberOfCols;
+      x = x + GBW / numberOfrows;
     }
-    for (var j = 0; j < numberOfrows; j++) {
+    for (var j = 0; j < numberOfCols; j++) {
       if (j == 0) {
         y = initialY;
       } else {
-        y = y + GBH / numberOfrows;
+        y = y + GBH / numberOfCols;
       }
       countID++;
       worldMap[i][j] = new tile(x, y, sizeOfTile_W, sizeOfTile_H, 0, '', countID);
