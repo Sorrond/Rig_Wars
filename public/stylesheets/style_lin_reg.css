@@ -3,7 +3,7 @@
 }
 
 body {
-  background: linear-gradient(#558cf2,#8fd457);
+  background: linear-gradient(#558cf2,#8fd457) ;
   margin: 0;
   height: 100vh;
   display: grid;
@@ -16,11 +16,12 @@ header > img {
   width: 150px;
 }
 
-.Biglogo{
-  position: relative;
-  width: 100px;
-  padding-top: 200px;
-  padding-left: 600px ;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  padding-top: 100px;
 }
 
 /*Button to menu*/
@@ -78,11 +79,6 @@ header {
 
 header > section {
   text-align: center;
-  padding-top: 600px;
-  padding-right: 800px;
-
-  align-items: center;
-  justify-content: center;
 }
 
 nav {  
@@ -109,7 +105,6 @@ nav {
 } */
 
 main {
-  padding-top: 200px;
   grid-area: m;
   display: flex;
   align-items: center;
