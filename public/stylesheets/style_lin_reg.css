@@ -1,3 +1,7 @@
+*{
+  font-family: 'VT323', monospace;
+}
+
 body {
   background: linear-gradient(#558cf2,#8fd457);
   margin: 0;
