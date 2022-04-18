@@ -36,18 +36,17 @@ html {
   color: #0051ff;
 }
 
-.logo{
-  position: absolute;
-  left: 600;
-  right: 0;
-  width: 700px;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
   padding-top: 100px;
 }
-
 .banner-text{
   text-align: center;
   color: #fff;
-  padding-top: 400px;
+  padding-top: 40px;
 }
 
 .banner-text h1{
