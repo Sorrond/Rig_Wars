@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 async function requestUserInfo() {
     try {
         const response = await fetch(`/api/users/profile`);
@@ -57,6 +59,7 @@ async function register(player) {
     } catch (err) {
         // Treat 500 errors here
         console.log(err);
+        return {inserted: response.status==404 , result: err};
     }
 }
 
