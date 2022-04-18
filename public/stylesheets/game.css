@@ -26,17 +26,13 @@ header > section {
   width: calc(100% - 320px);
 }
 
+
+
+
 footer { 
   background-color: coral;
   color: white;
   padding: 10px 20%;
   text-align: right;
   grid-area: f;
-}
-
-main {
-  grid-area: m;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
