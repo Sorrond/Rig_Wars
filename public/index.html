@@ -2,16 +2,12 @@
 <head>
     <title> Rig Wars Website</title>
     <link rel="stylesheet" href="stylesheets/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta name="viewport" content="width = device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheets">
-    
 </head>
 <body>
 <section id="banner">
     <img src="images/fortnite-fortnite-default-dance.gif" class="logo">
     <div class="banner-text">
-        <h1> Rig Wars </h1>
+       <h1> Rig Wars </h1>
         <div class="banner-btn">
             <a href="https://www.youtube.com/watch?v=kZBxj180Ql8"><span></span>Trailer</a>
             <a href="game.html"><span></span>Game</a>
@@ -19,7 +15,8 @@
         <div class="banner-btn">
             <a href="login.html"><span></span>Login</a>
             <a href="register.html"><span></span>Register</a>
-        </div>    
+        </div>  
+        
     </div>
 </section>
 
@@ -27,9 +24,12 @@
     <nav>
     <ul>
         <li><a href="#banner">Home</a></li>
-        <li><a href="#feature">How to Play</a></li>
+        <li><a href="#feature">About the Game</a></li>
         <li><a href="#story">Story</a></li>
-        <li><a href="#person">Buildings</a></li>
+        <li><a href="#building">Buildings</a></li>
+        <li><a href="#boat">Boats</a></li>
+        <li><a href="#obstruct">Obstructions</a></li>
+        <li><a href="#instruct">Instructions</a></li>
     </ul>
     </nav>
 </div>
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="features-img">
-        <img src="">
+        <img src="images/souls.jpg">
     </div> 
 </div>    
 </section>
@@ -80,7 +80,7 @@
         </div>
     </div>
     <div class="storys-img">
-        <img src="">
+        <img src="images/Fallen_down.png">
     </div>
 </div>    
     
@@ -93,7 +93,7 @@
 <h1>The Buildings</h1>
 </div>
     
-<!--Oil Rig-->
+<!--Oil Rig-->  
 <div class="building-box-rig">
     <div class="building-rig">
         <h1>Buildings:</h1>
@@ -107,7 +107,7 @@
         </div>
     </div>
         <div class="building-img-rig">
-            <img src="">
+            <img src="images/rig.png">
         </div> 
     </div>
 </section>
@@ -119,7 +119,8 @@
 <h1>The Boats</h1>
 </div>
 
-<!--Frisk-->
+<!--AttkBoat-->
+    
 <div class="boat-box-attkboat">
     <div class="boat-attkboat">
         <h1>Boats:</h1>
@@ -128,12 +129,12 @@
                 <i class="fa fa-users" a></i>
             </div>
             <div class="boat-text-attkboat">
-            <p>Attack Boat: TATAKAE.</p>
+            <p>Attack Boat: LALALALALALALLALALALALALALALL.</p>
             </div>
         </div>
     </div>
         <div class="boat-img-attkboat">
-            <img src="">
+            <img src="images/attkboat.png">
         </div> 
     </div>
 </section>
@@ -157,7 +158,7 @@
         </div>
     </div>
     <div class="obstructs-img">
-        <img src="">
+        <img src="images/souls.jpg">
     </div> 
 </div>    
 </section>
@@ -181,7 +182,7 @@
         </div>
     </div>
     <div class="instructs-img">
-        <img src="">
+        <img src="images/souls.jpg">
     </div> 
 </div>    
 </section>
@@ -194,27 +195,22 @@
     <p>Rodrigo Farinha</p>
     <p>Rafael Fernandes </p>
     <p>Tomas Vicente </p>
-  <p><a href="mimimi@example.com">mimimi@example.com</a></p>
+  <p><a href="mailto:hege@example.com">hege@example.com</a></p>
 </footer>
 </div>
 </section>
     
 <!--Script-->
 <script>
-var menuBtn = document.getElementById("menuBtn")
-var sideNav = document.getElementById("sideNav")
-var menu = document.getElementById("menu")
-
 sideNav.style.right = "-250px";
-
 menuBtn.onclick = function(){
     if(sideNav.style.right == "-250px"){
         sideNav.style.right = "0";
-        menu.src = "";
+        menu.src = "images/theRock.jpg";
     }
     else{
         sideNav.style.right = "-250px";
-        menu.src = "";
+        menu.src = "images/theRock.jpg";
     }
 }
 </script>
