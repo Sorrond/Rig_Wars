@@ -37,7 +37,7 @@ function drawBut() {
 function initBut() {
     let butsize = 100;
     
-    atkboat_but = new button((width/6) * 5, (height/3) * 2, butsize * 1.5, butsize , 'Attack Boat');
-    mine_but = new button((width/6) * 4, (height/3) * 2, butsize * 1.5, butsize , 'Mines');
+    atkboat_but = new button((width/6) * 5, (height/6) * 5, butsize * 1.5, butsize , 'Attack Boat');
+    mine_but = new button((width/6) * 4, (height/6) * 5, butsize * 1.5, butsize , 'Mines');
    
 }
