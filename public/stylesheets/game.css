@@ -27,20 +27,8 @@ header > section {
   width: calc(100% - 320px);
 }
 
-nav {  
-  background-color: brown;
-  padding:10px;
-  display: flex;
-  flex-direction: column;
-  grid-area: n;
-}
 
-nav a { 
-  color: white;
-  margin:5px;
-  padding:5px;
-  border: 1px solid white;  
-}
+
 
 footer { 
   background-color: coral;
@@ -48,9 +36,4 @@ footer {
   padding: 10px 20%;
   text-align: right;
   grid-area: f;
-}
-
-main {
-  grid-area: m;
-  display: flex;  
 }
