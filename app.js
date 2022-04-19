@@ -8,6 +8,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var roomsRouter = require('./routes/roomsRoutes');
+var gameRouter = require('./routes/gameRoutes');
 var app = express();
 
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/rooms', roomsRouter);
+app.use('/api/board', gameRouter);
 
 module.exports = app;
 
