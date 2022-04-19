@@ -4,25 +4,50 @@
   font-family: 'VT323', monospace;
 }
 
+/*--Smooth--*/
+html {
+  scroll-behavior: smooth;
+}
+
 /*--Banner--*/
 #banner{
-  background: linear-gradient(#8fd457, #558cf2),url(images/banner.jpg);
+  background: linear-gradient(#8fd457, #558cf2);
   background-size: cover;
   background-position: center;
   height: 100vh;
 }
 
-.logo{
-  width: 400px;
+.banner-btn a span{
+  width: 0%;
+  height: 100%;
   position: absolute;
-  top: 4%;
-  left: 10%; 
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.banner-btn a:hover span{
+  width: 100%;
+}
+
+.banner-btn a:hover{
+  color: #0051ff;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  padding-top: 100px;
 }
 
 .banner-text{
   text-align: center;
   color: #fff;
-  padding-top: 180px;
+  padding-top: 40px;
 }
 
 .banner-text h1{
@@ -628,7 +653,7 @@ nav ul li a{
 
 /*--Footer--*/
 #footer{
-  background: linear-gradient(#8fd457, #558cf2),url(images/banner.jpg);
+  background: linear-gradient(#8fd457, #558cf2);
   background-size: cover;
   background-position: center;
   height: 30vh;

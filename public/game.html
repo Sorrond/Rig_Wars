@@ -1,13 +1,14 @@
 <html>
-
 <head>
-  <title></title>
+  <title>Rig Wars</title>
   <link rel="stylesheet" href="stylesheets/game.css">
+  
   <!-- Data scripts -->
   <script src="./javascripts/requests/roomRequests.js"></script>
   <script src="./javascripts/requests/user_requests.js"></script> 
   <script src="./javascripts/authentication/session.js"></script>
   <script src="./javascripts/game.js"></script>
+  
   <!-- Game gui scripts -->
   <script src="./javascripts/p5.min.js"></script>
   <script src="./javascripts/renderers/worldtile.js"></script>
@@ -17,22 +18,32 @@
   <script src="./javascripts/managers/func.js"></script>
   <script src="./javascripts/gamelib.js"></script>
 </head>
-
 <body>
-  <header>
-    <section>
-      <h1> Rig Wars</h1>
-    </section>
-    <section class="auth">
-       <h4>User: <span  id="username"></span></h2>
-       <input type="button" value="Logout" onclick="logoutUser()">
-    </section>
-  </header>
-  <nav></nav>
-  <main id="game">
-  </main>
+<section id="banner">
+  <a href="index.html"><img src="images/Rigawars.png" class="center">
+  </a>
+</section>
+    
+<section class="auth">
+   <h4>User: <span  id="username"></span></h2>
+     <input type="button" value="Logout" onclick="logoutUser()">
+</section>
+
+<main id="game">
+</main>
+
+<!--Footer-->  
+<section id="footer">
+  <div class="footer-text">
   <footer>
-    <p></p>
+    <p>Made by:</p>
+      <p>Rodrigo Farinha</p>
+      <p>Rafael Fernandes </p>
+      <p>Tomas Vicente </p>
+    <p><a href="mailto:hege@example.com">hege@example.com</a></p>
   </footer>
+  </div>
+</section>
+
 </body>
 </html>

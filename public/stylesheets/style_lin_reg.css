@@ -1,5 +1,9 @@
+*{
+  font-family: 'VT323', monospace;
+}
+
 body {
-  background: linear-gradient(#5d67ec,#fff) ;
+  background: linear-gradient(#558cf2,#8fd457) ;
   margin: 0;
   height: 100vh;
   display: grid;
@@ -10,6 +14,14 @@ body {
 
 header > img { 
   width: 150px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  padding-top: 100px;
 }
 
 /*Button to menu*/
@@ -67,7 +79,6 @@ header {
 
 header > section {
   text-align: center;
-  width: calc(100% - 320px);
 }
 
 nav {  
