@@ -4,61 +4,44 @@ let ResourceValue = {
     
 }
 
-// function screen_LoginTrue(){
-//     screen = 'city';
-//     print(screen);
+function mouseToTile(){
+    return { i: (int)(mouseX / Tile_W), j: (int)(mouseY / Tile_H) };
+}
 
-//     loginbut.hide()
-//     login_username.hide()
-//     login_password.hide()
+function mouseisonmap(){
+    return mouseX > 0 && mouseX < worldMapCols * Tile_W && mouseY > 0 && mouseY < worldMapRows * Tile_H;
 
-//     registerbut.hide()
-//     register_username.hide()
-//     register_email.hide()
-//     register_password.hide()
-
-//     worldbut.show()
-// 	citybut.show()
-// 	buildbut.show()
-
-// };
+}
 
 function screen_world(){
     screen = 'world';
     print(screen);
-    hidebut_buildingTab()
-    time = 60
 }
 
 function building_menu(){
     screen = 'building';
-    showbut_buildingTab();
-    time=60
+    print(screen);
 };
 
 
 function mouseClicked() {
-    if(screen == 'world'){
-        for (let i = 0; i < worldMapCols; i++) {
-            for (let j = 0; j < worldMapRows; j++) {
-                if (worldMap[i][j].click_tile(mouseX, mouseY)) {
+    tilecoords = mouseToTile();
+    if(screen == 'world' && mouseisonmap()){
 
-                    getWorldTileInfo()
-                
-                break;
-                }
-            }
-        }
+        print(mouseToTile())
+        print(getWorldTileInfo(tilecoords.i, tilecoords.j))
+        //print(worldMap[mouseToTile().i, mouseToTile().j].get_id());
+
+    }else if(screen == 'world'){
+        but_action()
+        
+
     }else if(screen == 'building'){
-        for (let i = 0; i < worldMapCols; i++) {
-            for (let j = 0; j < worldMapRows; j++) {
-                if (worldMap[i][j].click_tile(mouseX, mouseY)) {
-                    buildPlace();
-                    break;
-                }
-            }
+        if (mouseToTile()) {
+            buildPlace();
         }
     }
+        
 }
 
 function resources(){

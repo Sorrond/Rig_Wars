@@ -2,18 +2,14 @@ let atkboat_but;
 let mine_but;
 
 function but_action() {
-    for (let i = 0; i < worldMapCols; i++) {
-        for (let j = 0; j < worldMapRows; j++) {
-            if (atkboat_but.click_but(mouseX, mouseY)) {
-                building_menu()
-            }
+    if (atkboat_but.click_but(mouseX, mouseY)) {
+        building_menu();
+        build_atkboat();
 
-            if (mine_but.click_but(mouseX, mouseY)) {
-                building_menu()
-            }
-            break;
-        }
-    }    
+    } else if (mine_but.click_but(mouseX, mouseY)) {
+        building_menu();
+        build_mine();
+    }
 }
 
 function drawBut() {

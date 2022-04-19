@@ -32,13 +32,14 @@ function draw() {
 			break;
                
 			case 'world':
-				 background(255);
+				background(255);
                     
                 drawBut();
                 drawWorldtiles();
                 resources();
 			break;
     };
+    //print(typeStruc);
     
 }
 
