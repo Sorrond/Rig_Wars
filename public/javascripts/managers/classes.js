@@ -7,7 +7,6 @@ class tile {
     this.id = id;
     this.t = t;
 
-
   }
 
   draw_tile(i, j, isHovering) {
@@ -32,7 +31,6 @@ class tile {
     return this.id;
   }
   
-
   get_buildType() {
     return this.t;
   }

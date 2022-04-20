@@ -1,7 +1,7 @@
 let worldMap = [];
 
-const worldMapCols = 30;
-const worldMapRows = 15;
+// const worldMapCols = 30;
+// const worldMapRows = 15;
 
 function getWorldTileInfo(i, j) {
   print(worldMap[i][j].get_id());
@@ -20,7 +20,9 @@ function drawWorldtiles() {
 }
 
 function initWorldMap() {
-
+  
+  const worldMapCols = board.initboard_rowcols().i;
+  const worldMapRows = board.initboard_rowcols().j;
   let countID = 1;
 
   for (let i = 0; i < worldMapCols; i++) {

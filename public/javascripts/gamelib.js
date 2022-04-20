@@ -21,6 +21,8 @@ function setup() {
     //CreateBut();
 }
 function draw() {
+    //print()
+
     switch(screen){
             case 'building':
                 background(255);

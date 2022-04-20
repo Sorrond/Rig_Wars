@@ -29,7 +29,8 @@ function mouseClicked() {
     if(screen == 'world' && mouseisonmap()){
 
         print(mouseToTile())
-        print(getWorldTileInfo(tilecoords.i, tilecoords.j))
+        print(worldMap[tilecoords.i][tilecoords.j].id)
+        print(worldMap[tilecoords.i][tilecoords.j].t)
         //print(worldMap[mouseToTile().i, mouseToTile().j].get_id());
 
     }else if(screen == 'world'){
