@@ -20,7 +20,7 @@ function setup() {
 
     //CreateBut();
 }
-function draw() {
+async function draw() {
     //print()
 
     switch(screen){
@@ -28,7 +28,7 @@ function draw() {
                 background(255);
                     
                 drawBut();
-                drawWorldtiles();
+                await drawWorldtiles();
                 resources();
 			
 			break;
@@ -37,8 +37,8 @@ function draw() {
 				background(255);
                     
                 drawBut();
-                drawWorldtiles();
-                resources();
+                await  drawWorldtiles();
+                //resources();
 			break;
     };
     //print(typeStruc);
