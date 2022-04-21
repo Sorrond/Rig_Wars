@@ -2,9 +2,7 @@ const width = 1750;
 const height = 920;
 
 let screen = 'world';
-let time = 60;
-let cancel_timer = 0;
-//const room = 1;
+const room = 1;
 
 // function preload() {
 //     //BoardManager.preloadImages();
