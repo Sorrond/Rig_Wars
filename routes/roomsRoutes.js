@@ -7,12 +7,12 @@ router.get('/', async function(req, res, next) {
     res.status(result.status).send(result.result);
 });
 
-router.get('/:id', async function(req, res, next) {
-    let id = req.params.id;
-    console.log("Get room with id "+id)
-    let result = await rModel.getRoomById(id);
-    res.status(result.status).send(result.result);
-  });
+// router.get('/:id', async function(req, res, next) {
+//     let id = req.params.id;
+//     console.log("Get room with id "+id)
+//     let result = await rModel.getRoomById(id);
+//     res.status(result.status).send(result.result);
+//   });
             
 router.post('/find', async function(req,res,next) {
     let playerID = req.body.playerID;

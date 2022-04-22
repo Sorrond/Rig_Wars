@@ -2,9 +2,7 @@ const width = 1750;
 const height = 920;
 
 let screen = 'world';
-let time = 60;
-let cancel_timer = 0;
-//const room = 1;
+const room = 1;
 
 // function preload() {
 //     //BoardManager.preloadImages();
@@ -20,25 +18,28 @@ function setup() {
 
     //CreateBut();
 }
-function draw() {
+async function draw() {
+    //print()
+
     switch(screen){
             case 'building':
                 background(255);
                     
                 drawBut();
-                drawWorldtiles();
+                await drawWorldtiles();
                 resources();
 			
 			break;
                
 			case 'world':
-				 background(255);
+				background(255);
                     
                 drawBut();
-                drawWorldtiles();
-                resources();
+                await  drawWorldtiles();
+                //resources();
 			break;
     };
+    //print(typeStruc);
     
 }
 
