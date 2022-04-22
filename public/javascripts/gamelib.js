@@ -14,7 +14,7 @@ let cancel_timer = 0;
 
 function setup() {
     
-    var canvas = createCanvas(width, height);
+    var canvas = createCanvas(windowWidth, windowHeight);
     initBut()
     initWorldMap();
 
