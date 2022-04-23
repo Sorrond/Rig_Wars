@@ -23,7 +23,7 @@ module.exports.getBoard = async function () {
 
 module.exports.getGameBits = async function () {
   try {
-    let sql = "Select * from usertile where usertile_object_id = 2";
+    let sql = "Select * from usertile";
     let result = await pool.query(sql);
     let gamebits = result.rows;
     return { status: 200, result: { gamebits } };
