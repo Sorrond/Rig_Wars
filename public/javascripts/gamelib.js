@@ -15,6 +15,7 @@ async function setup() {
     createCanvas(windowWidth, windowHeight);
     initBut()
     await initBoard();
+    await buildGameBits();
 
 }
 async function draw() {

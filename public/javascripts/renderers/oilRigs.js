@@ -9,7 +9,7 @@ class oilrig {
   
     }
   
-    draw_tile(i, j, isHovering) {
+    draw_oilrig(i, j, isHovering) {
       push();
       stroke(0);
   
