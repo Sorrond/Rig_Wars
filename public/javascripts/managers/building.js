@@ -25,34 +25,34 @@ function buildPlace(){
         tilecoords = mouseToTile();
 
 
-        if(typeStruc=='atkboat' && worldMap[tilecoords.i][tilecoords.j].get_buildType() != 'atkboat'){
-            worldMap[tilecoords.i][tilecoords.j].set_(typeStruc);
-            print(worldMap[tilecoords.i][tilecoords.j].get_id());
+        if(typeStruc=='atkboat' && board[tilecoords.i][tilecoords.j].get_buildType() != 'atkboat'){
+            board[tilecoords.i][tilecoords.j].set_(typeStruc);
+            print(board[tilecoords.i][tilecoords.j].get_id());
             screen_world()
 
 
         //Build a mine in a space that is different than a mine//
-        }else if(typeStruc =='mine' && worldMap[tilecoords.i][tilecoords.j].get_buildType() != 'mine'){
-            worldMap[tilecoords.i][tilecoords.j].set_(typeStruc);
-            print(worldMap[tilecoords.i][tilecoords.j].get_id());
+        }else if(typeStruc =='mine' && board[tilecoords.i][tilecoords.j].get_buildType() != 'mine'){
+            board[tilecoords.i][tilecoords.j].set_(typeStruc);
+            print(board[tilecoords.i][tilecoords.j].get_id());
             screen_world()
 
-        }else if(typeStruc =='oilrig' && worldMap[tilecoords.i][tilecoords.j].get_buildType() != 'oilrig' && worldMap[tilecoords.i][tilecoords.j + 1].get_buildType() != 'oilrig' && worldMap[tilecoords.i][tilecoords.j + 2].get_buildType() != 'oilrig'){
-                worldMap[tilecoords.i][tilecoords.j].set_(typeStruc);
-                worldMap[tilecoords.i][tilecoords.j + 1].set_(typeStruc);
-                worldMap[tilecoords.i][tilecoords.j + 2].set_(typeStruc);
-                print(worldMap[tilecoords.i][tilecoords.j].get_id());
+        }else if(typeStruc =='oilrig' && board[tilecoords.i][tilecoords.j].get_buildType() != 'oilrig' && board[tilecoords.i][tilecoords.j + 1].get_buildType() != 'oilrig' && board[tilecoords.i][tilecoords.j + 2].get_buildType() != 'oilrig'){
+                board[tilecoords.i][tilecoords.j].set_(typeStruc);
+                board[tilecoords.i][tilecoords.j + 1].set_(typeStruc);
+                board[tilecoords.i][tilecoords.j + 2].set_(typeStruc);
+                print(board[tilecoords.i][tilecoords.j].get_id());
                 screen_world()
             
-        }else if((typeStruc == worldMap[tilecoords.i][tilecoords.j].get_buildType() )||( worldMap[tilecoords.i][tilecoords.j].get_buildType() == 'oilrig' && worldMap[tilecoords.i][tilecoords.j + 1].get_buildType() == 'oilrig' && worldMap[tilecoords.i][tilecoords.j + 2].get_buildType() == 'oilrig' )){
+        }else if((typeStruc == board[tilecoords.i][tilecoords.j].get_buildType() )||( board[tilecoords.i][tilecoords.j].get_buildType() == 'oilrig' && worldMap[tilecoords.i][tilecoords.j + 1].get_buildType() == 'oilrig' && board[tilecoords.i][tilecoords.j + 2].get_buildType() == 'oilrig' )){
             print(`Can't build ${typeStruc}, in that position.`)
-            print(worldMap[tilecoords.i][tilecoords.j].get_id());
+            print(board[tilecoords.i][tilecoords.j].get_id());
             screen_world()
 
 
         }else{
             print(`Can't build ${typeStruc}, not enough tokens`)
-            print(worldMap[tilecoords.i][tilecoords.j].get_id());
+            print(board[tilecoords.i][tilecoords.j].get_id());
             screen_world()
         }
     }

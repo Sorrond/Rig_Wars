@@ -7,4 +7,9 @@ router.get('/', async function(req, res, next) {
     res.status(result.status).send(result.result);
 });
 
+router.get('/gamebits', async function(req, res, next) {
+    let result = await rModel.getGameBits();
+    res.status(result.status).send(result.result);
+});
+
 module.exports = router;

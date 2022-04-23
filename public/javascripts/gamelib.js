@@ -10,41 +10,59 @@ const room = 1;
 //     //boardMan.initBoard();
 // }
 
-function setup() {
-    
-    var canvas = createCanvas(width, height);
-    initBut()
-    initWorldMap();
+async function setup() {
 
-    //CreateBut();
+    createCanvas(windowWidth, windowHeight);
+    initBut()
+    await initBoard();
+
 }
 async function draw() {
     //print()
 
-    switch(screen){
-            case 'building':
-                background(255);
-                    
-                drawBut();
-                await drawWorldtiles();
-                resources();
-			
-			break;
-               
-			case 'world':
-				background(255);
-                    
-                drawBut();
-                await  drawWorldtiles();
-                //resources();
-			break;
+    switch (screen) {
+        case 'world':
+            background(255);
+
+            drawBut();
+            drawBoard();
+            //resources();
+            break;
+
+        case 'building':
+            background(255);
+
+            drawBut();
+            drawBoard();
+            //resources();
+
+            break;
     };
     //print(typeStruc);
-    
+
 }
 
 
+function mouseClicked() {
+    tilecoords = mouseToTile();
+    if(screen == 'world' && mouseisonBoard()){
 
+        print(mouseToTile())
+        print(board[tilecoords.i][tilecoords.j].id)
+        print(board[tilecoords.i][tilecoords.j].t)
+        //print(worldMap[mouseToTile().i, mouseToTile().j].get_id());
+
+    }else if(screen == 'world'){
+        but_action()
+        
+
+    }else if(screen == 'building'){
+        if (mouseToTile()) {
+            buildPlace();
+        }
+    }
+        
+}
 
 
 
