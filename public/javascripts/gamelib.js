@@ -46,23 +46,23 @@ async function draw() {
 
 function mouseClicked() {
     tilecoords = mouseToTile();
-    if(screen == 'world' && mouseisonBoard()){
+    if (screen == 'world' && mouseisonBoard()) {
 
         print(mouseToTile())
         print(board[tilecoords.i][tilecoords.j].id)
         print(board[tilecoords.i][tilecoords.j].t)
         //print(worldMap[mouseToTile().i, mouseToTile().j].get_id());
 
-    }else if(screen == 'world'){
+    } else if (screen == 'world') {
         but_action()
-        
 
-    }else if(screen == 'building'){
+
+    } else if (screen == 'building') {
         if (mouseToTile()) {
             buildPlace();
         }
     }
-        
+
 }
 
 

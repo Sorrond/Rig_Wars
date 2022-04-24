@@ -22,13 +22,14 @@ async function buildGameBits() {
     try {
 
         let gamebits = await getGameBits();
+        gamebits = gamebits.gamebits
         print(gamebits)
 
         for (let i = 0; i < gamebits.lenght; i++) {
-            if( gamebits[i].usertile_object_id == 2 ){
+            if (gamebits[i].usertile_object_id == 2) {
                 board[gamebits[i].usertile_tile_i][gamebits[i].usertile_tile_j].set_('oilrig');
 
-            }else{
+            } else {
                 print('empty')
             }
         }
