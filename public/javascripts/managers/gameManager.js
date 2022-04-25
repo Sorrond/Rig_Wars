@@ -1,7 +1,6 @@
 let ResourceValue = {
     "Tokens": 12,
 };
-let turn_number;
 
 function resources() {
     fill('black')
@@ -87,7 +86,12 @@ async function damageOilRig() {
 }
 
 async function nextTurn() {
-    
-
-
+//     let id = ;
+//     console.log(id)
+//     turn_number = await getRoomTurn(room)
+//     turn_number ++
+//     roomuser_id = await getRoomOpponentId(room, id)
+//     //await newTurn(turn_number, roomuser_id, id)
+//     let user_turn = await getUserTurn(room, turn_number)
+//  //console.log(turn_number, user_turn, roomuser_id, id)
 }

@@ -6,6 +6,7 @@ const room = 1;
 let movement = '';
 let movetokens = 12;
 
+
 // function preload() {
 //     //BoardManager.preloadImages();
 //     //boardMan = new BoardManager(width,height,0,0,room);
@@ -13,12 +14,12 @@ let movetokens = 12;
 // }
 
 async function setup() {
-
+    
     createCanvas(windowWidth, windowHeight);
     initBut();
     await initBoard();
     await buildGameBits();
-
+    turn_number = await getRoomTurn(room)
 
 };
 

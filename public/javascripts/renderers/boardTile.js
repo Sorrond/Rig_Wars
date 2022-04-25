@@ -64,6 +64,8 @@ class tile {
       fill(60, 0, 0);
     } else if (this.team == 'blue') {
       fill(0, 0, 255);
+    } else if (this.team == 'darkblue') {
+      fill(0, 0, 60);
     } else {
       fill(0, 50);
     }
@@ -103,6 +105,9 @@ class tile {
 
       } else if (team == 2 && health == true) {
         this.team = 'blue'
+
+      } else if (team == 2 && health == false) {
+        this.team = 'darkblue'
       }
   }
 

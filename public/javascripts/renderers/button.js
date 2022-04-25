@@ -26,6 +26,7 @@ function but_action() {
 
     } else if (screen == 'world' && end_turn.click_but(mouseX, mouseY)) {
         screen_world();
+        nextTurn()
     }
 }
 

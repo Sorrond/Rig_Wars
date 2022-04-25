@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var rModel = require("../models/roomsModel");
-            
-router.get('/', async function(req, res, next) {
+
+router.get('/', async function (req, res, next) {
     let result = await rModel.getAllRooms();
     res.status(result.status).send(result.result);
 });
@@ -13,8 +13,34 @@ router.get('/', async function(req, res, next) {
 //     let result = await rModel.getRoomById(id);
 //     res.status(result.status).send(result.result);
 //   });
-            
-router.post('/find', async function(req,res,next) {
+
+router.get('/:roomid', async function (req, res, next) {
+    let roomid = req.params.roomid;
+    let result = await rModel.getRoomTurn(roomid);
+    res.status(result.status).send(result.result);
+});
+
+router.get('/opponent/:room/:id', async function (req, res, next) {
+    let room = req.params.room;
+    let id = req.params.id;
+    let result = await rModel.getRoomOpponentId(room, id);
+    res.status(result.status).send(result.result);
+});
+
+router.get('/:roomid/:turn', async function (req, res, next) {
+    let roomid = req.params.roomid;
+    let turn = req.params.turn;
+    let result = await rModel.getUserTurn(roomid, turn);
+    res.status(result.status).send(result.result);
+});
+
+router.post('/newturn', async function (req, res, next) {
+    let playerID = req.body.playerID;
+    let result = await rModel.newTurn(turn_number, roomuser_id, id);
+    res.status(result.status).send(result.result);
+})
+
+router.post('/find', async function (req, res, next) {
     let playerID = req.body.playerID;
     let result = await rModel.findRoom(playerID);
     res.status(result.status).send(result.result);
