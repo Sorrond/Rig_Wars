@@ -1,6 +1,7 @@
 let ResourceValue = {
     "Tokens": 12,
 };
+let turn_number;
 
 function resources() {
     fill('black')
@@ -82,5 +83,11 @@ async function damageOilRig() {
         await deleteBoat(destroy_gamebit.usertile_object_id, tilecoords.i, tilecoords.j)
     }
     buildGameBits();
+
+}
+
+async function nextTurn() {
+    
+
 
 }
