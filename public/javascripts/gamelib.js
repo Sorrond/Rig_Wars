@@ -3,6 +3,8 @@ const height = 920;
 
 let screen = 'world';
 const room = 1;
+let movement = '';
+let movetokens = 12;
 
 // function preload() {
 //     //BoardManager.preloadImages();
@@ -13,11 +15,13 @@ const room = 1;
 async function setup() {
 
     createCanvas(windowWidth, windowHeight);
-    initBut()
+    initBut();
     await initBoard();
     await buildGameBits();
 
-}
+
+};
+
 async function draw() {
     //print()
 
@@ -38,23 +42,38 @@ async function draw() {
             //resources();
 
             break;
+
+        case 'move':
+            background(255);
+
+            drawBut();
+            drawBoard();
+            //resources();
+            nextBoatMovement()
+
+            break;
     };
     //print(typeStruc);
 
-}
+};
 
 
 function mouseClicked() {
     tilecoords = mouseToTile();
-    if (screen == 'world' && mouseisonBoard()) {
+    if (screen == 'move' && mouseisonBoard() && board[tilecoords.i][tilecoords.j].t == 'atkboat') {
+        playmoves();
+        buildGameBits();
+        
+    } else if (screen == 'move') {
+        but_action();
 
-        print(mouseToTile())
-        print(board[tilecoords.i][tilecoords.j].id)
-        print(board[tilecoords.i][tilecoords.j].t)
-        //print(worldMap[mouseToTile().i, mouseToTile().j].get_id());
+    } else if (screen == 'world' && mouseisonBoard()) {
+        print(mouseToTile());
+        print(board[tilecoords.i][tilecoords.j].id);
+        print(board[tilecoords.i][tilecoords.j].t);
 
     } else if (screen == 'world') {
-        but_action()
+        but_action();
 
 
     } else if (screen == 'building') {
@@ -63,81 +82,9 @@ function mouseClicked() {
         }
     }
 
-}
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*----------------------------------------------------------------------------*/
-
-// Board try outs
-
-// var squares = [];
-// var tile_y = 30 * 50
-// var tile_x = 15 * 50
-
-// function setup() {
-//   createCanvas(755, 1500);
-
-//   // Create the squares
-//   for (y = 0; y < tile_y; y += 50) {
-//     for (x = 0; x < tile_x; x += 50) {
-//       square = new Square(x, y);
-//       squares.push(square);
-//     }
-//   }
-//   background(255);
-//   drawBoard();
-// }
-
-// // Function just for drawing the board
-// function drawBoard() {
-//   blue = (240,248,255);
-//   white = 30;
-//   for (y = 0; y < tile_y; y += 50) {
-//     for (x = 0; x < tile_x; x += 50) {
-//       if (x % 100 == 0) {
-//         if (y % 100 == 0) {
-//           fill(blue);
-//         }
-//         if (y % 100 == 50) {
-//           fill(white);
-//         }
-//       }
-//       if (x % 100 == 50) {
-//         if (y % 100 == 50) {
-//           fill(blue);
-//         }
-//         if (y % 100 == 0) {
-//           fill(white);
-//         }
-//       }
-
-//       rect(x, y, 50, 50);
-//     }
-//   }
-// }
+function keysPressed() {
+    
+    
+};

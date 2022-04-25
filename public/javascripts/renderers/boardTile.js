@@ -16,9 +16,6 @@ function drawBoard() {
 
 async function initBoard() {
   try {
-
-    //const boardCols = board.initboard_rowcols().i;
-    //const boardRows = board.initboard_rowcols().j;
     let countID = 1;
     let boardsize = await getBoard();
     boardCols = boardsize.board_collum;
@@ -52,15 +49,21 @@ class tile {
 
     this.id = id;
     this.t = t;
+    this.team;
 
   }
 
   draw_tile(i, j, isHovering) {
     push();
-    stroke(0);
-
+    stroke(0)
     if (isHovering) {
       fill(0, 25);
+    } else if (this.team == 'red') {
+      fill(255, 0, 0);
+    } else if (this.team == 'darkred') {
+      fill(60, 0, 0);
+    } else if (this.team == 'blue') {
+      fill(0, 0, 255);
     } else {
       fill(0, 50);
     }
@@ -85,9 +88,22 @@ class tile {
     this.t = b;
   };
 
-  //------------------------------------------------
-  getBoardTileInfo(i, j) {
-    print(board[i][j].get_id());
+  set_default(){
+    this.t = ''
+    this.team = ''
+  };
+
+  set_team(team, health) {
+    print(health)
+      if (team == 1 && health == true) {
+        this.team = 'red'
+
+      } else if (team == 1 && health == false) {
+        this.team = 'darkred'
+
+      } else if (team == 2 && health == true) {
+        this.team = 'blue'
+      }
   }
 
 }
