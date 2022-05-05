@@ -1,3 +1,5 @@
+const { cookie } = require("express/lib/response");
+
 let ResourceValue = {
     "Tokens": 12,
 };
@@ -85,13 +87,15 @@ async function damageOilRig() {
 
 }
 
-async function nextTurn() {
-//     let id = ;
+// document.addEventListener("click", nextTurn, true);
+
+// async function nextTurn(res, userId) {
+//     let id = res.cookie("userId", userId, {  maxAge: tokenExpiration, httpOnly: true, signed:true });
 //     console.log(id)
 //     turn_number = await getRoomTurn(room)
 //     turn_number ++
 //     roomuser_id = await getRoomOpponentId(room, id)
-//     //await newTurn(turn_number, roomuser_id, id)
+//     await newTurn(turn_number, roomuser_id, id)
 //     let user_turn = await getUserTurn(room, turn_number)
-//  //console.log(turn_number, user_turn, roomuser_id, id)
-}
+//     console.log(turn_number, user_turn, roomuser_id, id)
+// }
