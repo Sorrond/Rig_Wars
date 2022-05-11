@@ -37,7 +37,11 @@ module.exports.registerPlayer = async function (player) {
     let result_check = await pool.query(sql_check, [player.name]);
     if (result_check.rows.length == 0) {
       let sql = "Insert into user_ (user_name, user_password) values ($1,$2)";
-      let result = await pool.query(sql, [player.name, player.password]);
+      if (player.name != "" || player.password != ""){
+        let result = await pool.query(sql, [player.name, player.password]);
+      } else {
+        console.log("player.name está vazio")
+      }
       return { status: 200, result: result };
     } else {
       return { status: 401, result: { msg: 'This username already exits.' } };
