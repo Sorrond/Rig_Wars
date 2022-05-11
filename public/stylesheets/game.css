@@ -35,11 +35,6 @@ body {
   grid-template-rows: 170px auto 70px;
 }
 
-.auth{
-  position: relative;
-  bottom: 150;
-}
-
 /*--Footer--*/
 #footer{
   background: linear-gradient(#8fd457, #558cf2);
