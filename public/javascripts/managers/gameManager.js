@@ -86,8 +86,8 @@ async function damageOilRig() {
 }
 
 async function nextTurn() {
-//     let id = module.exports.saveUserId;
-//     console.log(id)
+    let id = userId;
+    console.log(id)
 //     turn_number = await getRoomTurn(room)
 //     turn_number ++
 //     roomuser_id = await getRoomOpponentId(room, id)
