@@ -12,6 +12,9 @@ function drawBoard() {
 
     }
   }
+
+    fill(255, 0, 0);
+    rect(((Tile_W * boardCols)/2) - 5, 0, 5, Tile_H * boardRows)
 }
 
 async function initBoard() {
@@ -28,6 +31,7 @@ async function initBoard() {
         countID++;
       }
     }
+
   } catch (err) {
     console.log(err)
   }
@@ -90,25 +94,25 @@ class tile {
     this.t = b;
   };
 
-  set_default(){
+  set_default() {
     this.t = ''
     this.team = ''
   };
 
   set_team(team, health) {
     print(health)
-      if (team == 1 && health == true) {
-        this.team = 'red'
+    if (team == 1 && health == true) {
+      this.team = 'red'
 
-      } else if (team == 1 && health == false) {
-        this.team = 'darkred'
+    } else if (team == 1 && health == false) {
+      this.team = 'darkred'
 
-      } else if (team == 2 && health == true) {
-        this.team = 'blue'
+    } else if (team == 2 && health == true) {
+      this.team = 'blue'
 
-      } else if (team == 2 && health == false) {
-        this.team = 'darkblue'
-      }
+    } else if (team == 2 && health == false) {
+      this.team = 'darkblue'
+    }
   }
 
 }
