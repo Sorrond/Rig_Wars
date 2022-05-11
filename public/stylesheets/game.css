@@ -10,6 +10,10 @@
   height: 20vh;
 }
 
+#LogOut{
+  position: relative;
+  bottom: 150;
+}
 .center {
   display: block;
   margin-left: auto;
