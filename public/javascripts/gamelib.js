@@ -89,6 +89,7 @@ function keysPressed() {
     
 };
 /*
+//implement in a way that every turn start, it rolls by itself, so no mouse click
 //Dice
 let roll1=1;
 let roll2=2;
