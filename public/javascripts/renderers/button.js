@@ -86,12 +86,12 @@ function drawBut() {
 function initBut() {
     let butsize = 100;
 
-    atkboat_but = new button((width / 8) * 5, (height / 10) * 8.2, butsize * 1.5, butsize, 'Attack Boat');
-    mine_but = new button((width / 8) * 4, (height / 10) * 8.2, butsize * 1.5, butsize, 'Mines');
-    oilrig_but = new button((width / 8) * 3, (height / 10) * 8.2, butsize * 1.5, butsize, 'Oil Rig');
-    move_but = new button((width / 8) * 2, (height / 10) * 8.2, butsize * 1.5, butsize, 'Move boats');
+    atkboat_but  = new button((width / 8) * 5, (height / 10) * 8.2, butsize * 1.5, butsize, 'Attack Boat');
+    mine_but     = new button((width / 8) * 4, (height / 10) * 8.2, butsize * 1.5, butsize, 'Mines');
+    oilrig_but   = new button((width / 8) * 3, (height / 10) * 8.2, butsize * 1.5, butsize, 'Oil Rig');
+    move_but     = new button((width / 8) * 2, (height / 10) * 8.2, butsize * 1.5, butsize, 'Move boats');
     end_move_but = new button((width / 8) * 2, (height / 10) * 8.2, butsize * 1.5, butsize, 'End Move');
-    end_turn = new button((width / 8) * 1, (height / 10) * 8.2, butsize * 1.5, butsize, 'End Turn');
+    end_turn     = new button((width / 8) * 1, (height / 10) * 8.2, butsize * 1.5, butsize, 'End Turn');
 
 }
 
