@@ -4,12 +4,27 @@ window.onload = async function() {
     await fillRooms();
 }
 
+// async function fillRooms() {
+//     try {   
+//         let rooms = await getRooms();
+//         let html = "";
+//         for(let room of rooms) {
+//             html+=`<section onclick=openRoom(${roomid})>
+//                       <h3>${room.roo_name}</h3>
+//                    </section>`
+//         }
+//         document.getElementById("rooms").innerHTML = html;
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
+
 async function fillRooms() {
     try {   
         let rooms = await getRooms();
         let html = "";
         for(let room of rooms) {
-            html+=`<section onclick=openRoom(${roomid})>
+            html+=`<section onclick=openRoom(${1})>
                       <h3>${room.roo_name}</h3>
                    </section>`
         }

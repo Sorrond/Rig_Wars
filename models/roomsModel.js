@@ -14,7 +14,7 @@ module.exports.getAllRooms = async function () {
 
 module.exports.getRoomTurn = async function (roomid) {
   try {
-    let sql = "SELECT turn_n from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1 ORDER BY turn_n DESC";
+    let sql = "SELECT turn_n from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1 ORDER BY turn_n DESC LIMIT 1;";
     let result = await pool.query(sql, [roomid]);
     return { status: 200, result: result };
   } catch (err) {
@@ -25,7 +25,7 @@ module.exports.getRoomTurn = async function (roomid) {
 
 module.exports.getUserTurn = async function (roomid, turn) {
   try {
-    let sql = "SELECT turn_user_id from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1 and turn_n = $2";
+    let sql = "SELECT roomuser_user_id from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1 and turn_n = $2";
     let result = await pool.query(sql, [roomid, turn]);
     return { status: 200, result: result };
   } catch (err) {
@@ -45,10 +45,21 @@ module.exports.getRoomOpponentId = async function (room, id) {
   }
 }
 
-module.exports.newTurn = async function (turn_number, roomuser_id, id) {
+// module.exports.newTurn = async function (turn_number, roomuser_id, id) {
+//   try {
+//     let sql = "UPDATE turn SET turn_n = $1 and turn_roomuser_id WHERE turn_roomuser_id = $2";
+//     let result = await pool.query(sql, [turn_number, roomuser_id, id]);
+//     return { status: 200, result: result };
+//   } catch (err) {
+//     console.log(err);
+//     return { status: 500, result: err };
+//   }
+// }
+
+module.exports.newTurn = async function (turn_number, roomuser_id, tokens, double) {
   try {
-    let sql = "INSERT INTO turn (turn_n, turn_roomuser_id, turn_user_id) VALUES ($1, $2, $3)";
-    let result = await pool.query(sql, [turn_number, roomuser_id, id]);
+    let sql = "INSERT INTO turn (turn_n, turn_roomuser_id, turn_tokens, turn_tokens_left, turn_double, turn_double_left) VALUES ($1, $2, $3, $3, $4, $4)";
+    let result = await pool.query(sql, [turn_number, roomuser_id, tokens, double]);
     return { status: 200, result: result };
   } catch (err) {
     console.log(err);

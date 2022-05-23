@@ -14,7 +14,7 @@ function drawBoard() {
   }
 
     fill(255, 0, 0);
-    rect(((Tile_W * boardCols)/2) - 5, 0, 5, Tile_H * boardRows)
+    rect((((Tile_W * boardCols)/2) - 5), 0, 5, Tile_H * boardRows)
 }
 
 async function initBoard() {
@@ -44,8 +44,8 @@ function mouseisonBoard() {
 
 //Tile iformation related//
 
-const Tile_W = 50/1.5;
-const Tile_H = 50/1.5;
+const Tile_W = 50/1.3;
+const Tile_H = 50/1.3;
 
 class tile {
 
@@ -73,11 +73,11 @@ class tile {
     } else {
       fill(0, 50);
     }
-    rect(i * Tile_W, j * Tile_H, Tile_W, Tile_H);
+    rect((i * Tile_W), (j * Tile_H), Tile_W, Tile_H);
     fill('white');
     textSize(16)
     textAlign(CENTER);
-    text(this.t, i * Tile_W + Tile_W / 2, j * Tile_H + Tile_H / 2);
+    text(this.t, (i * Tile_W + Tile_W / 2), (j * Tile_H + Tile_H / 2));
     textSize(12)
     pop();
   }
@@ -101,16 +101,16 @@ class tile {
 
   set_team(team, health) {
     print(health)
-    if (team == 1 && health == true) {
+    if (team == false && health == true) {
       this.team = 'red'
 
-    } else if (team == 1 && health == false) {
+    } else if (team == false && health == false) {
       this.team = 'darkred'
 
-    } else if (team == 2 && health == true) {
+    } else if (team == true && health == true) {
       this.team = 'blue'
 
-    } else if (team == 2 && health == false) {
+    } else if (team == true && health == false) {
       this.team = 'darkblue'
     }
   }
