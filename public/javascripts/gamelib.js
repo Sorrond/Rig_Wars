@@ -2,7 +2,7 @@ const width = 1750;
 const height = 920;
 
 let screen = 'world';
-const room = 1;
+//const room = 1;
 let movement = '';
 let movetokens = 12;
 
@@ -15,10 +15,11 @@ let movetokens = 12;
 
 async function setup() {
     
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth - 50, windowHeight);
     initBut();
     await initBoard();
     await buildGameBits();
+    await getResources();
     turn_number = await getRoomTurn(room)
 
 };

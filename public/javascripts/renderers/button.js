@@ -1,3 +1,5 @@
+//const { getRoomTurn } = require("../../../models/roomsModel");
+
 let atkboat_but;
 let mine_but;
 let oilrig_but;
@@ -5,28 +7,32 @@ let move_but;
 let end_move_but;
 let end_turn;
 
-function but_action() {
-    if (atkboat_but.click_but(mouseX, mouseY)) {
-        building_menu();
-        build_atkboat();
+async function but_action() {
+    if (await id() == await getUserTurn(room, await getRoomTurn(room))) {//----------------------------------player that can play this round
+        if (atkboat_but.click_but(mouseX, mouseY)) {
+            building_menu();
+            build_atkboat();
 
-    } else if (mine_but.click_but(mouseX, mouseY)) {
-        building_menu();
-        build_mine();
+        } else if (mine_but.click_but(mouseX, mouseY)) {
+            building_menu();
+            build_mine();
 
-    } else if (oilrig_but.click_but(mouseX, mouseY)) {
-        building_menu();
-        build_oilrig();
+        } else if (oilrig_but.click_but(mouseX, mouseY)) {
+            building_menu();
+            build_oilrig();
 
-    } else if ((screen == 'world' || screen == 'building') && move_but.click_but(mouseX, mouseY)) {
-        screen_move();
+        } else if ((screen == 'world' || screen == 'building') && move_but.click_but(mouseX, mouseY)) {
+            screen_move();
 
-    } else if (screen == 'move' && end_move_but.click_but(mouseX, mouseY)) {
-        screen_world();
+        } else if (screen == 'move' && end_move_but.click_but(mouseX, mouseY)) {
+            screen_world();
 
-    } else if (screen == 'world' && end_turn.click_but(mouseX, mouseY)) {
-        screen_world();
-        nextTurn()
+        } else if (screen == 'world' && end_turn.click_but(mouseX, mouseY)) {
+            screen_world();
+            nextTurn()
+        }
+    } else {
+        console.log("Not user turn")
     }
 }
 
@@ -86,12 +92,12 @@ function drawBut() {
 function initBut() {
     let butsize = 100;
 
-    atkboat_but = new button((width / 8) * 5, (height / 10) * 8.2, butsize * 1.5, butsize, 'Attack Boat');
-    mine_but = new button((width / 8) * 4, (height / 10) * 8.2, butsize * 1.5, butsize, 'Mines');
-    oilrig_but = new button((width / 8) * 3, (height / 10) * 8.2, butsize * 1.5, butsize, 'Oil Rig');
-    move_but = new button((width / 8) * 2, (height / 10) * 8.2, butsize * 1.5, butsize, 'Move boats');
-    end_move_but = new button((width / 8) * 2, (height / 10) * 8.2, butsize * 1.5, butsize, 'End Move');
-    end_turn = new button((width / 8) * 1, (height / 10) * 8.2, butsize * 1.5, butsize, 'End Turn');
+    atkboat_but = new button((width / 10) * 8, (height / 6) * 1, butsize * 2, butsize, 'Attack Boat');
+    mine_but = new button((width / 10) * 8, (height / 6) * 2, butsize * 2, butsize, 'Mines');
+    oilrig_but = new button((width / 10) * 8, (height / 6) * 3, butsize * 2, butsize, 'Oil Rig');
+    move_but = new button((width / 10) * 7.4, (height / 6) * 4, butsize * 4, butsize, 'Move boats');
+    end_move_but = new button((width / 10) * 7.4, (height / 6) * 4, butsize * 4, butsize, 'End Move');
+    end_turn = new button((width / 10) * 7.4, (height / 6) * 5, butsize * 4, butsize, 'End Turn');
 
 }
 

@@ -5,22 +5,23 @@ async function playmoves() {
     if (key == "a" && board[tilecoords.i][tilecoords.j].t == 'atkboat') {
         if ((0 <= (tilecoords.i - 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i - 1][tilecoords.j].t == '') {
             let gamebit_id = await getGameBitsByTile(tilecoords.i, tilecoords.j);
-            gamebit_id = gamebit_id.usertile_object_id
+            gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i - 1, tilecoords.j, gamebit_id);
             board[tilecoords.i][tilecoords.j].set_default();
-            buildGameBits();
+            await buildGameBits();
 
-            movement = 'left';
+            movement = 'l-eft';
             print('left')
 
         } else if ((0 <= (tilecoords.i - 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i - 1][tilecoords.j].t != '') {
             let nexttile = await getGameBitsByTile(tilecoords.i - 1, tilecoords.j);
-            console.log(nexttile.usertile_object_current_health, nexttile.object_name)
-            if (nexttile.object_name == 'Oil Rig' && nexttile.usertile_object_current_health === true) {
+            console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+                board[tilecoords.i][tilecoords.j].set_default();
                 damageOilRig();
 
 
-            } else if ((nexttile.usertile_object_current_health === false) || (nexttile.object_name == 'Boat')) {
+            } else if ((nexttile.objecttile_object_current_health === false) || (nexttile.objecttype_name == 'Boat')) {
 
                 alert('Can not move the boat in that direction')
 
@@ -33,20 +34,21 @@ async function playmoves() {
     } else if (key == "d" && board[tilecoords.i][tilecoords.j].t == 'atkboat') {
         if ((0 <= (tilecoords.i + 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i + 1][tilecoords.j].t == '') {
             gamebit_id = await getGameBitsByTile(tilecoords.i, tilecoords.j);
-            gamebit_id = gamebit_id.usertile_object_id
+            gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i + 1, tilecoords.j, gamebit_id);
             board[tilecoords.i][tilecoords.j].set_default()
-            buildGameBits()
+            await buildGameBits()
 
             movement = 'right';
             print('right')
         } else if ((0 <= (tilecoords.i + 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i + 1][tilecoords.j].t != '') {
             let nexttile = await getGameBitsByTile(tilecoords.i + 1, tilecoords.j);
-            console.log(nexttile.usertile_object_current_health, nexttile.object_name)
-            if (nexttile.object_name == 'Oil Rig' && nexttile.usertile_object_current_health === true) {
-                damageOilRig();
+            console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+                board[tilecoords.i][tilecoords.j].set_default();
+                await damageOilRig();
 
-            } else if ((nexttile.usertile_object_current_health === false) || (nexttile.object_name == 'Boat')) {
+            } else if ((nexttile.objecttile_object_current_health === false) || (nexttile.objecttype_name == 'Boat')) {
 
                 alert('Can not move the boat in that direction')
 
@@ -58,19 +60,20 @@ async function playmoves() {
     } else if (key == "w" && board[tilecoords.i][tilecoords.j].t == 'atkboat') {
         if ((0 <= (tilecoords.i) <= 30) && (0 <= tilecoords.j - 1 <= 14) && board[tilecoords.i][tilecoords.j - 1].t == '') {
             gamebit_id = await getGameBitsByTile(tilecoords.i, tilecoords.j);
-            gamebit_id = gamebit_id.usertile_object_id
+            gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i, tilecoords.j - 1, gamebit_id);
             board[tilecoords.i][tilecoords.j].set_default()
-            buildGameBits()
+            await buildGameBits()
             movement = 'up';
             print('up')
         } else if ((0 <= (tilecoords.i) <= 30) && (0 <= tilecoords.j - 1 <= 14) && board[tilecoords.i][tilecoords.j - 1].t != '') {
             let nexttile = await getGameBitsByTile(tilecoords.i, tilecoords.j - 1);
-            console.log(nexttile.usertile_object_current_health, nexttile.object_name)
-            if (nexttile.object_name == 'Oil Rig' && nexttile.usertile_object_current_health === true) {
-                damageOilRig();
+            console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+                board[tilecoords.i][tilecoords.j].set_default();
+                await damageOilRig();
 
-            } else if ((nexttile.usertile_object_current_health === false) || (nexttile.object_name == 'Boat')) {
+            } else if ((nexttile.objecttile_object_current_health === false) || (nexttile.objecttype_name == 'Boat')) {
 
                 alert('Can not move the boat in that direction')
 
@@ -82,20 +85,21 @@ async function playmoves() {
     } else if (key == "s" && board[tilecoords.i][tilecoords.j].t == 'atkboat') {
         if ((0 <= (tilecoords.i) <= 30) && (0 <= tilecoords.j + 1 <= 14) && board[tilecoords.i][tilecoords.j + 1].t == '') {
             gamebit_id = await getGameBitsByTile(tilecoords.i, tilecoords.j);
-            gamebit_id = gamebit_id.usertile_object_id
+            gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i, tilecoords.j + 1, gamebit_id);
             board[tilecoords.i][tilecoords.j].set_default()
-            buildGameBits()
+            await buildGameBits()
 
             movement = 'down';
             print('down')
         } else if ((0 <= (tilecoords.i) <= 30) && (0 <= tilecoords.j + 1 <= 14) && board[tilecoords.i][tilecoords.j + 1].t != '') {
             let nexttile = await getGameBitsByTile(tilecoords.i, tilecoords.j - 1);
-            console.log(nexttile.usertile_object_current_health, nexttile.object_name)
-            if (nexttile.object_name == 'Oil Rig' && nexttile.usertile_object_current_health === true) {
-                damageOilRig();
+            console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+                board[tilecoords.i][tilecoords.j].set_default();
+                await damageOilRig();
 
-            } else if ((nexttile.usertile_object_current_health === false) || (nexttile.object_name == 'Boat')) {
+            } else if ((nexttile.objecttile_object_current_health === false) || (nexttile.objecttype_name == 'Boat')) {
 
                 alert('Can not move the boat in that direction')
 
@@ -111,7 +115,7 @@ function nextBoatMovement() {
     fill('black');
     textSize(15)
     textAlign(CENTER);
-    text('Boat movement \n' + movement, (width / 6) * 2 + 75, (height / 6) * 5 + 75);
+    text('Boat movement \n' + movement, (width / 10) * 7.4 + (100*4)/2, (height / 6) * 4 + 75);
 
     if (keysPressed) {
         if (key == "a") {
