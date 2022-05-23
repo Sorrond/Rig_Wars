@@ -12,10 +12,11 @@ html {
 /*--Banner--*/
 #banner{
   background: linear-gradient(#8fd457, #558cf2);
+  background-size: cover;
+  background-position: center;
   height: 100vh;
 }
 
-/*--Button Hovering*/
 .banner-btn a span{
   width: 0%;
   height: 100%;
@@ -49,6 +50,11 @@ html {
   padding-top: 40px;
 }
 
+.banner-text h1{
+  font-size: 130px;
+  font-family: 'VT323', monospace;
+}
+
 .banner-btn{
   margin: 70px auto 0;
 }
@@ -66,7 +72,6 @@ html {
   transition: color 0.5s;
 }
 
-/*--SideBar Navigator--*/
 #sideNav{
   width: 250PX;
   height: 100vh;
@@ -88,7 +93,6 @@ nav ul li a{
   color: #fff;
 }
 
-/*--Sidebar Buttons--*/
 #menuBtn{
   width: 50px;
   height: 50px;
@@ -112,6 +116,38 @@ nav ul li a{
   width: 100%;
   padding: 70px 0;
 }
+
+.title-text{
+  text-align: center;
+  padding-bottom: 70px;
+}
+
+.title-text p{
+  margin: auto;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.title-text p::after{
+  content: '';
+  width: 50px;
+  height: 35px;
+  background: linear-gradient(#C6426E,#fff);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  z-index: -1;
+  transform: rotate(10deg);
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px; 
+}
+
+.title-text h1{
+  font-size: 50px;
+} 
 
 .feature-box{
   width: 80%;
@@ -149,6 +185,16 @@ nav ul li a{
   margin-bottom: 40px;
 }
 
+.feature-icon .fa{
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  line-height: 50px;
+  border-radius: 8px;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+}
+
 .feature-text p{
   padding: 0 20px;
   text-align: initial;
@@ -159,6 +205,39 @@ nav ul li a{
   width: 100%;
   padding: 70px 0;
   background: #efefef;
+}
+
+.title-text{
+  text-align: center;
+  padding-bottom: 70px;
+}
+
+.title-text p{
+  margin: auto;
+  font-size: 20px;
+  color: #ff0000;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.title-text p::after{
+  content: '';
+  width: 50px;
+  height: 35px;
+  background: linear-gradient(#C6426E,#fff);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  z-index: -1;
+  transform: rotate(10deg);
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px; 
+}
+
+.title-text h1{
+  font-size: 50px;
 }
 
 .story-box{
@@ -189,12 +268,22 @@ nav ul li a{
   margin-bottom: 10px;
   font-weight: 100;
   color: #C6426E;
-} 
+}
 
 .story-desc{
   display: flex;
   align-items: center;
   margin-bottom: 40px;
+}
+
+.story-icon .fa{
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  line-height: 50px;
+  border-radius: 8px;
+  color: #ff0000;
+  border: 1px solid #ff0000;
 }
 
 .story-text p{
@@ -208,8 +297,40 @@ nav ul li a{
   padding: 70px 0;
 }
 
+.title-text{
+  text-align: center;
+  padding-bottom: 70px;
+}
+
+.title-text p{
+  margin: auto;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.title-text p::after{
+  content: '';
+  width: 50px;
+  height: 35px;
+  background: linear-gradient(#C6426E,#fff);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  z-index: -1;
+  transform: rotate(10deg);
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px; 
+}
+
+.title-text h1{
+  font-size: 50px;
+}   
+
 /*Oil Rig*/
-.building-box{
+.building-box-rig{
   width: 80%;
   margin: auto;
   display: flex;
@@ -218,34 +339,44 @@ nav ul li a{
   text-align: center;
 }
 
-.building{
+.building-rig{
   flex-basis: 50%;
 } 
 
-.building-img{
+.building-img-rig{
   flex-basis: 50%;
   margin: auto;
 }
 
-.building-img img{
+.building-img-rig img{
   width: 70%;
   border-radius: 10px;
 }
 
-.buildings h1{
+.building h1{
   text-align: left;
   margin-bottom: 10px;
   font-weight: 100;
   color: #C6426E;
 } 
 
-.building-desc{
+.building-desc-rig{
   display: flex;
   align-items: center;
   margin-bottom: 40px;
 }
 
-.building-text p{
+.building-icon-rig .fa{
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  line-height: 50px;
+  border-radius: 8px;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+}
+
+.building-text-rig p{
   padding: 0 20px;
   text-align: initial;  
 }
@@ -262,11 +393,35 @@ nav ul li a{
   padding-bottom: 70px;
 }
 
+.title-text p{
+  margin: auto;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.title-text p::after{
+  content: '';
+  width: 50px;
+  height: 35px;
+  background: linear-gradient(#C6426E,#fff);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  z-index: -1;
+  transform: rotate(10deg);
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px; 
+}
+
 .title-text h1{
   font-size: 50px;
 }   
 
-.boat-box{
+/*Attack Boat*/
+.boat-box-attkboat{
   width: 80%;
   margin: auto;
   display: flex;
@@ -275,16 +430,16 @@ nav ul li a{
   text-align: center;
 }
 
-.boat{
+.boat-attkboat{
   flex-basis: 50%;
 } 
 
-.boat-img{
+.boat-img-attkboat{
   flex-basis: 50%;
   margin: auto;
 }
 
-.boat-img img{
+.boat-img-attkboat img{
   width: 70%;
   border-radius: 10px;
 }
@@ -296,16 +451,154 @@ nav ul li a{
   color: #C6426E;
 } 
 
-.boat-text p{
+.boat-desc-attkboat{
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.boat-icon-attkboat .fa{
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  line-height: 50px;
+  border-radius: 8px;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+}
+
+.boat-text-attkboat p{
   padding: 0 20px;
   text-align: initial;  
+}
+
+/*--Obstruction--*/
+#obstruct{
+  width: 100%;
+  padding: 70px 0;
+}
+
+.title-text{
+  text-align: center;
+  padding-bottom: 70px;
+}
+
+.title-text p{
+  margin: auto;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.title-text p::after{
+  content: '';
+  width: 50px;
+  height: 35px;
+  background: linear-gradient(#C6426E,#fff);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  z-index: -1;
+  transform: rotate(10deg);
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px; 
+}
+
+.title-text h1{
+  font-size: 50px;
+}  
+
+.obstruct-box{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+}
+
+.obstructs{
+  flex-basis: 50%;
+} 
+
+.obstructs-img{
+  flex-basis: 50%;
+  margin: auto;
+}
+
+.obstructs-img img{
+  width: 70%;
+  border-radius: 10px;
+}
+
+.obstructs h1{
+  text-align: left;
+  margin-bottom: 10px;
+  font-weight: 100;
+  color: #C6426E;
+} 
+
+.obstructs-desc{
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.obstruct-icon .fa{
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  line-height: 50px;
+  border-radius: 8px;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+}
+
+.obstruct-text p{
+  padding: 0 20px;
+  text-align: initial;
 }
 
 /*--Intructions--*/
 #instruct{
   width: 100%;
   padding: 70px 0;
+  background: #efefef;
 }
+
+.title-text{
+  text-align: center;
+  padding-bottom: 70px;
+}
+
+.title-text p{
+  margin: auto;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.title-text p::after{
+  content: '';
+  width: 50px;
+  height: 35px;
+  background: linear-gradient(#C6426E,#fff);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  z-index: -1;
+  transform: rotate(10deg);
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px; 
+}
+
+.title-text h1{
+  font-size: 50px;
+}   
 
 .instruct-box{
   width: 80%;
@@ -336,6 +629,22 @@ nav ul li a{
   font-weight: 100;
   color: #C6426E;
 } 
+
+.instructs-desc{
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.instruct-icon .fa{
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  line-height: 50px;
+  border-radius: 8px;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+}
 
 .instruct-text p{
   padding: 0 20px;
