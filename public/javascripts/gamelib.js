@@ -1,5 +1,5 @@
-const width = 1750;
-const height = 920;
+// const width = 1750;
+// const height = 920;
 
 let screen = 'world';
 const room = 1;
@@ -11,11 +11,14 @@ let movetokens = 12;
 //     //BoardManager.preloadImages();
 //     //boardMan = new BoardManager(width,height,0,0,room);
 //     //boardMan.initBoard();
+    
 // }
 
 async function setup() {
+    let width = windowWidth;
+    let height = windowHeight;
     
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(width, height);
     initBut();
     await initBoard();
     await buildGameBits();

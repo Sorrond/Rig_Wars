@@ -44,8 +44,8 @@ function mouseisonBoard() {
 
 //Tile iformation related//
 
-const Tile_W = 50/1.2;
-const Tile_H = 50/1.2;
+const Tile_W = 50/1.5;
+const Tile_H = 50/1.5;
 
 class tile {
 
@@ -101,16 +101,16 @@ class tile {
 
   set_team(team, health) {
     print(health)
-    if (team == false && health == true) {
+    if (team == 1 && health == true) {
       this.team = 'red'
 
-    } else if (team == false && health == false) {
+    } else if (team == 1 && health == false) {
       this.team = 'darkred'
 
-    } else if (team == true && health == true) {
+    } else if (team == 2 && health == true) {
       this.team = 'blue'
 
-    } else if (team == true && health == false) {
+    } else if (team == 2 && health == false) {
       this.team = 'darkblue'
     }
   }

@@ -17,7 +17,7 @@ module.exports.loginCheck = async function (name, password) {
 
 module.exports.getLoggedUserInfo = async function (playerId) {
   try {
-    let sql = `Select user_name, user_id from user_ where user_id = $1`;
+    let sql = `Select user_name from user_ where user_id = $1`;
     let result = await pool.query(sql, [playerId]);
     if (result.rows.length > 0) {
       let player = result.rows[0];
