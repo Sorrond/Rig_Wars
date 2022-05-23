@@ -1,4 +1,4 @@
-const room = sessionStorage.getItem("roomId");
+//const room = sessionStorage.getItem("roomId");
 
 window.onload = async function() {
     let userInfo = await getUserInfo();
