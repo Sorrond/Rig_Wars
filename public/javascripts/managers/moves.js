@@ -8,15 +8,16 @@ async function playmoves() {
             gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i - 1, tilecoords.j, gamebit_id);
             board[tilecoords.i][tilecoords.j].set_default();
-            buildGameBits();
+            await buildGameBits();
 
-            movement = 'left';
+            movement = 'l-eft';
             print('left')
 
         } else if ((0 <= (tilecoords.i - 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i - 1][tilecoords.j].t != '') {
             let nexttile = await getGameBitsByTile(tilecoords.i - 1, tilecoords.j);
             console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
             if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+                board[tilecoords.i][tilecoords.j].set_default();
                 damageOilRig();
 
 
@@ -36,7 +37,7 @@ async function playmoves() {
             gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i + 1, tilecoords.j, gamebit_id);
             board[tilecoords.i][tilecoords.j].set_default()
-            buildGameBits()
+            await buildGameBits()
 
             movement = 'right';
             print('right')
@@ -44,7 +45,8 @@ async function playmoves() {
             let nexttile = await getGameBitsByTile(tilecoords.i + 1, tilecoords.j);
             console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
             if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
-                damageOilRig();
+                board[tilecoords.i][tilecoords.j].set_default();
+                await damageOilRig();
 
             } else if ((nexttile.objecttile_object_current_health === false) || (nexttile.objecttype_name == 'Boat')) {
 
@@ -61,14 +63,15 @@ async function playmoves() {
             gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i, tilecoords.j - 1, gamebit_id);
             board[tilecoords.i][tilecoords.j].set_default()
-            buildGameBits()
+            await buildGameBits()
             movement = 'up';
             print('up')
         } else if ((0 <= (tilecoords.i) <= 30) && (0 <= tilecoords.j - 1 <= 14) && board[tilecoords.i][tilecoords.j - 1].t != '') {
             let nexttile = await getGameBitsByTile(tilecoords.i, tilecoords.j - 1);
             console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
             if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
-                damageOilRig();
+                board[tilecoords.i][tilecoords.j].set_default();
+                await damageOilRig();
 
             } else if ((nexttile.objecttile_object_current_health === false) || (nexttile.objecttype_name == 'Boat')) {
 
@@ -85,7 +88,7 @@ async function playmoves() {
             gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i, tilecoords.j + 1, gamebit_id);
             board[tilecoords.i][tilecoords.j].set_default()
-            buildGameBits()
+            await buildGameBits()
 
             movement = 'down';
             print('down')
@@ -93,7 +96,8 @@ async function playmoves() {
             let nexttile = await getGameBitsByTile(tilecoords.i, tilecoords.j - 1);
             console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
             if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
-                damageOilRig();
+                board[tilecoords.i][tilecoords.j].set_default();
+                await damageOilRig();
 
             } else if ((nexttile.objecttile_object_current_health === false) || (nexttile.objecttype_name == 'Boat')) {
 
@@ -111,7 +115,7 @@ function nextBoatMovement() {
     fill('black');
     textSize(15)
     textAlign(CENTER);
-    text('Boat movement \n' + movement, (width / 8) * 2 + 75, (height / 6) * 5 + 75);
+    text('Boat movement \n' + movement, (width / 10) * 7.4 + (100*4)/2, (height / 6) * 4 + 75);
 
     if (keysPressed) {
         if (key == "a") {

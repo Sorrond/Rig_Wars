@@ -47,8 +47,8 @@ module.exports.getGameBitsByTile = async function (tile_i, tile_j) {
 
 module.exports.moveBoatsById = async function (gamebit_id, tile_i, tile_j) {
   try {
-    let sql = "UPDATE objecttile SET objecttile_tile_i = $1, objecttile_tile_j = $2 WHERE objecttile_object_id = $3";
-    let result = await pool.query(sql, [tile_i, tile_j, gamebit_id]);
+    let sql1 = "UPDATE objecttile SET objecttile_tile_i = $1, objecttile_tile_j = $2 WHERE objecttile_object_id = $3";
+    let result = await pool.query(sql1, [tile_i, tile_j, gamebit_id]);
     return { status: 200, result: result };
   } catch (err) {
     console.log(err);
@@ -82,6 +82,8 @@ module.exports.deleteBoat = async function (gamebit_id, gamebit_tile_i, gamebit_
   try {
     let sql = "DELETE FROM objecttile WHERE objecttile_tile_i = $1 AND objecttile_tile_j = $2 AND objecttile_object_id = $3";
     let result = await pool.query(sql, [gamebit_tile_i, gamebit_tile_j, gamebit_id]);
+    let sql1 = "DELETE FROM object_ WHERE object_id = $1";
+    result = await pool.query(sql1, [gamebit_id]);
     return { status: 200, result: result};
   } catch (err) {
     console.log(err);

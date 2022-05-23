@@ -14,7 +14,7 @@ function drawBoard() {
   }
 
     fill(255, 0, 0);
-    rect(((Tile_W * boardCols)/2) - 5, 0, 5, Tile_H * boardRows)
+    rect((((Tile_W * boardCols)/2) - 5), 0, 5, Tile_H * boardRows)
 }
 
 async function initBoard() {
@@ -44,8 +44,8 @@ function mouseisonBoard() {
 
 //Tile iformation related//
 
-const Tile_W = 50/1.2;
-const Tile_H = 50/1.2;
+const Tile_W = 50/1.3;
+const Tile_H = 50/1.3;
 
 class tile {
 
@@ -73,11 +73,11 @@ class tile {
     } else {
       fill(0, 50);
     }
-    rect(i * Tile_W, j * Tile_H, Tile_W, Tile_H);
+    rect((i * Tile_W), (j * Tile_H), Tile_W, Tile_H);
     fill('white');
     textSize(16)
     textAlign(CENTER);
-    text(this.t, i * Tile_W + Tile_W / 2, j * Tile_H + Tile_H / 2);
+    text(this.t, (i * Tile_W + Tile_W / 2), (j * Tile_H + Tile_H / 2));
     textSize(12)
     pop();
   }
