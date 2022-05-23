@@ -66,14 +66,14 @@ async function deleteBoat(gamebit_id, gamebit_tile_i, gamebit_tile_j) {
     }
 }
 
-async function newTurn(turn_number, roomuser_id, tokens, double) {
+async function newTurn(turn_number, id) {
     try {
         const response = await fetch(`/api/rooms/newturn`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ turn_number: turn_number, roomuser_id: roomuser_id, tokens: tokens, double: double })
+            body: JSON.stringify({ turn_number: turn_number, roomuser_id: roomuser_id, id: id })
         });
         var result = await response.json();
         return { success: response.status == 200, result: result };
@@ -89,7 +89,7 @@ async function getUserTurn(roomid, turn) {
         const response = await fetch(`/api/rooms/${roomid}/${turn}`);
         if (response.status == 200) {
             var result = await response.json();
-            result = result.rows[0].roomuser_user_id
+            result = result.rows[0].turn_user_id
             return result;
         } else {
             // Treat errors like 404 here

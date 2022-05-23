@@ -35,11 +35,8 @@ router.get('/:roomid/:turn', async function (req, res, next) {
 });
 
 router.post('/newturn', async function (req, res, next) {
-    let turn_number = req.body.turn_number;
-    let roomuser_id = req.body.roomuser_id;
-    let tokens = req.body.tokens;
-    let double = req.body.double;
-    let result = await rModel.newTurn(turn_number, roomuser_id, tokens, double);
+    let playerID = req.body.playerID;
+    let result = await rModel.newTurn(turn_number, roomuser_id, id);
     res.status(result.status).send(result.result);
 })
 
