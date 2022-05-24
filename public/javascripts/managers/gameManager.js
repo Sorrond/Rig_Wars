@@ -6,6 +6,7 @@ async function id() {
 
 async function getResources() {
     let resources = await getResourcesLeft();
+    console.log(resources)
     return resources;
 };
 

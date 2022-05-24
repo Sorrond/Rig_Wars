@@ -8,7 +8,6 @@ let end_move_but;
 let end_turn;
 
 async function but_action() {
-    if (await id() == await getUserTurn(room, await getRoomTurn(room))) {//----------------------------------player that can play this round
         if (atkboat_but.click_but(mouseX, mouseY)) {
             building_menu();
             build_atkboat();
@@ -31,9 +30,6 @@ async function but_action() {
             screen_world();
             nextTurn()
         }
-    } else {
-        console.log("Not user turn")
-    }
 }
 
 function drawBut() {
