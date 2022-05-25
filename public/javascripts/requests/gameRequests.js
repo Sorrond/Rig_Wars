@@ -14,6 +14,22 @@ async function getBoard() {
     }
 }
 
+async function checkIsPlayerTurn(user) {
+    try {
+        const response = await fetch(`/api/board/check/${user}/turn`);
+        if (response.status == 200) {
+            var user_turn = await response.json();
+            return user_turn;
+        } else {
+            // Treat errors like 404 here
+            console.log(response);
+        }
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+    }
+}
+
 async function getResourcesLeft() {
     try {
         const response = await fetch(`/api/board/resources/left`);
@@ -52,6 +68,22 @@ async function getGameBitsByTile(tile_i, tile_j) {
         if (response.status == 200) {
             var gamebit_info = await response.json();
             return gamebit_info;
+        } else {
+            // Treat errors like 404 here
+            console.log(response);
+        }
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+    }
+};
+
+async function getGameBitOwner(tile_i, tile_j) {
+    try {
+        const response = await fetch(`/api/board/gamebit/owner/${tile_i}/${tile_j}`);
+        if (response.status == 200) {
+            var gamebit_owner = await response.json();
+            return gamebit_owner;
         } else {
             // Treat errors like 404 here
             console.log(response);
