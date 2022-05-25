@@ -3,16 +3,16 @@ var pool = require('./connection.js')
 
 module.exports.getBoard = async function () {
   try {
-    let sql = "Select * from board";
+    let sql = "Select * from boardtype";
     let result = await pool.query(sql);
     let board = result.rows;
     if (board.length > 0) {
-      let boardrows = board[0].board_row;
-      sql = "Select board_row from board where board_id = 1"
+      let boardrows = board[0].boardtype_row;
+      sql = "Select boardtype_row from boardtype where boardtype_id = 1"
       result = await pool.query(sql);
       //
-      let boardcols = board[0].board_collum;
-      sql = "Select board_collum from board where board_id = 1"
+      let boardcols = board[0].boardtype_collum;
+      sql = "Select boardtype_collum from boardtype where boardtype_id = 1"
       result = await pool.query(sql);
       return { status: 200, result: { board_row: boardrows, board_collum: boardcols } };
     }

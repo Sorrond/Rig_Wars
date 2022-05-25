@@ -60,9 +60,13 @@ module.exports.getRoomOpponentId = async function (room, id) {
 module.exports.newTurn = async function (turn_number, roomuser_id, tokens, double, user) {
   try {
     let result = await board.checkIsPlayerTurn(user);
-    let sql = "INSERT INTO turn (turn_n, turn_roomuser_id, turn_tokens, turn_tokens_left, turn_double, turn_double_left) VALUES ($1, $2, $3, $3, $4, $4)";
-    result = await pool.query(sql, [turn_number, roomuser_id, tokens, double]);
-    return { status: 200, result: result };
+    if (result.result) {
+      let sql = "INSERT INTO turn (turn_n, turn_roomuser_id, turn_tokens, turn_tokens_left, turn_double, turn_double_left) VALUES ($1, $2, $3, $3, $4, $4)";
+      result = await pool.query(sql, [turn_number, roomuser_id, tokens, double]);
+      return { status: 200, result: result };
+    } else {
+      return { status: 200, result: result };
+    }
   } catch (err) {
     console.log(err);
     return { status: 500, result: err };
