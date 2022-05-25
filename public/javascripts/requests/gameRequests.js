@@ -12,7 +12,7 @@ async function getBoard() {
         // Treat 500 errors here
         console.log(err);
     }
-}
+} 
 
 async function checkIsPlayerTurn(user) {
     try {

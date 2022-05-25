@@ -6,7 +6,7 @@ var auth = require("../models/authentication")
 router.get('/', async function (req, res, next) {
     let result = await rModel.getBoard();
     res.status(result.status).send(result.result);
-});
+}); 
 
 router.get('/check/:user/turn', async function (req, res, next) {
     let user = req.params.user

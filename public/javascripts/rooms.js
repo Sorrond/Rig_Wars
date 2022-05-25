@@ -24,7 +24,7 @@ async function fillRooms() {
         let rooms = await getRooms();
         let html = "";
         for(let room of rooms) {
-            html+=`<section onclick=openRoom(${1})>
+            html =`<section onclick=openRoom(${1})>
                       <h3>${room.roo_name}</h3>
                    </section>`
         }
