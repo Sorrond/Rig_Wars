@@ -1,6 +1,23 @@
+/*function canMove(){
+    if (dice +1){
+        canMove== true;
+    }else if(dice == 0){
+        canMove ==false;
+        print("you have no more moves");~
+    }
+}*/
 
-async function playmoves() {
+async function playmoves() { 
     tilecoords = mouseToTile();
+
+    /*if(mouseClicked && board[tilecoords.i][tilecoords.j].t == 'atkboat' && canMove == true) {
+        tilecoords[i].move();
+        tilecoords[j].move();
+        
+        move()
+            coords.i = moveBoatsById(gamebit_id); or mouseclick again?
+            coords.j = moveBoatsById(gamebit_id); or mouseclick again?
+        */
 
     if (key == "a" && board[tilecoords.i][tilecoords.j].t == 'atkboat') {
         if ((0 <= (tilecoords.i - 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i - 1][tilecoords.j].t == '') {
@@ -131,79 +148,6 @@ function nextBoatMovement() {
             movement = 'down';
 
         }
-    }
+    }    
 
-   /* if(mousec){
-    if (locked) {
-        bx = mouseX - xOffset;
-        by = mouseY - yOffset;
-      }
-    }
-    
-    switch(boat) NO TOCAR NO TRABALHO DO FARINHA
-        case 0:
-        if boat j or x + 1 then
-            print("you moved one 1")
-        break;
-
-        case 1:
-            if boat j or x + 2 then
-            print("you moved one 2")
-        break;
-
-        case 2:
-            if boat j or x + 3 then
-            print("you moved one 3")
-        break;
-
-        case 3:
-            if boat j or x + 4 then
-            print("you moved one 4")
-        break;
-
-        case 4:
-            if boat j or x + 5 then
-            print("you moved one 5")
-        break;
-
-        case 5:
-            if boat j or x + 6 then
-            print("you moved one 6")
-        break;
-
-        case 6:
-            if boat j or x + 7 then
-            print("you moved one 7")
-        break;
-
-        case 7:
-            if boat j or x + 8 then
-            print("you moved one 8")
-        break;
-
-        case 8:
-            if boat j or x + 9 then
-            print("you moved one 9")
-        break;
-
-        case 9:
-            if boat j or x + 10 then
-            print("you moved one 10")
-        break;
-
-        case 10:
-            if boat j or x + 11 then
-            print("you moved one 11")
-        break;
-
-        case 11:
-            if boat j or x + 12 then
-            print("you moved one 12")
-        break;
-
-        case 12:
-            if boat j or x + 13 then
-            print("you dont have enough to move here")
-        break;
-}*/
 }
