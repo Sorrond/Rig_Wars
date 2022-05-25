@@ -11,7 +11,7 @@ html {
 
 /*--Banner--*/
 #banner{
-  background: linear-gradient(#8fd457, #558cf2);
+  background: linear-gradient(#558cf2,#8fd457);
   height: 100vh;
 }
 
