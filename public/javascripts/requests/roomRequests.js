@@ -66,14 +66,14 @@ async function deleteBoat(gamebit_id, gamebit_tile_i, gamebit_tile_j) {
     }
 }
 
-async function newTurn(turn_number, roomuser_id, tokens, double) {
+async function newTurn(turn_number, roomuser_id, tokens, double, user) {
     try {
         const response = await fetch(`/api/rooms/newturn`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ turn_number: turn_number, roomuser_id: roomuser_id, tokens: tokens, double: double })
+            body: JSON.stringify({ turn_number: turn_number, roomuser_id: roomuser_id, tokens: tokens, double: double, user:user})
         });
         var result = await response.json();
         return { success: response.status == 200, result: result };

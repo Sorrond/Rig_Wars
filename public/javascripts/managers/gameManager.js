@@ -97,18 +97,8 @@ async function nextTurn() {
     turn_number = await getRoomTurn(room)
     turn_number++
     roomuser_opponent_id = await getRoomOpponentId(room, await id())
-
     result = RollDice()
-
-
     await newTurn(turn_number, roomuser_opponent_id, result[0], result[1])
-
-    // only info for the devs
-    console.log(result[1], result[0])
-    console.log(await id(), turn_number, roomuser_opponent_id)
-    let user_turn = await getUserTurn(room, turn_number)
-    console.log(turn_number, user_turn, turn_roomuser_id, id)
-    // ---
 }
 
 
