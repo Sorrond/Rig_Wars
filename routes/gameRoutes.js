@@ -8,7 +8,11 @@ router.get('/', async function (req, res, next) {
     res.status(result.status).send(result.result);
 });
 
-
+router.get('/check/:user/turn', async function (req, res, next) {
+    let user = req.body.user
+    let result = await rModel.checkIsPlayerTurn(user);
+    res.status(result.status).send(result.result);
+});
 
 router.get('/gamebits', auth.checkAuthentication, async function (req, res, next) {
     let result = await rModel.getGameBits(req.userId);
@@ -19,6 +23,13 @@ router.get('/gamebits/id/:tile_i/:tile_j', async function (req, res, next) {
     let tile_i = req.params.tile_i;
     let tile_j = req.params.tile_j;
     let result = await rModel.getGameBitsByTile(tile_i, tile_j);
+    res.status(result.status).send(result.result);
+});
+
+router.get('/gamebit/owner/:tile_i/:tile_j', async function (req, res, next) {
+    let tile_i = req.params.tile_i;
+    let tile_j = req.params.tile_j;
+    let result = await rModel.getGameBitOwner(tile_i, tile_j);
     res.status(result.status).send(result.result);
 });
 

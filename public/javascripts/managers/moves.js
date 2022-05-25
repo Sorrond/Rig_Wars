@@ -7,10 +7,11 @@ async function playmoves() {
             let gamebit_id = await getGameBitsByTile(tilecoords.i, tilecoords.j);
             gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i - 1, tilecoords.j, gamebit_id);
+            console.log(moveBoatsById(tilecoords.i - 1, tilecoords.j, gamebit_id))
             board[tilecoords.i][tilecoords.j].set_default();
             await buildGameBits();
 
-            movement = 'l-eft';
+            movement = 'left';
             print('left')
 
         } else if ((0 <= (tilecoords.i - 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i - 1][tilecoords.j].t != '') {
