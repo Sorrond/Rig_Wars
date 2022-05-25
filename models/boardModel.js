@@ -68,7 +68,7 @@ module.exports.getGameBitOwner = async function (tile_i, tile_j) {
     console.log(err);
     return { status: 500, result: err };
   }
-}
+} 
 
 module.exports.moveBoatsById = async function (gamebit_id, tile_i, tile_j, userid) {
   try {
