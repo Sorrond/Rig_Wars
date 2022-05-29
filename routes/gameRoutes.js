@@ -30,7 +30,7 @@ router.get('/gamebit/owner/:tile_i/:tile_j', async function (req, res, next) {
     let tile_i = req.params.tile_i;
     let tile_j = req.params.tile_j;
     let result = await rModel.getGameBitOwner(tile_i, tile_j);
-    console.log(result.status, result.result);
+    console.log(result.status, result.result.roomuser_user_id);
     res.status(result.status).send(result.result);
 });
 

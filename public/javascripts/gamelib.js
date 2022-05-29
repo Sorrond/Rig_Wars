@@ -15,7 +15,7 @@ let movetokens = 12;
 
 async function setup() {
     
-    createCanvas(windowWidth - 50, windowHeight);
+    createCanvas(windowWidth -15, windowHeight);
     initBut();
     await initBoard();
     await buildGameBits();

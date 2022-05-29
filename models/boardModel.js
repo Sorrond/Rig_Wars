@@ -1,4 +1,5 @@
 const req = require('express/lib/request');
+const res = require('express/lib/response');
 var pool = require('./connection.js')
 
 module.exports.getBoard = async function () {
@@ -60,9 +61,9 @@ module.exports.getGameBitsByTile = async function (tile_i, tile_j) {
 
 module.exports.getGameBitOwner = async function (tile_i, tile_j) {
   try {
-    let sql = "SELECT roomuser_user_id FROM roomuser INNER JOIN object_ ON object_roomuser_id = roomuser_id WHERE object_id = (SELECT object_id FROM object_ INNER JOIN objecttile ON objecttile_object_id = object_id INNER JOIN roomuser ON roomuser_id = object_roomuser_id WHERE objecttile_tile_i = $1 AND objecttile_tile_j = $2)";
-    let result = await pool.query(sql, [tile_i, tile_j]);
-    result = result.rows[0].roomuser_user_id;
+    let sql = "SELECT roomuser_user_id FROM roomuser INNER JOIN object_ ON object_roomuser_id = roomuser_id WHERE object_id = (SELECT object_id FROM object_ INNER JOIN objecttile ON objecttile_object_id = object_id INNER JOIN roomuser ON roomuser_id = object_roomuser_id WHERE objecttile_tile_i = $1 AND objecttile_tile_j = $2 AND roomuser_room_id = $3)";
+    let result = await pool.query(sql, [tile_i, tile_j, 1]);
+    result = result.rows[0];
     return { status: 200, result: result };
   } catch (err) {
     console.log(err);
@@ -74,8 +75,11 @@ module.exports.moveBoatsById = async function (gamebit_id, tile_i, tile_j, useri
   try {
     let result = await module.exports.checkIsPlayerTurn(userid);
     if (result.result) {
-      // result = await module.exports.getGameBitOwner(tile_i, tile_j);
-      //result = result.rows[0].roomuser_user_id;
+      console.log(tile_i,tile_j)
+      //result = await module.exports.getGameBitOwner(tile_i, tile_j);
+      // console.log(result);
+      // result = result.result.roomuser_user_id;
+      // console.log("info " + result)
       // if (result == userid) {
       let sql1 = "UPDATE objecttile SET objecttile_tile_i = $1, objecttile_tile_j = $2 WHERE objecttile_object_id = $3";
       result = await pool.query(sql1, [tile_i, tile_j, gamebit_id]);

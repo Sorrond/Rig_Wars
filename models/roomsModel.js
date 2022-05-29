@@ -1,5 +1,5 @@
 var pool = require('./connection.js')
-var board = require("../models/boardModel.js")
+var boardM = require("../models/boardModel.js")
 
 module.exports.getAllRooms = async function () {
   try {
@@ -59,7 +59,7 @@ module.exports.getRoomOpponentId = async function (room, id) {
 
 module.exports.newTurn = async function (turn_number, roomuser_id, tokens, double, user) {
   try {
-    let result = await board.checkIsPlayerTurn(user);
+    let result = await boardM.checkIsPlayerTurn(user);
     if (result.result) {
       let sql = "INSERT INTO turn (turn_n, turn_roomuser_id, turn_tokens, turn_tokens_left, turn_double, turn_double_left) VALUES ($1, $2, $3, $3, $4, $4)";
       result = await pool.query(sql, [turn_number, roomuser_id, tokens, double]);
