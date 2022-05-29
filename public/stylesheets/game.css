@@ -33,15 +33,15 @@ a:link{
 body {
   background-color: rgb(255, 255, 255);
   margin: 0;
-  height: 100vh;
+  height: 90vh;
   grid-template-columns: 200px auto;
   grid-template-areas: 'h h' 'n m' 'f f';
-  grid-template-rows: 170px auto 70px;
+  grid-template-rows: 170px auto 70px; 
 }
 
 /*--Footer--*/
 #footer{
-  background: linear-gradient(#8fd457, #558cf2);
+  background: linear-gradient(#558cf2, #8fd457);
   background-size: cover;
   background-position: center;
   height: 30vh;
@@ -50,7 +50,7 @@ body {
 .footer-text{
   text-align: center;
   color: #fff;
-  padding-top: 20px;
+  padding-top: 5px;
   font-style: italic;
 }
 
