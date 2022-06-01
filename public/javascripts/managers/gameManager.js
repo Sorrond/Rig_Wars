@@ -97,33 +97,5 @@ async function nextTurn() {
     turn_number = await getRoomTurn(room)
     turn_number++
     roomuser_opponent_id = await getRoomOpponentId(room, await id())
-    result = RollDice()
-    await newTurn(turn_number, roomuser_opponent_id, result[0], result[1])
-}
-
-
-// Dice
-
-function RollDice() {
-    //implement in a way that every turn pass, it rolls by itself and saves automaticaly inside DB so no exploits can happen
-    let roll1;
-    let roll2;
-    let result = [];
-
-    //Dice 
-    roll1 = int(random(1, 7))
-    roll2 = int(random(1, 7))
-    if (roll1 == roll2) {
-        result[1] = true
-        print("You have a double to spend")
-    } else {
-        result[1] = false
-        print("You don't have any more doubles to spend")
-    }
-
-    //Result 
-    result[0] = roll1 + roll2
-    print("Your rolls are " + roll1 + " " + roll2 + " your points are: " + result)
-
-    return result;
+    await newTurn(turn_number, roomuser_opponent_id)
 }

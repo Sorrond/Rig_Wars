@@ -12,7 +12,7 @@ async function getBoard() {
         // Treat 500 errors here
         console.log(err);
     }
-} 
+}
 
 async function checkIsPlayerTurn(user) {
     try {
@@ -94,6 +94,38 @@ async function getGameBitOwner(tile_i, tile_j) {
     }
 };
 
+async function getPlayerBoardSide() {
+    try {
+        const response = await fetch(`/api/board/user/side`);
+        if (response.status == 200) {
+            var user_board_info = await response.json();
+            return user_board_info;
+        } else {
+            // Treat errors like 404 here
+            console.log(response);
+        }
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+    }
+};
+
+async function checkBoardSide() {
+    try {
+        const response = await fetch(`/api/board/check/side`);
+        if (response.status == 200) {
+            var user_board_side = await response.json();
+            return user_board_side;
+        } else {
+            // Treat errors like 404 here
+            console.log(response);
+        }
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+    }
+};
+
 async function createGamebits(objecttype_id, object_i, object_j) {
     try {
         const response = await fetch(`/api/board/gamebits/create`, {
@@ -101,7 +133,7 @@ async function createGamebits(objecttype_id, object_i, object_j) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ objecttype_id: objecttype_id, object_i:object_i, object_j:object_j})
+            body: JSON.stringify({ objecttype_id: objecttype_id, object_i: object_i, object_j: object_j })
         });
         var result = await response.json();
         return { success: response.status == 200, result: result };
@@ -137,7 +169,7 @@ async function damageObject(object_id, damage_object_tile_i, damage_object_tile_
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ object_id: object_id, damage_object_tile_i:damage_object_tile_i, damage_object_tile_j:damage_object_tile_j})
+            body: JSON.stringify({ object_id: object_id, damage_object_tile_i: damage_object_tile_i, damage_object_tile_j: damage_object_tile_j })
         });
         var result = await response.json();
         return { success: response.status == 200, result: result };
@@ -155,7 +187,7 @@ async function deleteBoat(gamebit_id, gamebit_tile_i, gamebit_tile_j) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({gamebit_id:gamebit_id, gamebit_tile_i:gamebit_tile_i, gamebit_tile_j:gamebit_tile_j})
+            body: JSON.stringify({ gamebit_id: gamebit_id, gamebit_tile_i: gamebit_tile_i, gamebit_tile_j: gamebit_tile_j })
         });
         var result = await response.json();
         return { success: response.status == 200, result: result };

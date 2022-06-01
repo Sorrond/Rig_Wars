@@ -21,10 +21,9 @@ function build_mine(){
 async function buildPlace(){
     if (mouseToTile()) {
 
-        //Build a atkboat in a space that is different than a atkboat//
+        //Build a object in a space that is different than a object//
         tilecoords = mouseToTile();
-
-
+        
         if(typeStruc=='atkboat' && board[tilecoords.i][tilecoords.j].get_buildType() == ''){
             await createGamebits(2, tilecoords.i, tilecoords.j);
             //board[tilecoords.i][tilecoords.j].set_(typeStruc);
@@ -61,5 +60,7 @@ async function buildPlace(){
             print(board[tilecoords.i][tilecoords.j].get_id());
             screen_world()
         }
+    } else {
+        screen = "world";
     }
 };

@@ -69,14 +69,19 @@ module.exports.getGameBitOwner = async function (tile_i, tile_j) {
     console.log(err);
     return { status: 500, result: err };
   }
-} 
+}
 
 module.exports.moveBoatsById = async function (gamebit_id, tile_i, tile_j, userid) {
   try {
-    let result = await module.exports.checkIsPlayerTurn(userid);
-    if (result.result) {
-      console.log(tile_i,tile_j)
-      //result = await module.exports.getGameBitOwner(tile_i, tile_j);
+    let result = await module.exports.getResourcesLeft();
+    resources_left = result.result.turn_tokens_left;
+    result = await module.exports.checkIsPlayerTurn(userid);
+    if (result.result && resources_left > 0) {
+      console.log(tile_i, tile_j)
+      let sql = "SELECT objecttile_tile_i, objecttile_tile_j FROM objecttile INNER JOIN object_ ON object_id = objecttile_id INNER JOIN roomuser ON roomuser_id = object_roomuser_id WHERE object_id = $1 AND roomuser_room_id = $2 AND roomuser_user_id = $3";
+      result = await pool.query(sql, [gamebit_id, 1, userid]);
+      console.log(result.rows[0])
+      //result = await module.exports.getGameBitOwner();
       // console.log(result);
       // result = result.result.roomuser_user_id;
       // console.log("info " + result)
@@ -93,6 +98,26 @@ module.exports.moveBoatsById = async function (gamebit_id, tile_i, tile_j, useri
     return { status: 500, result: err };
   }
 }
+
+// module.exports.moveBoatsById = async function (gamebit_id, tile_i, tile_j, userid) {
+//   try {
+//     let result = await module.exports.checkIsPlayerTurn(userid);
+//     if (result.result) {
+//       // result = await module.exports.getGameBitOwner(tile_i, tile_j);
+//       // result = result.result.roomuser_user_id;
+//       // if (result == userid) {
+//         let sql1 = "UPDATE objecttile SET objecttile_tile_i = $1, objecttile_tile_j = $2 WHERE objecttile_object_id = $3";
+//         result = await pool.query(sql1, [tile_i, tile_j, gamebit_id]);
+//         return { status: 200, result: result };
+//       // } else {
+//       //   console.log("not players object")
+//       // }
+//     } else { return { status: 200, result: result }; }
+//   } catch (err) {
+//     console.log(err);
+//     return { status: 500, result: err };
+//   }
+// }
 
 module.exports.damageObject = async function (object_id, damage_object_tile_i, damage_object_tile_j, userid) {
   try {
@@ -113,23 +138,48 @@ module.exports.damageObject = async function (object_id, damage_object_tile_i, d
 module.exports.createGamebits = async function (objecttype_id, object_i, object_j, user_id) {
   try {
     let result = await module.exports.checkIsPlayerTurn(user_id);
+
     if (result.result) {
-    let sql1 = "INSERT INTO object_ (object_type_id, object_roomuser_id) VALUES ($1, (SELECT roomuser_id FROM roomuser WHERE roomuser_user_id = $2 AND roomuser_room_id = $3))";
-    let result = await pool.query(sql1, [objecttype_id, user_id, 1]);
-    let sql2 = "SELECT MAX (object_id) AS object_id FROM object_ INNER JOIN roomuser ON object_roomuser_id = roomuser_id WHERE roomuser_room_id = $1";
-    result = await pool.query(sql2, [1]);
-    let new_object_id = result.rows[0].object_id
-    if (objecttype_id == 1) {
-      let sql3 = "INSERT INTO objecttile (objecttile_object_id, objecttile_tile_i, objecttile_tile_j, objecttile_object_current_health) VALUES ($1, $2, $3, default), ($1, $2, ($3 + 1), default), ($1, $2, ($3 + 2), default)";
-      result = await pool.query(sql3, [new_object_id, object_i, object_j]);
+      let resources_left = await module.exports.getResourcesLeft();
+      resources_left = resources_left.result
+      let sql = "SELECT MAX (turn_n) AS turn_n FROM turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id WHERE roomuser_room_id = $1";
+      let result = await pool.query(sql, [1]);
+
+      if ((objecttype_id == 1 && result.rows[0].turn_n == 0) || (objecttype_id == 2 && resources_left.turn_tokens_left >= 2) || (objecttype_id == 3 && (resources_left.turn_tokens_left >= 5 || resources_left.turn_double_left == true))) {
+        let player_board_side = await module.exports.checkBoardSide(user_id, object_i);
+        player_board_side = player_board_side.result;
+
+        if (player_board_side) {
+          let sql1 = "INSERT INTO object_ (object_type_id, object_roomuser_id) VALUES ($1, (SELECT roomuser_id FROM roomuser WHERE roomuser_user_id = $2 AND roomuser_room_id = $3))";
+          let result = await pool.query(sql1, [objecttype_id, user_id, 1]);
+          let sql2 = "SELECT MAX (object_id) AS object_id FROM object_ INNER JOIN roomuser ON object_roomuser_id = roomuser_id WHERE roomuser_room_id = $1";
+          result = await pool.query(sql2, [1]);
+          let new_object_id = result.rows[0].object_id
+
+          if (objecttype_id == 1) {
+            let sql3 = "INSERT INTO objecttile (objecttile_object_id, objecttile_tile_i, objecttile_tile_j, objecttile_object_current_health) VALUES ($1, $2, $3, default), ($1, $2, ($3 + 1), default), ($1, $2, ($3 + 2), default)";
+            result = await pool.query(sql3, [new_object_id, object_i, object_j]);
+
+          } else if (objecttype_id == 2) {
+            let sql4 = "UPDATE turn SET turn_tokens_left = $1 WHERE turn_id = (SELECT turn_id FROM turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id WHERE roomuser_room_id = $2 AND turn_n = (SELECT MAX (turn_n) FROM turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id WHERE roomuser_room_id = $2))";
+            result = await pool.query(sql4, [(resources_left.turn_tokens_left - 2), 1]);
+            let sql5 = "INSERT INTO objecttile (objecttile_object_id, objecttile_tile_i, objecttile_tile_j, objecttile_object_current_health) VALUES ($1, $2, $3, default)";
+            result = await pool.query(sql5, [new_object_id, object_i, object_j]);
+
+          } else if (objecttype_id == 3) {
+            let sql6 = "UPDATE turn SET turn_tokens_left = $1 WHERE turn_id = (SELECT turn_id FROM turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id WHERE roomuser_room_id = $2 AND turn_n = (SELECT MAX (turn_n) FROM turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id WHERE roomuser_room_id = $2))";
+            result = await pool.query(sql6, [(resources_left.turn_tokens_left - 5), 1]);
+            let sql7 = "INSERT INTO objecttile (objecttile_object_id, objecttile_tile_i, objecttile_tile_j, objecttile_object_current_health) VALUES ($1, $2, $3, default)";
+            result = await pool.query(sql7, [new_object_id, object_i, object_j]);
+          }
+        } else if (player_board_side == false) {
+          return { status: 200, result: "Not player board" };
+        }
+      }
+      return { status: 200, result: result };
     } else {
-      let sql4 = "INSERT INTO objecttile (objecttile_object_id, objecttile_tile_i, objecttile_tile_j, objecttile_object_current_health) VALUES ($1, $2, $3, default)";
-      result = await pool.query(sql4, [new_object_id, object_i, object_j]);
+      return { status: 200, result: result };
     }
-    return { status: 200, result: result };
-  } else {
-    return { status: 200, result: result };
-  }
   } catch (err) {
     console.log(err);
     return { status: 500, result: err };
@@ -161,6 +211,47 @@ module.exports.checkIsPlayerTurn = async function (user) {
     let result = await pool.query(sql, [user, 1]);
     result = result.rows[0]
     return { status: 200, result: result.user_turn };
+  } catch (err) {
+    console.log(err);
+    return { status: 500, result: err };
+  }
+}
+
+module.exports.getPlayerBoardSide = async function () {
+  try {
+    let sql = "SELECT roomuser_user_id, user_name FROM roomuser INNER JOIN user_ ON roomuser_user_id = user_id WHERE roomuser_room_id = $1 ORDER BY roomuser_user_id ASC";
+    let result = await pool.query(sql, [1]);
+    result = result.rows
+    return { status: 200, result: result };
+  } catch (err) {
+    console.log(err);
+    return { status: 500, result: err };
+  }
+}
+
+module.exports.checkBoardSide = async function (user, object_pos) {
+  try {
+    let result = await module.exports.getPlayerBoardSide();
+    result = result.result;
+    let left_board_side = result[0];
+    let right_board_side = result[1];
+    if (user == left_board_side.roomuser_user_id) {
+      let board_collum = await module.exports.getBoard();
+      board_collum = board_collum.result.board_collum
+      if (object_pos >= 0 && object_pos < (board_collum / 2)) {
+        return { status: 200, result: true };
+      } else {
+        return { status: 200, result: false };
+      }
+    } else if (user == right_board_side.roomuser_user_id) {
+      let board_collum = await module.exports.getBoard();
+      board_collum = board_collum.result.board_collum
+      if (object_pos >= (board_collum / 2) && object_pos < board_collum) {
+        return { status: 200, result: true };
+      } else {
+        return { status: 200, result: false };
+      }
+    }
   } catch (err) {
     console.log(err);
     return { status: 500, result: err };

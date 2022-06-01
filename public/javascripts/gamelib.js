@@ -81,6 +81,8 @@ function mouseClicked() {
     } else if (screen == 'building') {
         if (mouseToTile()) {
             buildPlace();
+        } else {
+            screen = "world";
         }
     }
 

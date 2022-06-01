@@ -34,6 +34,16 @@ router.get('/gamebit/owner/:tile_i/:tile_j', async function (req, res, next) {
     res.status(result.status).send(result.result);
 });
 
+router.get('/user/side', async function (req, res, next) {
+    let result = await rModel.getPlayerBoardSide();
+    res.status(result.status).send(result.result);
+});
+
+router.get('/check/side', auth.checkAuthentication, async function (req, res, next) {
+    let result = await rModel.checkBoardSide(req.userId);
+    res.status(result.status).send(result.result);
+});
+
 router.post('/gamebits/create', auth.checkAuthentication, async function (req, res, next) {
     let objecttype_id = req.body.objecttype_id;
     let object_i = req.body.object_i;
