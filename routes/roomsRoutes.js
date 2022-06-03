@@ -42,9 +42,8 @@ router.post('/newturn', auth.checkAuthentication, async function (req, res, next
     res.status(result.status).send(result.result);
 })
 
-router.post('/find', async function (req, res, next) {
-    let playerID = req.body.playerID;
-    let result = await rModel.findRoom(playerID);
+router.post('/find', auth.checkAuthentication, async function (req, res, next) {
+    let result = await rModel.findRoom(req.userId);
     res.status(result.status).send(result.result);
 })
 

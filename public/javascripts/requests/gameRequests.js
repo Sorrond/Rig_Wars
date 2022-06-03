@@ -48,7 +48,7 @@ async function getResourcesLeft() {
 
 async function getGameBits() {
     try {
-        const response = await fetch(`/api/board/gamebits`);
+        const response = await fetch(`/api/board/gamebits/${getCookie("roomId")}`);
         if (response.status == 200) {
             var gamebits = await response.json();
             return gamebits;

@@ -35,10 +35,10 @@ module.exports.getResourcesLeft = async function () {
   }
 }
 
-module.exports.getGameBits = async function (id) {
+module.exports.getGameBits = async function (roomId, id) {
   try {
     let sql = "SELECT ($2 = roomuser_user_id) as is_player, objecttile_tile_i, objecttile_tile_j, objecttype_name, objecttile_object_current_health FROM objecttile INNER JOIN object_ ON objecttile_object_id = object_id INNER JOIN objecttype ON objecttype_id = object_type_id INNER JOIN roomuser ON roomuser_id = object_roomuser_id WHERE roomuser_room_id = $1";
-    let result = await pool.query(sql, [1, id]);
+    let result = await pool.query(sql, [roomId, id]);
     let gamebits = result.rows;
     return { status: 200, result: { gamebits } };
   } catch (err) {

@@ -101,16 +101,17 @@ async function getUserTurn(roomid, turn) {
     }
 }
 
-async function getRooms() {
+async function findRoom(playerID) {
     try {
-        const response = await fetch(`/api/rooms`);
-        if (response.status == 200) {
-            var rooms = await response.json();
-            return rooms;
-        } else {
-            // Treat errors like 404 here
-            console.log(response);
-        }
+        const response = await fetch(`/api/rooms/find`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ playerID: playerID})
+        });
+        var result = await response.json();
+        return { success: response.status == 200, result: result };
     } catch (err) {
         // Treat 500 errors here
         console.log(err);

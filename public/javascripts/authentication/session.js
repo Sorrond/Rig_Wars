@@ -13,7 +13,7 @@ async function getUserInfo() {
         if (result.logged) {
            return result.result;
         } else {
-            alert ("You are not logged in\nwe will send you to login page");
+            alert ("You are not logged in\nwe will send you back to the main page");
             window.location = "index.html"
         }
     } catch(err) {

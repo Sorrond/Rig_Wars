@@ -2,10 +2,23 @@ const width = 1750;
 const height = 920;
 
 let screen = 'world';
-//const room = 1;
 let movement = '';
-let movetokens = 12;
+let time = 0;
+let turn_instance;
 
+async function update() {
+    time += deltaTime * 0.0002;
+    console.log(int(time));
+    // let turn_number
+
+if (turn_instance != turn_number)
+    if (int(time) == 1){
+        time = 0;
+        resources = await getResources();
+        await buildGameBits();
+        
+    }
+}
 
 // function preload() {
 //     //BoardManager.preloadImages();
@@ -14,18 +27,20 @@ let movetokens = 12;
 // }
 
 async function setup() {
-    
-    createCanvas(windowWidth -15, windowHeight);
+
+    createCanvas(windowWidth - 15, windowHeight);
     initBut();
     await initBoard();
     await buildGameBits();
-    await getResources();
-    turn_number = await getRoomTurn(room)
+    resources = await getResources();
+    turn_instance = await getRoomTurn(room1);
+    console.log(turn_number.result)
 
 };
 
 async function draw() {
-    //print()
+    //update();
+    
 
     switch (screen) {
         case 'world':
@@ -33,7 +48,7 @@ async function draw() {
 
             drawBut();
             drawBoard();
-            //resources();
+            
             break;
 
         case 'building':
@@ -41,7 +56,7 @@ async function draw() {
 
             drawBut();
             drawBoard();
-            //resources();
+            
 
             break;
 
@@ -50,11 +65,16 @@ async function draw() {
 
             drawBut();
             drawBoard();
-            //resources();
             nextBoatMovement()
 
             break;
+        
+        case 'wait':
+            background(255)
+
+            drawBoard();
     };
+    resourceInfo(resources.turn_tokens_left, resources.turn_double_left);
     //print(typeStruc);
 
 };
@@ -65,7 +85,7 @@ function mouseClicked() {
     if (screen == 'move' && mouseisonBoard() && board[tilecoords.i][tilecoords.j].t == 'atkboat') {
         playmoves();
         buildGameBits();
-        
+
     } else if (screen == 'move') {
         but_action();
 
@@ -88,6 +108,6 @@ function mouseClicked() {
 
 };
 
-function keysPressed() {  
-    
+function keysPressed() {
+
 };

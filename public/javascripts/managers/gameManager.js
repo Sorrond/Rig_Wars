@@ -6,28 +6,41 @@ async function id() {
 
 async function getResources() {
     let resources = await getResourcesLeft();
-    console.log(resources)
+    if (resources.turn_double_left){
+        resources.turn_double_left = 1;
+    } else {
+        resources.turn_double_left = 0;
+    }
+    console.log(resources);
     return resources;
 };
 
-function resources() {
+async function resourceInfo(tokens, doubles) {
     fill('black')
     textSize(21);
-    text('Tokens - ' + ResourceValue.Tokens, (width / 10) * 9, (height / 20));
+    text('Tokens - ' + tokens + '       Doubles - ' + doubles, (width / 10) * 7, (height / 20));
 };
 
 function screen_world() {
     screen = 'world';
     print(screen);
+    movement = ''
 };
 
 function building_menu() {
     screen = 'building';
     print(screen);
+    movement = ''
 };
 
 function screen_move() {
     screen = 'move';
+    print(screen);
+    movement = ''
+};
+
+function screen_wait() {
+    screen = 'wait';
     print(screen);
     movement = ''
 };
@@ -97,5 +110,6 @@ async function nextTurn() {
     turn_number = await getRoomTurn(room)
     turn_number++
     roomuser_opponent_id = await getRoomOpponentId(room, await id())
-    await newTurn(turn_number, roomuser_opponent_id)
+    let result = await newTurn(turn_number, roomuser_opponent_id);
+    console.log(result);
 }

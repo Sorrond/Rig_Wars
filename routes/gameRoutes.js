@@ -14,8 +14,10 @@ router.get('/check/:user/turn', async function (req, res, next) {
     res.status(result.status).send(result.result);
 });
 
-router.get('/gamebits', auth.checkAuthentication, async function (req, res, next) {
-    let result = await rModel.getGameBits(req.userId);
+router.get('/gamebits/:roomId', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
+    console.log(roomId)
+    let result = await rModel.getGameBits(roomId, req.userId);
     res.status(result.status).send(result.result);
 });
 

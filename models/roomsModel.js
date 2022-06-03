@@ -15,7 +15,7 @@ module.exports.getAllRooms = async function () {
 
 module.exports.getRoomTurn = async function (roomid) {
   try {
-    let sql = "SELECT turn_n from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1 ORDER BY turn_n DESC LIMIT 1;";
+    let sql = "SELECT MAX (turn_n) from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1";
     let result = await pool.query(sql, [roomid]);
     return { status: 200, result: result };
   } catch (err) {
@@ -67,7 +67,7 @@ module.exports.newTurn = async function (turn_number, roomuser_id, user) {
       result = await pool.query(sql, [turn_number, roomuser_id, result[0], result[1]]);
       return { status: 200, result: result };
     } else {
-      return { status: 200, result: result };
+      return { status: 200, result: result.result };
     }
   } catch (err) {
     console.log(err);
@@ -85,10 +85,10 @@ async function RollDice() {
   roll1 = await getRandomIntInclusive(1, 6);
   roll2 = await getRandomIntInclusive(1, 6);
   if (roll1 == roll2) {
-      result[1] = true
+    result[1] = true
 
   } else {
-      result[1] = false
+    result[1] = false
 
   }
 
@@ -123,8 +123,13 @@ module.exports.findRoom = async function (playID) {
       }
       return { status: 200, result: { room_id: roomid } };
     } else if (roomssize.rowCount == 0) {
-      sql = "INSERT INTO room (room_isfull, room_gamestate) values(default, default)"
+      sql = `INSERT INTO room (room_isfull, room_gamestate) values(default, default) returning room_id`
       result = await pool.query(sql);
+      roomid = result.rows[0].room_id;
+      console.log(result.rows[0].room_id);
+      sql =  `INSERT INTO roomuser (roomuser_room_id, roomuser_boardtype_id, roomuser_user_id) values($1 , 1, $2)`
+      result = await pool.query(sql, [result.rows[0].room_id, playID]);
+
       return { status: 200, result: { room_id: roomid } };
     } else {
       return { status: 404, result: { room_id: -1 } };
