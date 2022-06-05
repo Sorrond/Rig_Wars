@@ -13,10 +13,10 @@ module.exports.getAllRooms = async function () {
   }
 }
 
-module.exports.getRoomTurn = async function (roomid) {
+module.exports.getRoomTurn = async function (roomId) {
   try {
     let sql = "SELECT MAX (turn_n) from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1";
-    let result = await pool.query(sql, [roomid]);
+    let result = await pool.query(sql, [roomId]);
     return { status: 200, result: result };
   } catch (err) {
     console.log(err);
@@ -24,10 +24,10 @@ module.exports.getRoomTurn = async function (roomid) {
   }
 }
 
-module.exports.getUserTurn = async function (roomid, turn) {
+module.exports.getUserTurn = async function (roomId, turn) {
   try {
     let sql = "SELECT roomuser_user_id from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1 and turn_n = $2";
-    let result = await pool.query(sql, [roomid, turn]);
+    let result = await pool.query(sql, [roomId, turn]);
     return { status: 200, result: result };
   } catch (err) {
     console.log(err);
@@ -35,10 +35,10 @@ module.exports.getUserTurn = async function (roomid, turn) {
   }
 }
 
-module.exports.getRoomOpponentId = async function (room, id) {
+module.exports.getRoomOpponentId = async function (roomId, id) {
   try {
     let sql = "SELECT roomuser_id from roomuser where roomuser_room_id = $1 and roomuser_user_id != $2";
-    let result = await pool.query(sql, [room, id]);
+    let result = await pool.query(sql, [roomId, id]);
     return { status: 200, result: result };
   } catch (err) {
     console.log(err);
@@ -59,7 +59,7 @@ module.exports.getRoomOpponentId = async function (room, id) {
 
 module.exports.newTurn = async function (turn_number, roomuser_id, user) {
   try {
-    let result = await boardM.checkIsPlayerTurn(user);
+    let result = await boardM.checkIsPlayerTurn(user, roomId);
     console.log(result.result)
     if (result.result) {
       result = await RollDice();
@@ -119,6 +119,8 @@ module.exports.findRoom = async function (playID) {
       result = await pool.query(sql, [roomid]);
       if (result.rows[0].number_players == 2) {
         sql = "update room set room_isfull = true where room_id = $1"
+        result = await pool.query(sql, [roomid]);
+        sql = "INSERT INTO turn (turn_n, turn_roomuser_id, turn_tokens, turn_tokens_left, turn_double, turn_double_left) VALUES (0, (SELECT MIN (roomuser_id) FROM roomuser WHERE roomuser_room_id = $1), 0, 0, false, false);"
         result = await pool.query(sql, [roomid]);
       }
       return { status: 200, result: { room_id: roomid } };

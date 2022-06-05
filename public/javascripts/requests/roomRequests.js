@@ -14,9 +14,9 @@ async function getRoom(roomId) {
     }
 }
 
-async function getRoomTurn(roomid) {
+async function getRoomTurn() {
     try {
-        const response = await fetch(`/api/rooms/${roomid}`);
+        const response = await fetch(`/api/rooms/${getCookie("roomId")}`);
         if (response.status == 200) {
             var result = await response.json();
             result = result.rows[0].turn_n
@@ -31,9 +31,9 @@ async function getRoomTurn(roomid) {
     }
 }
 
-async function getRoomOpponentId(room, id) {
+async function getRoomOpponentId(id) {
     try {
-        const response = await fetch(`/api/rooms/opponent/${room}/${id}`);
+        const response = await fetch(`/api/rooms/opponent/${getCookie("roomId")}/${id}`);
         if (response.status == 200) {
             var result = await response.json();
             result = result.rows[0].roomuser_id
@@ -84,9 +84,9 @@ async function newTurn(turn_number, roomuser_id, tokens, double, user) {
 }
 
 
-async function getUserTurn(roomid, turn) {
+async function getUserTurn(turn) {
     try {
-        const response = await fetch(`/api/rooms/${roomid}/${turn}`);
+        const response = await fetch(`/api/rooms/${getCookie("roomId")}/${turn}`);
         if (response.status == 200) {
             var result = await response.json();
             result = result.rows[0].roomuser_user_id

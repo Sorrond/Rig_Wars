@@ -15,23 +15,23 @@ router.get('/', async function (req, res, next) {
 //     res.status(result.status).send(result.result);
 //   });
 
-router.get('/:roomid', async function (req, res, next) {
-    let roomid = req.params.roomid;
-    let result = await rModel.getRoomTurn(roomid);
+router.get('/:roomId', async function (req, res, next) {
+    let roomId = req.params.roomId;
+    let result = await rModel.getRoomTurn(roomId);
     res.status(result.status).send(result.result);
 });
 
-router.get('/opponent/:room/:id', async function (req, res, next) {
-    let room = req.params.room;
+router.get('/opponent/:roomId/:id', async function (req, res, next) {
+    let roomId = req.params.roomId;
     let id = req.params.id;
-    let result = await rModel.getRoomOpponentId(room, id);
+    let result = await rModel.getRoomOpponentId(roomId, id);
     res.status(result.status).send(result.result);
 });
 
-router.get('/:roomid/:turn', async function (req, res, next) {
-    let roomid = req.params.roomid;
+router.get('/:roomId/:turn', async function (req, res, next) {
+    let roomId = req.params.roomId;
     let turn = req.params.turn;
-    let result = await rModel.getUserTurn(roomid, turn);
+    let result = await rModel.getUserTurn(roomId, turn);
     res.status(result.status).send(result.result);
 });
 

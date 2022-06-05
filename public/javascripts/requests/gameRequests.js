@@ -16,7 +16,7 @@ async function getBoard() {
 
 async function checkIsPlayerTurn(user) {
     try {
-        const response = await fetch(`/api/board/check/${user}/turn`);
+        const response = await fetch(`/api/board/${getCookie("roomId")}/check/${user}/turn`);
         if (response.status == 200) {
             var roomuser_user_id = await response.json();
             return roomuser_user_id;
@@ -32,7 +32,7 @@ async function checkIsPlayerTurn(user) {
 
 async function getResourcesLeft() {
     try {
-        const response = await fetch(`/api/board/resources/left`);
+        const response = await fetch(`/api/board/${getCookie("roomId")}/resources/left`);
         if (response.status == 200) {
             var resources = await response.json();
             return resources;
@@ -64,7 +64,7 @@ async function getGameBits() {
 
 async function getGameBitsByTile(tile_i, tile_j) {
     try {
-        const response = await fetch(`/api/board/gamebits/id/${tile_i}/${tile_j}`);
+        const response = await fetch(`/api/board/${getCookie("roomId")}/gamebits/id/${tile_i}/${tile_j}`);
         if (response.status == 200) {
             var gamebit_info = await response.json();
             return gamebit_info;
@@ -80,7 +80,7 @@ async function getGameBitsByTile(tile_i, tile_j) {
 
 async function getGameBitOwner(tile_i, tile_j) {
     try {
-        const response = await fetch(`/api/board/gamebit/owner/${tile_i}/${tile_j}`);
+        const response = await fetch(`/api/board/${getCookie("roomId")}/gamebit/owner/${tile_i}/${tile_j}`);
         if (response.status == 200) {
             var roomuser_user_id = await response.json();
             return roomuser_user_id;
@@ -96,7 +96,7 @@ async function getGameBitOwner(tile_i, tile_j) {
 
 async function getPlayerBoardSide() {
     try {
-        const response = await fetch(`/api/board/user/side`);
+        const response = await fetch(`/api/board/${getCookie("roomId")}/user/side`);
         if (response.status == 200) {
             var user_board_info = await response.json();
             return user_board_info;
@@ -128,7 +128,7 @@ async function checkBoardSide() {
 
 async function createGamebits(objecttype_id, object_i, object_j) {
     try {
-        const response = await fetch(`/api/board/gamebits/create`, {
+        const response = await fetch(`/api/board/${getCookie("roomId")}/gamebits/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -146,7 +146,7 @@ async function createGamebits(objecttype_id, object_i, object_j) {
 async function moveBoatsById(tile_i, tile_j, gamebit_id) {
     try {
         //console.log(tile_i, tile_j, gamebit_id)
-        const response = await fetch(`/api/board/gamebits/id/move`, {
+        const response = await fetch(`/api/board/${getCookie("roomId")}/gamebits/id/move`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

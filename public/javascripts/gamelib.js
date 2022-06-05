@@ -6,37 +6,47 @@ let movement = '';
 let time = 0;
 let turn_instance;
 
+let oil_rigs_img = [];
+let atkboat = [];
+let mark;
+let board_img;
+
+function preload() {
+    for (let i = 0; i < 2; i++) {
+        oil_rigs_img[i] = loadImage(`images/assets/oil_rig_${i}.png`);
+        atkboat[i] = loadImage(`images/assets/barco_${i}.png`);
+    }
+    mark = loadImage(`images/assets/mark.png`);
+    board_img = loadImage(`images/assets/board.png`);
+}
+
+async function setup() {
+
+    createCanvas(windowWidth - 15, windowHeight);
+    
+    initBut();
+    await initBoard();
+    await buildGameBits();
+    resources = await getResources();
+    turn_instance = await getRoomTurn();
+    //console.log(turn_number.result)
+
+}
+
 async function update() {
     time += deltaTime * 0.0002;
     console.log(int(time));
     // let turn_number
 
-if (turn_instance != turn_number)
-    if (int(time) == 1){
+    // if (turn_instance != turn_number) {
+        if (int(time) == 1){
         time = 0;
         resources = await getResources();
         await buildGameBits();
         
-    }
+        }
+    // }
 }
-
-// function preload() {
-//     //BoardManager.preloadImages();
-//     //boardMan = new BoardManager(width,height,0,0,room);
-//     //boardMan.initBoard();
-// }
-
-async function setup() {
-
-    createCanvas(windowWidth - 15, windowHeight);
-    initBut();
-    await initBoard();
-    await buildGameBits();
-    resources = await getResources();
-    turn_instance = await getRoomTurn(room1);
-    console.log(turn_number.result)
-
-};
 
 async function draw() {
     //update();
@@ -45,15 +55,14 @@ async function draw() {
     switch (screen) {
         case 'world':
             background(255);
-
+            image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
             drawBut();
             drawBoard();
-            
             break;
 
         case 'building':
             background(255);
-
+            image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
             drawBut();
             drawBoard();
             
@@ -62,7 +71,7 @@ async function draw() {
 
         case 'move':
             background(255);
-
+            image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
             drawBut();
             drawBoard();
             nextBoatMovement()

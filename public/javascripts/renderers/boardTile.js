@@ -8,8 +8,26 @@ function drawBoard() {
   for (let i = 0; i < boardCols; i++) {
     for (let j = 0; j < boardRows; j++) {
       let isHovering = mouseisonBoard() && i == hoveredTile.i && j == hoveredTile.j;
+      if (isHovering){
       board[i][j].draw_tile(i, j, isHovering);
+      }
 
+      if (board[i][j].t == "oilrig" && board[i][j - 1].t == "oilrig" && board[i][j - 2].t == "oilrig" && (board[i][j].team == "red" || board[i][j].team == "darkred")) {
+        image(oil_rigs_img[0], i * Tile_W, (j - 2) * Tile_H, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
+
+      } else if (board[i][j].t == "oilrig" && board[i][j - 1].t == "oilrig" && board[i][j - 2].t == "oilrig" && (board[i][j].team == "blue" || board[i][j].team == "darkblue")) {
+        image(oil_rigs_img[1], i * Tile_W, (j - 2) * Tile_H + 10, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
+
+      } else if (board[i][j].t == "atkboat" && (board[i][j].team == "red" || board[i][j].team == "darkred")){
+        image(atkboat[0], i * Tile_W - 5, (j * Tile_H) + Tile_H/6*2, atkboat[0].width/3, atkboat[0].height/2)
+
+      } else if (board[i][j].t == "atkboat" && (board[i][j].team == "blue" || board[i][j].team == "darkblue")){
+        image(atkboat[1], i * Tile_W - 5, (j * Tile_H) + Tile_H/6*2, atkboat[0].width/3, atkboat[0].height/2)
+      }
+
+      if (board[i][j].t == "oilrig" && (board[i][j].team == "darkred" || board[i][j].team == "darkblue")){
+        image(mark, i * Tile_W, (j * Tile_H), atkboat[0].width/3 - 10, atkboat[0].height + 5)
+      }
     }
   }
 
@@ -62,23 +80,23 @@ class tile {
     stroke(0)
     if (isHovering) {
       fill(0, 25);
-    } else if (this.team == 'red') {
-      fill(255, 0, 0);
-    } else if (this.team == 'darkred') {
-      fill(60, 0, 0);
-    } else if (this.team == 'blue') {
-      fill(0, 0, 255);
-    } else if (this.team == 'darkblue') {
-      fill(0, 0, 60);
+    // } else if (this.team == 'red') {
+    //   fill(255, 0, 0);
+    // } else if (this.team == 'darkred') {
+    //   fill(60, 0, 0);
+    // } else if (this.team == 'blue') {
+    //   fill(0, 0, 255);
+    // } else if (this.team == 'darkblue') {
+    //   fill(0, 0, 60);
     } else {
       fill(0, 50);
     }
     rect((i * Tile_W), (j * Tile_H), Tile_W, Tile_H);
     fill('white');
-    textSize(16)
-    textAlign(CENTER);
-    text(this.t, (i * Tile_W + Tile_W / 2), (j * Tile_H + Tile_H / 2));
-    textSize(12)
+    // textSize(16)
+    // textAlign(CENTER);
+    // //text(this.t, (i * Tile_W + Tile_W / 2), (j * Tile_H + Tile_H / 2));
+    // textSize(12)
     pop();
   }
 

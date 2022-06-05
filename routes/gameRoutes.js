@@ -8,36 +8,38 @@ router.get('/', async function (req, res, next) {
     res.status(result.status).send(result.result);
 }); 
 
-router.get('/check/:user/turn', async function (req, res, next) {
+router.get('/:roomId/check/:user/turn', async function (req, res, next) {
+    let roomId = req.params.roomId;
     let user = req.params.user
-    let result = await rModel.checkIsPlayerTurn(user);
+    let result = await rModel.checkIsPlayerTurn(user, roomId);
     res.status(result.status).send(result.result);
 });
 
 router.get('/gamebits/:roomId', auth.checkAuthentication, async function (req, res, next) {
     let roomId = req.params.roomId;
-    console.log(roomId)
     let result = await rModel.getGameBits(roomId, req.userId);
     res.status(result.status).send(result.result);
 });
 
-router.get('/gamebits/id/:tile_i/:tile_j', async function (req, res, next) {
+router.get('/:roomId/gamebits/id/:tile_i/:tile_j', async function (req, res, next) {
+    let roomId = req.params.roomId;
     let tile_i = req.params.tile_i;
     let tile_j = req.params.tile_j;
-    let result = await rModel.getGameBitsByTile(tile_i, tile_j);
+    let result = await rModel.getGameBitsByTile(tile_i, tile_j, roomId);
     res.status(result.status).send(result.result);
 });
 
-router.get('/gamebit/owner/:tile_i/:tile_j', async function (req, res, next) {
+router.get('/:roomId/gamebit/owner/:tile_i/:tile_j', async function (req, res, next) {
+    let roomId = req.params.roomId;
     let tile_i = req.params.tile_i;
     let tile_j = req.params.tile_j;
-    let result = await rModel.getGameBitOwner(tile_i, tile_j);
-    console.log(result.status, result.result.roomuser_user_id);
+    let result = await rModel.getGameBitOwner(tile_i, tile_j, roomId);
     res.status(result.status).send(result.result);
 });
 
-router.get('/user/side', async function (req, res, next) {
-    let result = await rModel.getPlayerBoardSide();
+router.get('/:roomId/user/side', async function (req, res, next) {
+    let roomId = req.params.roomId;
+    let result = await rModel.getPlayerBoardSide(roomId);
     res.status(result.status).send(result.result);
 });
 
@@ -46,19 +48,21 @@ router.get('/check/side', auth.checkAuthentication, async function (req, res, ne
     res.status(result.status).send(result.result);
 });
 
-router.post('/gamebits/create', auth.checkAuthentication, async function (req, res, next) {
+router.post('/:roomId/gamebits/create', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
     let objecttype_id = req.body.objecttype_id;
     let object_i = req.body.object_i;
     let object_j = req.body.object_j
-    let result = await rModel.createGamebits(objecttype_id, object_i, object_j, req.userId);
+    let result = await rModel.createGamebits(objecttype_id, object_i, object_j, req.userId, roomId);
     res.status(result.status).send(result.result);
 });
 
-router.post('/gamebits/id/move', auth.checkAuthentication, async function (req, res, next) {
+router.post('/:roomId/gamebits/id/move', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
     let tile_i = req.body.tile_i;
     let tile_j = req.body.tile_j;
     let gamebit_id = req.body.gamebit_id;
-    let result = await rModel.moveBoatsById(gamebit_id, tile_i, tile_j, req.userId);
+    let result = await rModel.moveBoatsById(gamebit_id, tile_i, tile_j, req.userId, roomId);
     res.status(result.status).send(result.result);
 });
 
@@ -78,8 +82,9 @@ router.post('/gamebits/id/delete', auth.checkAuthentication, async function (req
     res.status(result.status).send(result.result);
 });
 
-router.get('/resources/left', async function (req, res, next) {
-    let result = await rModel.getResourcesLeft();
+router.get('/:roomId/resources/left', async function (req, res, next) {
+    let roomId = req.params.roomId;
+    let result = await rModel.getResourcesLeft(roomId);
     res.status(result.status).send(result.result);
 });
 
