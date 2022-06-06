@@ -66,9 +66,9 @@ async function deleteBoat(gamebit_id, gamebit_tile_i, gamebit_tile_j) {
     }
 }
 
-async function newTurn(turn_number, roomuser_id, tokens, double, user) {
+async function newTurn(turn_number, roomuser_id, user, tokens, double) {
     try {
-        const response = await fetch(`/api/rooms/newturn`, {
+        const response = await fetch(`/api/rooms/${getCookie("roomId")}/newturn`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

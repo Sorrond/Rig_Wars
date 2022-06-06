@@ -126,7 +126,7 @@ module.exports.moveBoatsById = async function (gamebit_id, tile_i, tile_j, useri
 //   }
 // }
 
-module.exports.damageObject = async function (object_id, damage_object_tile_i, damage_object_tile_j, userid) {
+module.exports.damageObject = async function (object_id, damage_object_tile_i, damage_object_tile_j, userid, roomId) {
   try {
     let result = await module.exports.checkIsPlayerTurn(userid, roomId);
     if (result.result) {
@@ -147,7 +147,7 @@ module.exports.createGamebits = async function (objecttype_id, object_i, object_
     let result = await module.exports.checkIsPlayerTurn(user_id, roomId);
     console.log(result.result + user_id + roomId)
     if (result.result) {
-      let resources_left = await module.exports.getResourcesLeft();
+      let resources_left = await module.exports.getResourcesLeft(roomId);
       resources_left = resources_left.result
       let sql = "SELECT MAX (turn_n) AS turn_n FROM turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id WHERE roomuser_room_id = $1";
       let result = await pool.query(sql, [roomId]);
@@ -193,7 +193,7 @@ module.exports.createGamebits = async function (objecttype_id, object_i, object_
   }
 }
 
-module.exports.deleteBoat = async function (gamebit_id, gamebit_tile_i, gamebit_tile_j, userid) {
+module.exports.deleteBoat = async function (gamebit_id, gamebit_tile_i, gamebit_tile_j, userid, roomId) {
   try {
     let result = await module.exports.checkIsPlayerTurn(userid, roomId);
     if (result.result) {

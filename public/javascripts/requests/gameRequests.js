@@ -164,7 +164,7 @@ async function moveBoatsById(tile_i, tile_j, gamebit_id) {
 async function damageObject(object_id, damage_object_tile_i, damage_object_tile_j) {
     try {
         //console.log(tile_i, tile_j, gamebit_id)
-        const response = await fetch(`/api/board/gamebits/id/damage`, {
+        const response = await fetch(`/api/board/${getCookie("roomId")}/gamebits/id/damage`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -182,7 +182,7 @@ async function damageObject(object_id, damage_object_tile_i, damage_object_tile_
 async function deleteBoat(gamebit_id, gamebit_tile_i, gamebit_tile_j) {
     try {
         //console.log(tile_i, tile_j, gamebit_id)
-        const response = await fetch(`/api/board/gamebits/id/delete`, {
+        const response = await fetch(`/api/board/${getCookie("roomId")}/gamebits/id/delete`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

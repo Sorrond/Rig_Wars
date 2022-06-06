@@ -15,7 +15,7 @@ module.exports.getAllRooms = async function () {
 
 module.exports.getRoomTurn = async function (roomId) {
   try {
-    let sql = "SELECT MAX (turn_n) from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1";
+    let sql = "SELECT MAX (turn_n) as turn_n from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1";
     let result = await pool.query(sql, [roomId]);
     return { status: 200, result: result };
   } catch (err) {
@@ -57,10 +57,10 @@ module.exports.getRoomOpponentId = async function (roomId, id) {
 //   }
 // }
 
-module.exports.newTurn = async function (turn_number, roomuser_id, user) {
+module.exports.newTurn = async function (turn_number, roomuser_id, user, roomId) {
   try {
     let result = await boardM.checkIsPlayerTurn(user, roomId);
-    console.log(result.result)
+    console.log(turn_number)
     if (result.result) {
       result = await RollDice();
       let sql = "INSERT INTO turn (turn_n, turn_roomuser_id, turn_tokens, turn_tokens_left, turn_double, turn_double_left) VALUES ($1, $2, $3, $3, $4, $4)";

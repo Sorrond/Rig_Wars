@@ -66,19 +66,21 @@ router.post('/:roomId/gamebits/id/move', auth.checkAuthentication, async functio
     res.status(result.status).send(result.result);
 });
 
-router.post('/gamebits/id/damage', auth.checkAuthentication, async function (req, res, next) {
+router.post('/:roomId/gamebits/id/damage', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
     let object_id = req.body.object_id;
     let damage_object_tile_i = req.body.damage_object_tile_i;
     let damage_object_tile_j = req.body.damage_object_tile_j;
-    let result = await rModel.damageObject(object_id, damage_object_tile_i, damage_object_tile_j, req.userId);
+    let result = await rModel.damageObject(object_id, damage_object_tile_i, damage_object_tile_j, req.userId, roomId);
     res.status(result.status).send(result.result);
 });
 
-router.post('/gamebits/id/delete', auth.checkAuthentication, async function (req, res, next) {
+router.post('/:roomId/gamebits/id/delete', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
     let gamebit_id = req.body.gamebit_id;
     let gamebit_tile_i = req.body.gamebit_tile_i;
     let gamebit_tile_j = req.body.gamebit_tile_j;
-    let result = await rModel.deleteBoat(gamebit_id, gamebit_tile_i, gamebit_tile_j, req.userId);
+    let result = await rModel.deleteBoat(gamebit_id, gamebit_tile_i, gamebit_tile_j, req.userId, roomId);
     res.status(result.status).send(result.result);
 });
 

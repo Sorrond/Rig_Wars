@@ -24,7 +24,6 @@ async function playmoves() {
             let gamebit_id = await getGameBitsByTile(tilecoords.i, tilecoords.j);
             gamebit_id = gamebit_id.objecttile_object_id
             await moveBoatsById(tilecoords.i - 1, tilecoords.j, gamebit_id);
-            console.log(moveBoatsById(tilecoords.i - 1, tilecoords.j, gamebit_id))
             board[tilecoords.i][tilecoords.j].set_default();
             await buildGameBits();
 
@@ -33,8 +32,7 @@ async function playmoves() {
 
         } else if ((0 <= (tilecoords.i - 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i - 1][tilecoords.j].t != '') {
             let nexttile = await getGameBitsByTile(tilecoords.i - 1, tilecoords.j);
-            console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
-            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health == true) {
                 board[tilecoords.i][tilecoords.j].set_default();
                 damageOilRig();
 

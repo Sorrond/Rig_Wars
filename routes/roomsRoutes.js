@@ -35,10 +35,11 @@ router.get('/:roomId/:turn', async function (req, res, next) {
     res.status(result.status).send(result.result);
 });
 
-router.post('/newturn', auth.checkAuthentication, async function (req, res, next) {
+router.post('/:roomId/newturn', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
     let turn_number = req.body.turn_number;
     let roomuser_id = req.body.roomuser_id;
-    let result = await rModel.newTurn(turn_number, roomuser_id, req.userId);
+    let result = await rModel.newTurn(turn_number, roomuser_id, req.userId, roomId);
     res.status(result.status).send(result.result);
 })
 

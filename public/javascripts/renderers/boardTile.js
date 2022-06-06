@@ -12,11 +12,11 @@ function drawBoard() {
       board[i][j].draw_tile(i, j, isHovering);
       }
 
-      if (board[i][j].t == "oilrig" && board[i][j - 1].t == "oilrig" && board[i][j - 2].t == "oilrig" && (board[i][j].team == "red" || board[i][j].team == "darkred")) {
-        image(oil_rigs_img[0], i * Tile_W, (j - 2) * Tile_H, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
+      if (board[i][j].t == "oilrig" && board[i][j + 1].t == "oilrig" && board[i][j + 2].t == "oilrig" && (board[i][j].team == "red" || board[i][j].team == "darkred")) {
+        image(oil_rigs_img[0], i * Tile_W, (j) * Tile_H, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
 
-      } else if (board[i][j].t == "oilrig" && board[i][j - 1].t == "oilrig" && board[i][j - 2].t == "oilrig" && (board[i][j].team == "blue" || board[i][j].team == "darkblue")) {
-        image(oil_rigs_img[1], i * Tile_W, (j - 2) * Tile_H + 10, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
+      } else if (board[i][j].t == "oilrig" && board[i][j + 1].t == "oilrig" && board[i][j + 2].t == "oilrig" && (board[i][j].team == "blue" || board[i][j].team == "darkblue")) {
+        image(oil_rigs_img[1], i * Tile_W, (j) * Tile_H + 10, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
 
       } else if (board[i][j].t == "atkboat" && (board[i][j].team == "red" || board[i][j].team == "darkred")){
         image(atkboat[0], i * Tile_W - 5, (j * Tile_H) + Tile_H/6*2, atkboat[0].width/3, atkboat[0].height/2)
@@ -31,8 +31,8 @@ function drawBoard() {
     }
   }
 
-    fill(255, 0, 0);
-    rect((((Tile_W * boardCols)/2) - 5), 0, 5, Tile_H * boardRows)
+    // fill(255, 0, 0);
+    // rect((((Tile_W * boardCols)/2) - 5), 0, 5, Tile_H * boardRows)
 }
 
 async function initBoard() {

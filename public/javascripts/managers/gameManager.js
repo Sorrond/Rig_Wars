@@ -18,7 +18,7 @@ async function getResources() {
 async function resourceInfo(tokens, doubles) {
     fill('black')
     textSize(21);
-    text('Tokens - ' + tokens + '       Doubles - ' + doubles, (width / 10) * 7, (height / 20));
+    text('Tokens - ' + tokens + '       Doubles - ' + doubles, (width / 10) * 8, (height / 20));
 };
 
 function screen_world() {
@@ -107,6 +107,7 @@ async function damageOilRig() {
 }
 
 async function nextTurn() {
+    let room = getCookie("roomId")
     turn_number = await getRoomTurn(room)
     turn_number++
     roomuser_opponent_id = await getRoomOpponentId(room, await id())

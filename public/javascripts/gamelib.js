@@ -28,7 +28,7 @@ async function setup() {
     await initBoard();
     await buildGameBits();
     resources = await getResources();
-    turn_instance = await getRoomTurn();
+    //turn_instance = await getRoomTurn();
     //console.log(turn_number.result)
 
 }
@@ -49,19 +49,16 @@ async function update() {
 }
 
 async function draw() {
-    //update();
-    
+    background(255);
 
     switch (screen) {
         case 'world':
-            background(255);
             image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
             drawBut();
             drawBoard();
             break;
 
         case 'building':
-            background(255);
             image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
             drawBut();
             drawBoard();
@@ -70,7 +67,6 @@ async function draw() {
             break;
 
         case 'move':
-            background(255);
             image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
             drawBut();
             drawBoard();
@@ -79,12 +75,11 @@ async function draw() {
             break;
         
         case 'wait':
-            background(255)
+            update()
 
             drawBoard();
     };
     resourceInfo(resources.turn_tokens_left, resources.turn_double_left);
-    //print(typeStruc);
 
 };
 
