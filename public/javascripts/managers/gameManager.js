@@ -16,7 +16,7 @@ async function getResources() {
 };
 
 async function resourceInfo(tokens, doubles) {
-    fill('black')
+    fill('white')
     textSize(21);
     text('Tokens - ' + tokens + '       Doubles - ' + doubles, (width / 10) * 8, (height / 20));
 };

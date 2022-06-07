@@ -36,7 +36,7 @@ async function getRoomOpponentId(id) {
         const response = await fetch(`/api/rooms/opponent/${getCookie("roomId")}/${id}`);
         if (response.status == 200) {
             var result = await response.json();
-            result = result.rows[0].roomuser_id
+            result = result.roomuser_id
             return result;
         } else {
             // Treat errors like 404 here
