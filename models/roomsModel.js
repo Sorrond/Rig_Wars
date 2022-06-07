@@ -67,7 +67,6 @@ module.exports.newTurn = async function (turn_number, roomuser_id, user, roomId)
 
     } else {
       var result = await boardM.checkIsPlayerTurn(user, roomId);
-      console.log(roomuser_id)
     }
 
     if (turn_number == 1 || result.result) {

@@ -65,6 +65,7 @@ module.exports.checkHealth = async function (roomId, userId) {
   try {
     let sql = "Select roomuser_user_id, count(objecttile_object_current_health) as player_health from roomuser inner join object_ on object_roomuser_id = roomuser_id inner join objecttile on objecttile_object_id = object_id where object_type_id = 1 and roomuser_room_id = $1 and objecttile_object_current_health = false group by roomuser_user_id";
     let result = await pool.query(sql, [roomId]);
+    // console.log(roomId, userId, result)
     result = result.rows
     console.log(result)
 
@@ -83,6 +84,8 @@ module.exports.checkHealth = async function (roomId, userId) {
       } else {
         return { status: 200, result: false };
       }
+    } else {
+      return { status: 200, result: '' };
     }
 
   } catch (err) {

@@ -62,6 +62,7 @@ async function update() {
             resources = await getResources();
             await buildGameBits();
             let result = await checkHealth();
+            console.log(result)
             if (result == true) {
                 alert("You won the game!\nThanks for playing.");
                 window.location = "rooms.html";
@@ -74,7 +75,7 @@ async function update() {
 }
 
 async function draw() {
-    update()
+    //update()
     background(bg);
 
     switch (screen) {
