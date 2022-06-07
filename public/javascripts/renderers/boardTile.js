@@ -23,6 +23,9 @@ function drawBoard() {
 
       } else if (board[i][j].t == "atkboat" && (board[i][j].team == "blue" || board[i][j].team == "darkblue")){
         image(atkboat[1], i * Tile_W - 5 + pos_x_init, (j * Tile_H) + Tile_H/6*2 + pos_y_init, atkboat[0].width/3, atkboat[0].height/2)
+
+      } else if (board[i][j].t == "mine"){
+        image(mine, i * Tile_W + pos_x_init , (j * Tile_H) + Tile_H/6*2 - 15 + pos_y_init, mine.width, mine.height)
       }
 
       if (board[i][j].t == "oilrig" && (board[i][j].team == "darkred" || board[i][j].team == "darkblue")){

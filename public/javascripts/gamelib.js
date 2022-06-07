@@ -12,6 +12,7 @@ let mark;
 let board_img;
 let bg;
 let buttons = [];
+let mine;
 
 function preload() {
     for (let i = 0; i < 2; i++) {
@@ -25,6 +26,7 @@ function preload() {
     mark = loadImage(`images/assets/mark.png`);
     board_img = loadImage(`images/assets/board.png`);
     bg = loadImage(`images/assets/background.png`);
+    mine = loadImage(`images/assets/mine.png`);
 }
 
 async function setup() {
@@ -72,7 +74,7 @@ async function update() {
 }
 
 async function draw() {
-    update()
+    //update()
     background(bg);
 
     switch (screen) {
