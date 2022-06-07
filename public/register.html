@@ -2,29 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign In page</title>
+    <title>Register page</title>
     <link rel="stylesheet" href="./stylesheets/style_lin_reg.css">
     <script src="./javascripts/requests/user_requests.js"></script>
     <script src="./javascripts/authentication/register.js"></script>
 </head>
 <body>
     <header>
-        <!-- <img src="images/Doggo.jpg" class="logo"> -->
-        <img src="images/Rigwars.png" class="center">
+        <img src="images/REGISTER.png" class="center">
        </header>
       <nav>
-        <div class="banner-btn">
-          <a href="index.html"><span></span>Menu</a>
+        <div class="banner-btn" >
+          <a href="index.html"><span></span></a>
         </div>
       </nav>
       <main>
         <section>
-            <h2> Register information </h2>
-        <p> Login Name: <input type="text" id="name"> </p>
-        <p> Password: <input type="password" id="password"> </p>
-        <input type="button" value="Register" onclick="registerUser()">
+        <p><input type="text" id="name"> </p>
+        <p><input type="password" id="password"> </p>
+        <input type="button" id ="RegisterButton" style="color: transparent; background-color: transparent; background-color: transparent;" value="Register" onclick="registerUser()">
         <p id="result"></p>
-        <p><a href="login.html">Alredy have an account?</a>  </p>
         </section>
       </main>
       <footer></footer>

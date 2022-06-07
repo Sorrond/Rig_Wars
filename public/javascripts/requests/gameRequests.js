@@ -30,6 +30,54 @@ async function checkIsPlayerTurn(user) {
     }
 }
 
+async function getOilRigs() {
+    try {
+        const response = await fetch(`/api/board/${getCookie("roomId")}/gamebits/oilrigs`);
+        if (response.status == 200) {
+            var result = await response.json();
+            return result;
+        } else {
+            // Treat errors like 404 here
+            console.log(response);
+        }
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+    }
+}
+
+async function checkHealth() {
+    try {
+        const response = await fetch(`/api/board/${getCookie("roomId")}/check/health`);
+        if (response.status == 200) {
+            var result = await response.json();
+            return result;
+        } else {
+            // Treat errors like 404 here
+            console.log(response);
+        }
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+    }
+}
+
+async function checkSetup() {
+    try {
+        const response = await fetch(`/api/board/${getCookie("roomId")}/check/setup`);
+        if (response.status == 200) {
+            var result = await response.json();
+            return result;
+        } else {
+            // Treat errors like 404 here
+            console.log(response);
+        }
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+    }
+}
+
 async function getResourcesLeft() {
     try {
         const response = await fetch(`/api/board/${getCookie("roomId")}/resources/left`);
@@ -99,6 +147,7 @@ async function getPlayerBoardSide() {
         const response = await fetch(`/api/board/${getCookie("roomId")}/user/side`);
         if (response.status == 200) {
             var user_board_info = await response.json();
+            //user_board_info = user_board_info.result.rows[0];
             return user_board_info;
         } else {
             // Treat errors like 404 here
@@ -112,7 +161,7 @@ async function getPlayerBoardSide() {
 
 async function checkBoardSide() {
     try {
-        const response = await fetch(`/api/board/check/side`);
+        const response = await fetch(`/api/board/${getCookie("roomId")}/check/side`);
         if (response.status == 200) {
             var user_board_side = await response.json();
             return user_board_side;

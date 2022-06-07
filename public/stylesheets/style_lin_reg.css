@@ -12,7 +12,8 @@ body {
 }
 
 img {
-  background-size: cover;
+  width: 1864px;
+  height: 946px;
 }
 
 
@@ -20,8 +21,8 @@ img {
 .banner-btn{
   margin: 70px auto 0;
   position: absolute;
-  left: 690px;
-  top: 720px;
+  left: 670px;
+  top: 620px;
 }
 
 .banner-btn a{
@@ -37,8 +38,22 @@ img {
 /*Login Button*/
 #LoginButton {
   position: absolute;
-  left: 974px;
-  top: 790px;
+  left: 941px;
+  top: 689px;
+  color: transparent;
+  font-size: 31px;
+  width: 235px;
+  height: 65px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 10px;
+  padding: 13px 0;
+}
+
+#RegisterButton {
+  position: absolute;
+  left: 940px;
+  top: 689px;
   color: transparent;
   font-size: 31px;
   width: 235px;
@@ -51,8 +66,8 @@ img {
 
 #name {
   position: absolute;
-  left: 690px;
-  top: 550px;
+  left: 670px;
+  top: 475px;
   width: 516px;
   height: 27px;
   text-decoration: none;
@@ -65,8 +80,8 @@ img {
 
 #password {
   position: absolute;
-  left: 690px;
-  top: 635px;
+  left: 670px;
+  top: 550px;
   width: 516px;
   height: 27px;
   text-decoration: none;

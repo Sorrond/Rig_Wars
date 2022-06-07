@@ -1,6 +1,7 @@
 const req = require('express/lib/request');
 const res = require('express/lib/response');
 var pool = require('./connection.js')
+var roomsM = require("../models/roomsModel.js")
 
 module.exports.getBoard = async function () {
   try {
@@ -17,6 +18,73 @@ module.exports.getBoard = async function () {
       result = await pool.query(sql);
       return { status: 200, result: { board_row: boardrows, board_collum: boardcols } };
     }
+  } catch (err) {
+    console.log(err);
+    return { status: 500, result: err };
+  }
+}
+
+module.exports.getOilRigs = async function (roomId) {
+  try {
+    let sql = "Select roomuser_user_id, count(object_id) as oil_rigs from roomuser inner join object_ on object_roomuser_id = roomuser_id where object_type_id = 1 and roomuser_room_id = $1 group by roomuser_user_id";
+    let result = await pool.query(sql, [roomId]);
+    result = result.rows;
+    return { status: 200, result: result };
+  } catch (err) {
+    console.log(err);
+    return { status: 500, result: err };
+  }
+}
+
+module.exports.checkSetup = async function (roomId, userId) {
+  try {
+    let result = await module.exports.getOilRigs(roomId);
+    result = result.result
+    if (result[0].oil_rigs >= 3 && result[1].oil_rigs >= 3) {
+      let turn_number = await roomsM.getRoomTurn(roomId);
+      turn_number = turn_number.result.turn_n
+      turn_number++
+      let roomuser_opponent_id = await roomsM.getRoomOpponentId(roomId, userId)
+      roomuser_opponent_id = roomuser_opponent_id.result.roomuser_id
+
+      await roomsM.newTurn(turn_number, roomuser_opponent_id);
+      return { status: 200, result: result };
+
+    } else {
+      return { status: 200, result: result };
+
+    }
+
+  } catch (err) {
+    console.log(err);
+    return { status: 500, result: err };
+  }
+}
+
+module.exports.checkHealth = async function (roomId, userId) {
+  try {
+    let sql = "Select roomuser_user_id, count(objecttile_object_current_health) as player_health from roomuser inner join object_ on object_roomuser_id = roomuser_id inner join objecttile on objecttile_object_id = object_id where object_type_id = 1 and roomuser_room_id = $1 and objecttile_object_current_health = false group by roomuser_user_id";
+    let result = await pool.query(sql, [roomId]);
+    result = result.rows
+    console.log(result)
+
+    if (result[0].player_health >= 9) {
+      if (result[0].roomuser_user_id == userId) {
+        return { status: 200, result: true };
+
+      } else {
+        return { status: 200, result: false };
+      }
+
+    } else if (result[1].player_health >= 9) {
+      if (result[1].roomuser_user_id == userId) {
+        return { status: 200, result: true };
+
+      } else {
+        return { status: 200, result: false };
+      }
+    }
+
   } catch (err) {
     console.log(err);
     return { status: 500, result: err };
@@ -82,7 +150,7 @@ module.exports.moveBoatsById = async function (gamebit_id, tile_i, tile_j, useri
       result = await pool.query(sql, [gamebit_id, roomId]);
 
       if (result.rows[0].roomuser_user_id == userid) {
-        
+
         let resources_left = await module.exports.getResourcesLeft(roomId);
         resources_left = resources_left.result
         console.log(resources_left)
@@ -146,15 +214,17 @@ module.exports.createGamebits = async function (objecttype_id, object_i, object_
   try {
     let result = await module.exports.checkIsPlayerTurn(user_id, roomId);
     console.log(result.result + user_id + roomId)
-    if (result.result) {
+
+    let sql = "SELECT MAX (turn_n) AS turn_n FROM turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id WHERE roomuser_room_id = $1";
+    let turn_n = await pool.query(sql, [roomId]);
+
+    if (result.result || turn_n.rows[0].turn_n == 0) {
       let resources_left = await module.exports.getResourcesLeft(roomId);
       resources_left = resources_left.result
-      let sql = "SELECT MAX (turn_n) AS turn_n FROM turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id WHERE roomuser_room_id = $1";
-      let result = await pool.query(sql, [roomId]);
-
-      if ((objecttype_id == 1 && result.rows[0].turn_n == 0) || (objecttype_id == 2 && resources_left.turn_tokens_left >= 2) || (objecttype_id == 3 && (resources_left.turn_tokens_left >= 5 || resources_left.turn_double_left == true))) {
-        let player_board_side = await module.exports.checkBoardSide(user_id, object_i);
-        player_board_side = player_board_side.result;
+      if ((objecttype_id == 1 && turn_n.rows[0].turn_n == 0) || (objecttype_id == 2 && resources_left.turn_tokens_left >= 2) || (objecttype_id == 3 && (resources_left.turn_tokens_left >= 5 || resources_left.turn_double_left == true))) {
+        let player_board_side = await module.exports.checkBoardSide(user_id, roomId, object_i);
+        // player_board_side = player_board_side.result;
+        console.log(player_board_side)
 
         if (player_board_side) {
           let sql1 = "INSERT INTO object_ (object_type_id, object_roomuser_id) VALUES ($1, (SELECT roomuser_id FROM roomuser WHERE roomuser_user_id = $2 AND roomuser_room_id = $3))";
@@ -196,18 +266,24 @@ module.exports.createGamebits = async function (objecttype_id, object_i, object_
 module.exports.deleteBoat = async function (gamebit_id, gamebit_tile_i, gamebit_tile_j, userid, roomId) {
   try {
     let result = await module.exports.checkIsPlayerTurn(userid, roomId);
+
     if (result.result) {
       let sql = "DELETE FROM objecttile WHERE objecttile_tile_i = $1 AND objecttile_tile_j = $2 AND objecttile_object_id = $3";
       let result = await pool.query(sql, [gamebit_tile_i, gamebit_tile_j, gamebit_id]);
+
       let sql1 = "DELETE FROM object_ WHERE object_id = $1";
       result = await pool.query(sql1, [gamebit_id]);
+
       return { status: 200, result: result };
+
     } else {
       return { status: 200, result: result };
+
     }
   } catch (err) {
     console.log(err);
     return { status: 500, result: err };
+
   }
 }
 
@@ -217,9 +293,11 @@ module.exports.checkIsPlayerTurn = async function (user, roomId) {
     let result = await pool.query(sql, [user, roomId]);
     result = result.rows[0]
     return { status: 200, result: result.user_turn };
+
   } catch (err) {
     console.log(err);
     return { status: 500, result: err };
+
   }
 }
 
@@ -229,33 +307,44 @@ module.exports.getPlayerBoardSide = async function (roomId) {
     let result = await pool.query(sql, [roomId]);
     result = result.rows
     return { status: 200, result: result };
+
   } catch (err) {
     console.log(err);
     return { status: 500, result: err };
+
   }
 }
 
-module.exports.checkBoardSide = async function (user, object_pos) {
+module.exports.checkBoardSide = async function (user, roomId, object_pos) {
   try {
-    let result = await module.exports.getPlayerBoardSide();
+    let result = await module.exports.getPlayerBoardSide(roomId);
     result = result.result;
+
     let left_board_side = result[0];
     let right_board_side = result[1];
+
     if (user == left_board_side.roomuser_user_id) {
       let board_collum = await module.exports.getBoard();
       board_collum = board_collum.result.board_collum
+
       if (object_pos >= 0 && object_pos < (board_collum / 2)) {
         return { status: 200, result: true };
+
       } else {
         return { status: 200, result: false };
+
       }
+
     } else if (user == right_board_side.roomuser_user_id) {
       let board_collum = await module.exports.getBoard();
       board_collum = board_collum.result.board_collum
+
       if (object_pos >= (board_collum / 2) && object_pos < board_collum) {
         return { status: 200, result: true };
+
       } else {
         return { status: 200, result: false };
+
       }
     }
   } catch (err) {

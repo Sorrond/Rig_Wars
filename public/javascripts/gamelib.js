@@ -10,6 +10,7 @@ let oil_rigs_img = [];
 let atkboat = [];
 let mark;
 let board_img;
+let bg;
 
 function preload() {
     for (let i = 0; i < 2; i++) {
@@ -18,62 +19,80 @@ function preload() {
     }
     mark = loadImage(`images/assets/mark.png`);
     board_img = loadImage(`images/assets/board.png`);
+    bg = loadImage(`images/assets/background.png`);
 }
 
 async function setup() {
 
     createCanvas(windowWidth - 15, windowHeight);
-    
+
     initBut();
     await initBoard();
     await buildGameBits();
     resources = await getResources();
-    //turn_instance = await getRoomTurn();
+    turn_instance = await getRoomTurn();
     //console.log(turn_number.result)
 
 }
 
 async function update() {
-    time += deltaTime * 0.0002;
-    console.log(int(time));
-    // let turn_number
 
-    // if (turn_instance != turn_number) {
-        if (int(time) == 1){
-        time = 0;
-        resources = await getResources();
-        await buildGameBits();
-        
+    //let turn_number
+    //console.log(turn_instance)
+    if (turn_instance == 0) {
+        time += deltaTime * 0.0002;
+        if (int(time) == 1) {
+            time = 0;
+            resources = await getResources();
+            // await buildGameBits();
+            await checkSetup();
+
         }
-    // }
+    } else {
+        time += deltaTime * 0.0002;
+        if (int(time) == 1) {
+            time = 0;
+            resources = await getResources();
+            await buildGameBits();
+            let result = await checkHealth();
+            if (result == true) {
+                alert("You won the game!\nThanks for playing.");
+                window.location = "rooms.html";
+            } else if (result == false) {
+                alert("Sorry you this time!\nThanks for playing.");
+                window.location = "rooms.html";
+            }
+        }
+    }
 }
 
 async function draw() {
+    update()
     background(255);
 
     switch (screen) {
         case 'world':
-            image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
+            image(board_img, pos_x_init, pos_y_init, board_img.width / 5 * 3 + 2, board_img.height / 5 * 3);
             drawBut();
             drawBoard();
             break;
 
         case 'building':
-            image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
+            image(board_img, pos_x_init, pos_y_init, board_img.width / 5 * 3 + 2, board_img.height / 5 * 3);
             drawBut();
             drawBoard();
-            
+
 
             break;
 
         case 'move':
-            image(board_img, 0, 0, board_img.width/5 * 3 + 2, board_img.height/5 * 3);
+            image(board_img, pos_x_init, pos_y_init, board_img.width / 5 * 3 + 2, board_img.height / 5 * 3);
             drawBut();
             drawBoard();
             nextBoatMovement()
 
             break;
-        
+
         case 'wait':
             update()
 

@@ -111,6 +111,5 @@ async function nextTurn() {
     turn_number = await getRoomTurn(room)
     turn_number++
     roomuser_opponent_id = await getRoomOpponentId(room, await id())
-    let result = await newTurn(turn_number, roomuser_opponent_id);
-    console.log(result);
+    await newTurn(turn_number, roomuser_opponent_id);
 }

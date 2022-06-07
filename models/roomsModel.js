@@ -17,6 +17,7 @@ module.exports.getRoomTurn = async function (roomId) {
   try {
     let sql = "SELECT MAX (turn_n) as turn_n from turn INNER JOIN roomuser ON roomuser_id = turn_roomuser_id where roomuser_room_id = $1";
     let result = await pool.query(sql, [roomId]);
+    result = result.rows[0]
     return { status: 200, result: result };
   } catch (err) {
     console.log(err);
@@ -35,10 +36,11 @@ module.exports.getUserTurn = async function (roomId, turn) {
   }
 }
 
-module.exports.getRoomOpponentId = async function (roomId, id) {
+module.exports.getRoomOpponentId = async function (roomId, userid) {
   try {
     let sql = "SELECT roomuser_id from roomuser where roomuser_room_id = $1 and roomuser_user_id != $2";
-    let result = await pool.query(sql, [roomId, id]);
+    let result = await pool.query(sql, [roomId, userid]);
+    result = result.rows[0]
     return { status: 200, result: result };
   } catch (err) {
     console.log(err);
@@ -59,9 +61,14 @@ module.exports.getRoomOpponentId = async function (roomId, id) {
 
 module.exports.newTurn = async function (turn_number, roomuser_id, user, roomId) {
   try {
-    let result = await boardM.checkIsPlayerTurn(user, roomId);
-    console.log(turn_number)
-    if (result.result) {
+    if (turn_number == 1) {
+      result = false;
+
+    } else {
+      var result = await boardM.checkIsPlayerTurn(user, roomId);
+    }
+
+    if (turn_number == 1 || result.result) {
       result = await RollDice();
       let sql = "INSERT INTO turn (turn_n, turn_roomuser_id, turn_tokens, turn_tokens_left, turn_double, turn_double_left) VALUES ($1, $2, $3, $3, $4, $4)";
       result = await pool.query(sql, [turn_number, roomuser_id, result[0], result[1]]);
@@ -129,7 +136,7 @@ module.exports.findRoom = async function (playID) {
       result = await pool.query(sql);
       roomid = result.rows[0].room_id;
       console.log(result.rows[0].room_id);
-      sql =  `INSERT INTO roomuser (roomuser_room_id, roomuser_boardtype_id, roomuser_user_id) values($1 , 1, $2)`
+      sql = `INSERT INTO roomuser (roomuser_room_id, roomuser_boardtype_id, roomuser_user_id) values($1 , 1, $2)`
       result = await pool.query(sql, [result.rows[0].room_id, playID]);
 
       return { status: 200, result: { room_id: roomid } };

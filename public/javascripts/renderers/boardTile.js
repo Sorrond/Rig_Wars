@@ -13,20 +13,20 @@ function drawBoard() {
       }
 
       if (board[i][j].t == "oilrig" && board[i][j + 1].t == "oilrig" && board[i][j + 2].t == "oilrig" && (board[i][j].team == "red" || board[i][j].team == "darkred")) {
-        image(oil_rigs_img[0], i * Tile_W, (j) * Tile_H, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
+        image(oil_rigs_img[0], i * Tile_W + pos_x_init, (j) * Tile_H + pos_y_init, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
 
       } else if (board[i][j].t == "oilrig" && board[i][j + 1].t == "oilrig" && board[i][j + 2].t == "oilrig" && (board[i][j].team == "blue" || board[i][j].team == "darkblue")) {
-        image(oil_rigs_img[1], i * Tile_W, (j) * Tile_H + 10, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
+        image(oil_rigs_img[1], i * Tile_W + pos_x_init, (j) * Tile_H + 10 + pos_y_init, oil_rigs_img[0].width/3 * 2, oil_rigs_img[0].height/3 * 2)
 
       } else if (board[i][j].t == "atkboat" && (board[i][j].team == "red" || board[i][j].team == "darkred")){
-        image(atkboat[0], i * Tile_W - 5, (j * Tile_H) + Tile_H/6*2, atkboat[0].width/3, atkboat[0].height/2)
+        image(atkboat[0], i * Tile_W - 5 + pos_x_init, (j * Tile_H) + Tile_H/6*2 + pos_y_init, atkboat[0].width/3, atkboat[0].height/2)
 
       } else if (board[i][j].t == "atkboat" && (board[i][j].team == "blue" || board[i][j].team == "darkblue")){
-        image(atkboat[1], i * Tile_W - 5, (j * Tile_H) + Tile_H/6*2, atkboat[0].width/3, atkboat[0].height/2)
+        image(atkboat[1], i * Tile_W - 5 + pos_x_init, (j * Tile_H) + Tile_H/6*2 + pos_y_init, atkboat[0].width/3, atkboat[0].height/2)
       }
 
       if (board[i][j].t == "oilrig" && (board[i][j].team == "darkred" || board[i][j].team == "darkblue")){
-        image(mark, i * Tile_W, (j * Tile_H), atkboat[0].width/3 - 10, atkboat[0].height + 5)
+        image(mark, i * Tile_W + pos_x_init, (j * Tile_H) + pos_y_init, atkboat[0].width/3 - 10, atkboat[0].height + 5)
       }
     }
   }
@@ -56,7 +56,7 @@ async function initBoard() {
 }
 
 function mouseisonBoard() {
-  return mouseX > 0 && mouseX < boardCols * Tile_W && mouseY > 0 && mouseY < boardRows * Tile_H;
+  return mouseX > pos_x_init && mouseX < (boardCols * Tile_W) + pos_x_init && mouseY > pos_y_init && mouseY < (boardRows * Tile_H) + pos_y_init;
 }
 
 
@@ -64,6 +64,8 @@ function mouseisonBoard() {
 
 const Tile_W = 50/1.3;
 const Tile_H = 50/1.3;
+const pos_x_init = 50;
+const pos_y_init = 300;
 
 class tile {
 
@@ -91,7 +93,7 @@ class tile {
     } else {
       fill(0, 50);
     }
-    rect((i * Tile_W), (j * Tile_H), Tile_W, Tile_H);
+    rect((i * Tile_W) + pos_x_init, (j * Tile_H) + pos_y_init, Tile_W, Tile_H);
     fill('white');
     // textSize(16)
     // textAlign(CENTER);
@@ -136,5 +138,5 @@ class tile {
 }
 
 function mouseToTile() {
-  return { i: (int)(mouseX / Tile_W), j: (int)(mouseY / Tile_H) };
+  return { i: (int)((mouseX - pos_x_init) / Tile_W), j: (int)((mouseY - pos_y_init) / Tile_H) };
 }

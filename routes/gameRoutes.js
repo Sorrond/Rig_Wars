@@ -43,8 +43,9 @@ router.get('/:roomId/user/side', async function (req, res, next) {
     res.status(result.status).send(result.result);
 });
 
-router.get('/check/side', auth.checkAuthentication, async function (req, res, next) {
-    let result = await rModel.checkBoardSide(req.userId);
+router.get('/:roomId/check/side', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
+    let result = await rModel.checkBoardSide(req.userId, roomId);
     res.status(result.status).send(result.result);
 });
 
@@ -87,6 +88,24 @@ router.post('/:roomId/gamebits/id/delete', auth.checkAuthentication, async funct
 router.get('/:roomId/resources/left', async function (req, res, next) {
     let roomId = req.params.roomId;
     let result = await rModel.getResourcesLeft(roomId);
+    res.status(result.status).send(result.result);
+});
+
+router.get('/:roomId/gamebits/oilrigs', async function (req, res, next) {
+    let roomId = req.params.roomId;
+    let result = await rModel.getOilRigs(roomId);
+    res.status(result.status).send(result.result);
+});
+
+router.get('/:roomId/check/setup', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
+    let result = await rModel.checkSetup(roomId, req.userId);
+    res.status(result.status).send(result.result);
+});
+
+router.get('/:roomId/check/health', auth.checkAuthentication, async function (req, res, next) {
+    let roomId = req.params.roomId;
+    let result = await rModel.checkHealth(roomId, req.userId);
     res.status(result.status).send(result.result);
 });
 

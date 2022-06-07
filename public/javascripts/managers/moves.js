@@ -30,11 +30,13 @@ async function playmoves() {
             movement = 'left';
             print('left')
 
-        } else if ((0 <= (tilecoords.i - 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i - 1][tilecoords.j].t != '') {
+        } else if ((0 <= (tilecoords.i - 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i - 1][tilecoords.j].t == 'oilrig') {
+            let user_id = await id();
             let nexttile = await getGameBitsByTile(tilecoords.i - 1, tilecoords.j);
-            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health == true) {
+            let nexttile_user_id = await getGameBitOwner(tilecoords.i - 1, tilecoords.j, getCookie("roomId"));
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health == true && user_id != nexttile_user_id.roomuser_user_id) {
                 board[tilecoords.i][tilecoords.j].set_default();
-                damageOilRig();
+                await damageOilRig();
 
 
             } else if ((nexttile.objecttile_object_current_health === false) || (nexttile.objecttype_name == 'Boat')) {
@@ -58,9 +60,11 @@ async function playmoves() {
             movement = 'right';
             print('right')
         } else if ((0 <= (tilecoords.i + 1) <= 30) && (0 <= tilecoords.j <= 14) && board[tilecoords.i + 1][tilecoords.j].t != '') {
+            let user_id = await id();
             let nexttile = await getGameBitsByTile(tilecoords.i + 1, tilecoords.j);
-            console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
-            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+            let nexttile_user_id = await getGameBitOwner(tilecoords.i + 1, tilecoords.j, getCookie("roomId"));
+            console.log(nexttile_user_id.roomuser_user_id)
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true && user_id != nexttile_user_id.roomuser_user_id) {
                 board[tilecoords.i][tilecoords.j].set_default();
                 await damageOilRig();
 
@@ -83,9 +87,10 @@ async function playmoves() {
             movement = 'up';
             print('up')
         } else if ((0 <= (tilecoords.i) <= 30) && (0 <= tilecoords.j - 1 <= 14) && board[tilecoords.i][tilecoords.j - 1].t != '') {
+            let user_id = await id();
             let nexttile = await getGameBitsByTile(tilecoords.i, tilecoords.j - 1);
-            console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
-            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+            let nexttile_user_id = await getGameBitOwner(tilecoords.i, tilecoords.j - 1, getCookie("roomId"));
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true && user_id != nexttile_user_id.roomuser_user_id) {
                 board[tilecoords.i][tilecoords.j].set_default();
                 await damageOilRig();
 
@@ -109,9 +114,10 @@ async function playmoves() {
             movement = 'down';
             print('down')
         } else if ((0 <= (tilecoords.i) <= 30) && (0 <= tilecoords.j + 1 <= 14) && board[tilecoords.i][tilecoords.j + 1].t != '') {
-            let nexttile = await getGameBitsByTile(tilecoords.i, tilecoords.j - 1);
-            console.log(nexttile.objecttile_object_current_health, nexttile.objecttype_name)
-            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true) {
+            let user_id = await id();
+            let nexttile = await getGameBitsByTile(tilecoords.i, tilecoords.j + 1);
+            let nexttile_user_id = await getGameBitOwner(tilecoords.i , tilecoords.j + 1, getCookie("roomId"));
+            if (nexttile.objecttype_name == 'Oil Rig' && nexttile.objecttile_object_current_health === true && user_id != nexttile_user_id.roomuser_user_id) {
                 board[tilecoords.i][tilecoords.j].set_default();
                 await damageOilRig();
 

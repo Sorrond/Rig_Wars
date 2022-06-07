@@ -1,170 +1,31 @@
 <html>
-
 <head>
     <title> Rig Wars </title>
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 
 <body>
-    <section id="banner">
-        <img src="images/Rigwars.png" class="center">
+    <section id="banner" class="parent">
+        <img class="image1" src="images/INICIO.png">
+        <img class="image2" src="images/TRAILER.png" id="trailer">
+
         <div class="banner-text">
-            <div class="banner-btn">
-                <a href="https://www.youtube.com/watch?v=kZBxj180Ql8"><span></span>Trailer</a>
-                <a href="game.html"><span></span>Game</a>
+            <div class="banner-btn" id="btn1">
+                <a href="https://www.youtube.com/watch?v=kZBxj180Ql8"><span></span></a>
             </div>
-            <div class="banner-btn">
-                <a href="login.html"><span></span>Login</a>
-                <a href="register.html"><span></span>Register</a>
+
+            <div class="banner-btn1" id="btn2">
+                <a href="login.html"><span></span></a>
+            </div>
+
+            <div class="banner-btn1" id="btn3">
+                <a href="register.html"><span></span></a>
             </div>
         </div>
     </section>
 
-    <section id="sideNav">
-        <nav>
-            <ul>
-                <li><a href="#banner">Home</a></li>
-                <li><a href="#feature">About the Game</a></li>
-                <li><a href="#story">Story</a></li>
-                <li><a href="#building">Buildings</a></li>
-                <li><a href="#boat">Boats</a></li>
-                <li><a href="#instruct">Instructions</a></li>
-            </ul>
-        </nav>
-    </section>
-    <section id="menuBtn">
-        <img src="images/RigwarsLG.png" id="menu">
-    </section>
+    <!--Game-->
+        <img class="image3" src="images/ABOUT.png">
 
-    <!--Features-->
-    <section id="feature">
-        <div class="title-text">
-            <h1>What is Rig Wars</h1>
-        </div>
-        <div class="feature-box">
-            <div class="features">
-                                <h1>Boats:</h1>
-
-                <div class="features-desc">
-                    <div class="feature-text">
-                        <p>Write about the game</p>
-                    </div>
-                </div>
-            </div>
-            <div class="features-img">
-                <img src="">
-            </div>
-        </div>
-    </section>
-
-    <!--Story-->
-    <section id="story">
-        <div class="title-text">
-            <h1>LOre</h1>
-        </div>
-        <div class="story-box">
-            <div class="storys">
-                <h1>Boats:</h1>
-                <div class="story-desc">
-                    <div class="story-text">
-                        <p>Write about the game</p>
-                    </div>
-                </div>
-            </div>
-            <div class="storys-img">
-                <img src="">
-            </div>
-        </div>
-    </section>
-
-    <!--Buildings-->
-    <section id="building">
-        <div class="title-text">
-            <h1>The Buildings</h1>
-        </div>
-        <div class="building-box">
-            <div class="buildings">
-                <h1>Oil Rig:</h1>
-                <div class="building-desc">
-                    <div class="building-text">
-                        <p>The buildings</p>
-                    </div>
-                </div>
-            </div>
-            <div class="building-img">
-                <img src="">
-            </div>
-        </div>
-    </section>
-
-    <!--Boats-->
-    <section id="boat">
-        <div class="title-text">
-            <h1>DRE BOATUS</h1>
-        </div>
-        <div class="boat-box">
-            <div class="boat">
-                <h1>Boats:</h1>
-                <div class="boat-desc">
-                    <div class="boat-text">
-                        <p>Attack Boat:<br> 
-                            The Bruh Boat</p>
-                    </div>
-                </div>
-            </div>
-            <div class="boat-img">
-                <img src="">
-            </div>
-        </div>
-    </section>
-
-    <!--Intructions-->
-    <section id="instruct">
-        <div class="title-text">
-            <h1>Intructions</h1>
-        </div>
-        <div class="instruct-box">
-            <div class="instructs">
-                <h1>Instructions</h1>
-                <div class="instructs-desc">
-                    <div class="instruct-text">
-                        <p>How to play:<br>
-                            You dont</p>
-                    </div>
-                </div>
-            </div>
-            <div class="instructs-img">
-                <img src="">
-            </div>
-        </div>
-    </section>
-
-    <!--Footer-->
-    <section id="footer">
-        <div class="footer-text">
-            <footer>
-                <p>Made by: </p>
-                <p>Rafael Fernandes</p>
-                <p>Rodrigo Farinha</p>
-                <p>Tomas Vicente</p>
-                <p><a href="rigwars@hotmail.com">rigwars@hotmail.com</a></p>
-            </footer>
-        </div>
-    </section>
-
-    <!--Script-->
-    <script>
-        sideNav.style.right = "-250px";
-        menuBtn.onclick = function () {
-            if (sideNav.style.right == "-250px") {
-                sideNav.style.right = "0";
-                menu.src = "images/RigawarsLG.png";
-            }
-            else {
-                sideNav.style.right = "-250px";
-                menu.src = "images/RigawarsLG.png";
-            }
-        }
-    </script>
 </body>
 </html>

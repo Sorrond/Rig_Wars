@@ -19,7 +19,7 @@ async function getRoomTurn() {
         const response = await fetch(`/api/rooms/${getCookie("roomId")}`);
         if (response.status == 200) {
             var result = await response.json();
-            result = result.rows[0].turn_n
+            result = result.turn_n
             return result;
         } else {
             // Treat errors like 404 here
