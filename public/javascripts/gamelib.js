@@ -11,11 +11,16 @@ let atkboat = [];
 let mark;
 let board_img;
 let bg;
+let buttons = [];
 
 function preload() {
     for (let i = 0; i < 2; i++) {
         oil_rigs_img[i] = loadImage(`images/assets/oil_rig_${i}.png`);
         atkboat[i] = loadImage(`images/assets/barco_${i}.png`);
+
+    }
+    for (let i = 0; i < 6; i++) {
+        buttons[i] = loadImage(`images/assets/button_${i}.png`);
     }
     mark = loadImage(`images/assets/mark.png`);
     board_img = loadImage(`images/assets/board.png`);
@@ -68,7 +73,7 @@ async function update() {
 
 async function draw() {
     update()
-    background(255);
+    background(bg);
 
     switch (screen) {
         case 'world':

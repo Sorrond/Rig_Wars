@@ -8,6 +8,7 @@ let end_move_but;
 let end_turn;
 
 async function but_action() {
+    turn_number = await getRoomTurn(getCookie("roomId")); 
         if (atkboat_but.click_but(mouseX, mouseY)) {
             building_menu();
             build_atkboat();
@@ -16,7 +17,7 @@ async function but_action() {
             building_menu();
             build_mine();
 
-        } else if (oilrig_but.click_but(mouseX, mouseY)) {
+        } else if (oilrig_but.click_but(mouseX, mouseY) && turn_number == 0) {
             building_menu();
             build_oilrig();
 
@@ -33,54 +34,67 @@ async function but_action() {
 }
 
 function drawBut() {
+    let buttonsize = 100;
     if (atkboat_but.houver_but(mouseX, mouseY)) {
+        image(buttons[0], (width / 10) * 8, (height / 6) * 1, buttonsize * 2, buttonsize)
         fill(0, 25);
         atkboat_but.draw_but();
     } else {
-        fill(0, 55);
-        atkboat_but.draw_but();
+        //fill(0, 55);
+        //atkboat_but.draw_but();
+        image(buttons[0], (width / 10) * 8, (height / 6) * 1, buttonsize * 2, buttonsize)
     };
 
     if (mine_but.houver_but(mouseX, mouseY)) {
+        image(buttons[2], (width / 10) * 8, (height / 6) * 2, buttonsize * 2, buttonsize)
         fill(0, 25);
         mine_but.draw_but();
     } else {
-        fill(0, 55);
-        mine_but.draw_but();
+        // fill(0, 55);
+        // mine_but.draw_but();
+        image(buttons[2], (width / 10) * 8, (height / 6) * 2, buttonsize * 2, buttonsize)
     };
 
     if (oilrig_but.houver_but(mouseX, mouseY)) {
+        image(buttons[1], (width / 10) * 8, (height / 6) * 3, buttonsize * 2, buttonsize)
         fill(0, 25);
         oilrig_but.draw_but();
     } else {
-        fill(0, 55);
-        oilrig_but.draw_but();
+        // fill(0, 55);
+        // oilrig_but.draw_but();
+        image(buttons[1], (width / 10) * 8, (height / 6) * 3, buttonsize * 2, buttonsize)
     };
 
     if (end_turn.houver_but(mouseX, mouseY)) {
+        image(buttons[4], (width / 10) * 7.4, (height / 6) * 5, buttonsize * 4, buttonsize)
         fill(0, 25);
         end_turn.draw_but();
     } else {
-        fill(0, 55);
-        end_turn.draw_but();
+        // fill(0, 55);
+        // end_turn.draw_but();
+        image(buttons[4], (width / 10) * 7.4, (height / 6) * 5, buttonsize * 4, buttonsize)
     };
 
     if (screen == 'move') {
         if (end_move_but.houver_but(mouseX, mouseY)) {
+            image(buttons[3], (width / 10) * 7.4, (height / 6) * 4, buttonsize * 4, buttonsize)
             fill(0, 25);
             end_move_but.draw_but();
         } else {
-            fill(0, 55);
-            end_move_but.draw_but();
+            // fill(0, 55);
+            // end_move_but.draw_but();
+            image(buttons[3], (width / 10) * 7.4, (height / 6) * 4, buttonsize * 4, buttonsize)
         };
 
     } else {
         if (move_but.houver_but(mouseX, mouseY)) {
+            image(buttons[3], (width / 10) * 7.4, (height / 6) * 4, buttonsize * 4, buttonsize)
             fill(0, 25);
             move_but.draw_but();
         } else {
-            fill(0, 55);
-            move_but.draw_but();
+            image(buttons[3], (width / 10) * 7.4, (height / 6) * 4, buttonsize * 4, buttonsize)
+            // fill(0, 55);
+            // move_but.draw_but();
         };
     }
 }
@@ -115,7 +129,7 @@ class button {
         fill('black');
         textSize(16)
         textAlign(CENTER);
-        text(this.t, this.x + this.w / 2, this.y + this.h / 2 + 5);
+        //text(this.t, this.x + this.w / 2, this.y + this.h / 2 + 5);
         textSize(12)
         pop();
     }

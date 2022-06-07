@@ -137,7 +137,8 @@ function nextBoatMovement() {
     fill('black');
     textSize(15)
     textAlign(CENTER);
-    text('Boat movement \n' + movement, (width / 10) * 7.4 + (100*4)/2, (height / 6) * 4 + 75);
+    fill('white')
+    text('Boat movement \n' + movement, (width / 10) * 7.4 + (100*4)/2, (height / 6) * 4 + 80);
 
     if (keysPressed) {
         if (key == "a") {
