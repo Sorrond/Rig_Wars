@@ -40,6 +40,7 @@ module.exports.getRoomOpponentId = async function (roomId, userid) {
   try {
     let sql = "SELECT roomuser_id from roomuser where roomuser_room_id = $1 and roomuser_user_id != $2";
     let result = await pool.query(sql, [roomId, userid]);
+    console.log(result.rows)
     result = result.rows[0]
     return { status: 200, result: result };
   } catch (err) {
@@ -66,6 +67,7 @@ module.exports.newTurn = async function (turn_number, roomuser_id, user, roomId)
 
     } else {
       var result = await boardM.checkIsPlayerTurn(user, roomId);
+      console.log(roomuser_id)
     }
 
     if (turn_number == 1 || result.result) {

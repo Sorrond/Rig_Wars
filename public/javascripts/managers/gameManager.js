@@ -110,6 +110,6 @@ async function nextTurn() {
     let room = getCookie("roomId")
     turn_number = await getRoomTurn(room)
     turn_number++
-    roomuser_opponent_id = await getRoomOpponentId(room, await id())
+    roomuser_opponent_id = await getRoomOpponentId(await id(), room)
     await newTurn(turn_number, roomuser_opponent_id);
 }
