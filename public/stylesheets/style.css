@@ -88,3 +88,15 @@
   top: 250px;
   left: 300px;
 }
+
+.position1 {
+  position: absolute;
+  top: 270px;
+  left: 300px;
+}
+
+.position2 {
+  position: absolute;
+  top: 290px;
+  left: 300px;
+}

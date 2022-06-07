@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
@@ -12,18 +13,22 @@
 </head>
 <body>
   <header>
+    <section id="text" class="container">
+    <video width="1863px" height="1048" autoplay class="container">
+      <source src="images/BG.webm" type="video/webm">
+    </video>
     <section>
-      <h1>Rig Wars</h1>
-      <h2>Game Rooms</h2>
+      <p class="position">Rig Wars</p>
+      <p class="position2">Game Rooms</p>
     </section>
     <section class="auth"> 
-      <h3>User: <span  id="username"></span></h3>
-        <input type="button" value="Logout" onclick="logoutUser()">
+      <h3 class="position3">User: <span  id="username"></span></h3>
+        <input class="position5" type="button" value="Logout" onclick="logoutUser()">
     </section>
+  </section>
 </header>
       <main id="rooms">
-        <input type="button" value="Search for game room" onclick="findGame()">
+        <input class="position4" type="button" value="Search for game room" onclick="findGame()">
       </main> 
-<footer></footer>
 </body>
 </html>
