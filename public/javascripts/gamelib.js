@@ -74,7 +74,7 @@ async function update() {
 }
 
 async function draw() {
-    update()
+    //update()
     background(bg);
 
     switch (screen) {

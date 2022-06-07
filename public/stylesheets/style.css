@@ -10,7 +10,7 @@
   top: 0;
   left: 0;
 }
-.image1 {
+.image1 { 
   width: 1864px;
   height: 946px;
 }
@@ -72,4 +72,19 @@
 #btn3{
   top: 512px;
   left: 1030px;
+}
+
+
+/*--text/image--*/
+.contain {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Bottom left text */
+.position {
+  position: absolute;
+  top: 250px;
+  left: 300px;
 }
