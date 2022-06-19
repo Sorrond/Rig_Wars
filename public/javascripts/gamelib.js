@@ -64,10 +64,10 @@ async function update() {
             let result = await checkHealth();
             console.log(result)
             if (result == true) {
-                alert("You won the game!\nThanks for playing.");
+                alert("Sorry you lost this time!\nThanks for playing.");
                 window.location = "rooms.html";
             } else if (result == false) {
-                alert("Sorry you this time!\nThanks for playing.");
+                alert("You won the game!\nThanks for playing.");
                 window.location = "rooms.html";
             }
         }
